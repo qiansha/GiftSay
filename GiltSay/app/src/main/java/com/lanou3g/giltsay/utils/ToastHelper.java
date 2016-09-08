@@ -6,6 +6,7 @@ import com.lanou3g.giltsay.ui.app.GiftApp;
 
 /**
  * Created by dllo on 16/9/8.
+ * Toast的工具类
  */
 public final class ToastHelper {
     //私有构造方法
