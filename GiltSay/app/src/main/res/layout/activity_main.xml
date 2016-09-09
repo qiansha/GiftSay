@@ -11,7 +11,7 @@
         android:layout_weight="1"/>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="#868686"/>
     <RadioGroup
         android:id="@+id/main_radio"
@@ -19,32 +19,44 @@
         android:layout_height="40dp"
 
         android:orientation="horizontal">
+
         <RadioButton
             android:id="@+id/homepage_rbtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="25dp"
             android:button="@null"
-            android:background="@drawable/selected_homepage"
+            android:gravity="center"
+
+
+            android:drawableTop="@drawable/selected_homepage"
+            android:text="首页"
+            android:textColor="@color/color_radiobuttontext"
 
 
             />
+
         <RadioButton
             android:id="@+id/list_rbtn"
             android:layout_marginLeft="60dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:button="@null"
-            android:background="@drawable/selected_list"
+            android:gravity="center"
+            android:drawableTop="@drawable/selected_list"
+            android:text="榜单"
+            android:textColor="@color/color_radiobuttontext"
             />
         <RadioButton
             android:id="@+id/class_rbtn"
             android:layout_marginLeft="60dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-
+            android:gravity="center"
             android:button="@null"
-            android:background="@drawable/selected_class"/>
+            android:drawableTop="@drawable/selected_class"
+            android:text="分类"
+            android:textColor="@color/color_radiobuttontext"/>
 
         <RadioButton
             android:id="@+id/person_rbtn"
@@ -52,7 +64,10 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:button="@null"
-            android:background="@drawable/selected_person"/>
+            android:gravity="center"
+            android:drawableTop="@drawable/selected_person"
+            android:text="个人"
+            android:textColor="@color/color_radiobuttontext"/>
     </RadioGroup>
 
 </LinearLayout>

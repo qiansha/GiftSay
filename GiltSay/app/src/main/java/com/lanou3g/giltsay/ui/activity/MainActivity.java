@@ -35,6 +35,7 @@ public class MainActivity extends AbsBaseActivity {
         listFragment = new ListFragment();
         classFragment = new ClassFragment();
         personFragment = new PersonFragment();
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
