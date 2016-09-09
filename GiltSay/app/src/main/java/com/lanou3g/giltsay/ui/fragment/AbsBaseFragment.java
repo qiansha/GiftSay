@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.lanou3g.giltsay.ui.activity.AbsBaseActivity;
 
@@ -26,6 +27,7 @@ public abstract class AbsBaseFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         return inflater.inflate(setLayout(),container,false);
 
     }
@@ -52,5 +54,9 @@ public abstract class AbsBaseFragment extends Fragment{
     }
     protected void goTo(Class<? extends AbsBaseActivity>to){
         context.startActivity(new Intent(context,to));
+    }
+    public class MyColor{
+        final int myColor       = 0xFFFF0033;
+
     }
 }

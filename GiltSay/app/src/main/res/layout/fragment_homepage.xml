@@ -2,10 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFFF0033">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="礼物说"
+            android:textColor="#fff"
+            android:layout_margin="15dp"
+            android:textSize="20sp"/>
+        <EditText
+            android:id="@+id/home_search_et"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:layout_gravity="center"
+            android:drawableLeft="@mipmap/icon_search_grey"
+            android:background="@drawable/rounded_editview"
+            android:text="中秋佳节送好礼"
+            android:textColor="#868686"
+            android:drawablePadding="3dp"
+
+
+            android:layout_margin="10dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="30dp"
+            android:background="@mipmap/btn_signin"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
     <android.support.design.widget.TabLayout
         android:id="@+id/homepage_tl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/selected_hopa_more_img"/>
+    </LinearLayout>
+    </LinearLayout>
 
 <android.support.v4.view.ViewPager
     android:id="@+id/homepage_vp"
