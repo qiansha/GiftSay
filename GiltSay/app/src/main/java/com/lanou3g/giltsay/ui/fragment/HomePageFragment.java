@@ -39,23 +39,10 @@ public class HomePageFragment extends AbsBaseFragment{
     protected void initDatas() {
         List<Fragment>datas = new ArrayList<>();
         datas.add(new HomePageSelectedFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
-        datas.add(new HomePageNormalFragment());
+        for (int i = 1; i <18 ; i++) {
+            datas.add(new HomePageNormalFragment());
+        }
+
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(),datas);
         homePageVp.setAdapter(pagerAdapter);
         homePageTl.setupWithViewPager(homePageVp);
@@ -64,7 +51,7 @@ public class HomePageFragment extends AbsBaseFragment{
         homePageTl.setSelectedTabIndicatorColor(myColor);
         homePageTl.setTabMode (TabLayout.MODE_SCROLLABLE);
 
-        homePageTl.getTabAt(0).setText("拨号");
+        homePageTl.getTabAt(0).setText("推荐");
         for (int i = 1; i <18 ; i++) {
            homePageTl.getTabAt(i).setText("更多");
         }
