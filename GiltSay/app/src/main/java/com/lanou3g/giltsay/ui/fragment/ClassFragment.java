@@ -41,7 +41,7 @@ public class ClassFragment extends AbsBaseFragment{
         classTl.setupWithViewPager(classVp);
         classTl.setSelectedTabIndicatorColor(Color.WHITE);
 
-        classTl.setTabTextColors(Color.WHITE,Color.WHITE);
+        classTl.setTabTextColors(Color.WHITE,Color.rgb(245,245,224));
         classTl.getTabAt(0).setText("攻略");
         classTl.getTabAt(1).setText("单品");
 

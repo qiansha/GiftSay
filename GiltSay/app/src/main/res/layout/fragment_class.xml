@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/class_tl"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFF0033"/>
-
+        android:background="#FFFF0033"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"/>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/class_tl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFF0033"
+        android:layout_weight="1"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"/>
+    </LinearLayout>
     <EditText
         android:id="@+id/class_search_et"
         android:layout_width="match_parent"
