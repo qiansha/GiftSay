@@ -2,9 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:src="@mipmap/abc_ab_bottom_solid_dark_holo9"/>
+
+        <ListView
+            android:id="@+id/homepage_selected_horizontal_list"
+            android:layout_weight="1.2"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            />
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/home_sele_text_fl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+
+        android:orientation="vertical"
+        android:background="#fff">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="更新时间"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="更新时间"/>
+
+
+
+    </LinearLayout>
+    <ListView
+        android:layout_weight="1"
+        android:id="@+id/homepage_selected_vertical_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="这是精选页面"/>
+
+        android:layout_below="@id/home_sele_text_fl"/>
+
 
 </LinearLayout>
