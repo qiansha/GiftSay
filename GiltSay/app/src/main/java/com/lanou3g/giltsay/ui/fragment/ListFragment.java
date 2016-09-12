@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.fragment;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
@@ -19,6 +20,15 @@ public class ListFragment extends AbsBaseFragment{
     public static final int myColor       = 0xFFFF0033;
     private TabLayout listTl;
     private ViewPager listVp;
+
+    public static ListFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        ListFragment fragment = new ListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected int setLayout() {
         return R.layout.fragment_list;
@@ -34,10 +44,10 @@ public class ListFragment extends AbsBaseFragment{
     @Override
     protected void initDatas() {
         List<Fragment>datas = new ArrayList<>();
-        datas.add(new ListTabNormalFragment());
-        datas.add(new ListTabNormalFragment());
-        datas.add(new ListTabNormalFragment());
-        datas.add(new ListTabNormalFragment());
+        datas.add(ListTabNormalFragment.newInstance());
+        datas.add(ListTabNormalFragment.newInstance());
+        datas.add(ListTabNormalFragment.newInstance());
+        datas.add(ListTabNormalFragment.newInstance());
         PagerAdapter listTabAdapter = new PagerAdapter(getChildFragmentManager(),datas);
         listVp.setAdapter(listTabAdapter);
         listTl.setupWithViewPager(listVp);

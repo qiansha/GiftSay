@@ -15,10 +15,10 @@ import android.support.design.widget.TabLayout;
 import android.widget.RadioGroup;
 
 public class MainActivity extends AbsBaseActivity {
-    private HomePageFragment homePageFragment;
-    private ListFragment listFragment;
-    private ClassFragment classFragment;
-    private PersonFragment personFragment;
+//    private HomePageFragment homePageFragment;
+//    private ListFragment listFragment;
+//    private ClassFragment classFragment;
+//    private PersonFragment personFragment;
     private RadioGroup radioGroup;
 
 
@@ -31,10 +31,16 @@ public class MainActivity extends AbsBaseActivity {
     @Override
     protected void initViews() {
         radioGroup = byView(R.id.main_radio);
-        homePageFragment = new HomePageFragment();
-        listFragment = new ListFragment();
-        classFragment = new ClassFragment();
-        personFragment = new PersonFragment();
+
+
+    }
+
+    @Override
+    protected void initDatas() {
+//        homePageFragment = new HomePageFragment();
+//        listFragment = new ListFragment();
+//        classFragment = new ClassFragment();
+//        personFragment = new PersonFragment();
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -43,16 +49,16 @@ public class MainActivity extends AbsBaseActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 switch (checkedId){
                     case R.id.homepage_rbtn:
-                        transaction.replace(R.id.main_repace_view,homePageFragment);
+                        transaction.replace(R.id.main_repace_view,HomePageFragment.newInstance());
                         break;
                     case R.id.list_rbtn:
-                        transaction.replace(R.id.main_repace_view,listFragment);
+                        transaction.replace(R.id.main_repace_view,ListFragment.newInstance());
                         break;
                     case R.id.class_rbtn:
-                        transaction.replace(R.id.main_repace_view,classFragment);
+                        transaction.replace(R.id.main_repace_view,ClassFragment.newInstance());
                         break;
                     case R.id.person_rbtn:
-                        transaction.replace(R.id.main_repace_view,personFragment);
+                        transaction.replace(R.id.main_repace_view,PersonFragment.newInstance());
                         break;
 
                 }
@@ -60,11 +66,6 @@ public class MainActivity extends AbsBaseActivity {
             }
         });
         radioGroup.check(R.id.homepage_rbtn);
-
-    }
-
-    @Override
-    protected void initDatas() {
 
     }
 }

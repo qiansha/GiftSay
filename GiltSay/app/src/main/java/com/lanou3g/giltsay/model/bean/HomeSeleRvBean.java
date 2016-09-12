@@ -5,14 +5,14 @@ import android.widget.ImageView;
 /**
  * Created by dllo on 16/9/11.
  */
-public class HomeSeleHorBean {
+public class HomeSeleRvBean {
     private int img;
 
-    public HomeSeleHorBean(int img) {
+    public HomeSeleRvBean(int img) {
         this.img = img;
     }
 
-    public HomeSeleHorBean() {
+    public HomeSeleRvBean() {
     }
 
     public int getImg() {

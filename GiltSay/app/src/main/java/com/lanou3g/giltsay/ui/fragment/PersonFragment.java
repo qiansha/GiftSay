@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.fragment;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
@@ -20,6 +21,15 @@ public class PersonFragment extends AbsBaseFragment{
     private TabLayout personTl;
     private ViewPager personVp;
     private List<Fragment>datas;
+
+    public static PersonFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        PersonFragment fragment = new PersonFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected int setLayout() {
         return R.layout.fragment_person;
@@ -36,8 +46,8 @@ public class PersonFragment extends AbsBaseFragment{
     @Override
     protected void initDatas() {
         datas = new ArrayList<>();
-        datas.add(new PersonTabGuidesFragment());
-        datas.add(new PersonTabSingleFragment());
+        datas.add(PersonGuidesFragment.newInstance());
+        datas.add(PersonSingleFragment.newInstance());
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(),datas);
         personVp.setAdapter(pagerAdapter);
         personTl.setupWithViewPager(personVp);
