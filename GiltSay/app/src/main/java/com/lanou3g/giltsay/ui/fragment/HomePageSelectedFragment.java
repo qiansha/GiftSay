@@ -7,7 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.model.bean.HomeSeleBean;
 import com.lanou3g.giltsay.model.bean.HomeSeleLvBean;
 import com.lanou3g.giltsay.model.bean.HomeSeleRvBean;
 import com.lanou3g.giltsay.ui.adapter.HomePageSelectedRvAdapter;
@@ -26,7 +33,8 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
     private List<HomeSeleRvBean>datas;
     private List<HomeSeleLvBean>lvDatas;
     private HomeSeleLvAdapter homeSeleLvAdapter;
-
+    private String seleUrl = "http://api.liwushuo.com/v2/banners?channel=IOS";
+    private RequestQueue queue;
     public static HomePageSelectedFragment newInstance() {
         
         Bundle args = new Bundle();
@@ -45,6 +53,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
 
         homeSeleRecyclerView = byView(R.id.homepage_selected_rv);
         homeSeleListView = byView(R.id.homepage_selected_lv);
+        queue = Volley.newRequestQueue(getActivity());
 
 
     }
@@ -56,23 +65,47 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
         homeSeleRecyclerView.setAdapter(homePageSelectedRvAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         homeSeleRecyclerView.setLayoutManager(llm);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 17; i++) {
            HomeSeleRvBean hb = new HomeSeleRvBean();
             hb.setImg(R.mipmap.abc_ab_bottom_solid_dark_holo9);
             datas.add(hb);
         }
 
         homePageSelectedRvAdapter.setDatas(datas);
+//
+//        lvDatas = new ArrayList<>();
 
-        lvDatas = new ArrayList<>();
-        homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
-        homeSeleListView.setAdapter(homeSeleLvAdapter);
-        List<HomeSeleLvBean>lb = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lb.add(new HomeSeleLvBean("礼物","描述","作者","标题","点赞数"));
+//        List<HomeSeleLvBean>lb = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            lb.add(new HomeSeleLvBean("礼物","描述","作者","标题","点赞数"));
+//
+//        }
+//        homeSeleLvAdapter.setDatas(lb);
 
-        }
-        homeSeleLvAdapter.setDatas(lb);
+        StringRequest sr = new StringRequest(seleUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+                HomeSeleBean homeSeleBean = gson.fromJson(response,HomeSeleBean.class);
+                List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData =  homeSeleBean.getData().getItems();
+//                Log.d("HomePageSelectedFragmen", "homeSeleBeanData.get(0).getColumn():" + homeSeleBeanData.get);
+//                Log.d("HomePageSelectedFragmen", homeSeleBeanData.get(1).getTitle());
+//                for (int i = 0; i < homeSeleBeanData.size(); i++) {
+//                    Log.d("HomePageSelectedFragmen", null);
+//                }
+                homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
+                homeSeleListView.setAdapter(homeSeleLvAdapter);
+                homeSeleLvAdapter.setDatas(homeSeleBeanData);
+                Log.d("zzz", response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(sr);
 
     }
 

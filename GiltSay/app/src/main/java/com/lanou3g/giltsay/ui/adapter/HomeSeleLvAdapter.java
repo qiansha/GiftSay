@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.*;
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.model.bean.HomeSeleBean;
 import com.lanou3g.giltsay.model.bean.HomeSeleLvBean;
 
 import java.util.List;
@@ -19,25 +21,31 @@ import java.util.zip.Inflater;
  */
 public class HomeSeleLvAdapter extends BaseAdapter{
     private Context context;
-    private List<HomeSeleLvBean>datas;
+    private List<HomeSeleBean.DataBean.ItemsBean> datas;
 
     public HomeSeleLvAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<HomeSeleLvBean> datas) {
+    public void setDatas(List<HomeSeleBean.DataBean.ItemsBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
 
+
+//    public void setDatas(List<HomeSeleBean.DataBean> datas) {
+//        this.datas = datas;
+//        notifyDataSetChanged();
+//    }
+
     @Override
     public int getCount() {
-        return  datas !=null && datas.size() > 0 ?datas.size():0;
+        return  datas == null ? 0:datas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return datas != null && datas.size() > 0 ? datas.get(position):null;
+        return datas == null? null : datas.get(position);
     }
 
     @Override
@@ -48,6 +56,7 @@ public class HomeSeleLvAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         HomeSeleLvViewHolder homeSeleLvViewHolder = null;
+        Log.d("zzz", "111111");
         if (convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_homepage_selected_lv,parent,false);
             homeSeleLvViewHolder = new HomeSeleLvViewHolder(convertView);
@@ -56,12 +65,18 @@ public class HomeSeleLvAdapter extends BaseAdapter{
             homeSeleLvViewHolder = (HomeSeleLvViewHolder) convertView.getTag();
         }
         //HomeSeleLvBean homeSeleLvBean = new HomeSeleLvBean();
-        homeSeleLvViewHolder.categoryTv.setText(datas.get(position).getCategory());
-        homeSeleLvViewHolder.descriptionTv.setText(datas.get(position).getDescription());
-        homeSeleLvViewHolder.nicknameTv.setText(datas.get(position).getNickname());
-        homeSeleLvViewHolder.titleTv.setText(datas.get(position).getTitle());
-        homeSeleLvViewHolder.likesCountTv.setText(datas.get(position).getLikesCount());
-        return convertView;
+        HomeSeleBean.DataBean.ItemsBean bean = datas.get(position);
+        Log.d("zzz", "zhixing");
+        if (bean != null) {
+            homeSeleLvViewHolder.categoryTv.setText(bean.getLikes_count());
+            // homeSeleLvViewHolder.descriptionTv.setText((CharSequence) datas.get(position).getTitle());
+            homeSeleLvViewHolder.nicknameTv.setText(bean.getTitle());
+            Log.d("zzz", "null" + bean.getTitle());
+//            homeSeleLvViewHolder.titleTv.setText(datas.get(position).getTitle());
+//            Log.d("HomePageSelectedFragmen", datas.get(position).getTitle()+"null");
+//            homeSeleLvViewHolder.likesCountTv.setText(datas.get(position).getLikes_count());
+        }
+            return convertView;
     }
     class HomeSeleLvViewHolder{
         TextView categoryTv,descriptionTv,nicknameTv,titleTv,likesCountTv;
