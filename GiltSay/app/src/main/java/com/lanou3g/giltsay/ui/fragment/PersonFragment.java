@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
+import android.widget.RadioGroup;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.ui.adapter.PagerAdapter;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class PersonFragment extends AbsBaseFragment{
     private static final int myColor = 0XFFFF0033;
-    private TabLayout personTl;
+    private RadioGroup personRg;
     private ViewPager personVp;
     private List<Fragment>datas;
 
@@ -37,7 +38,7 @@ public class PersonFragment extends AbsBaseFragment{
 
     @Override
     protected void initViews() {
-        personTl = byView(R.id.person_tl);
+        personRg = byView(R.id.person_rg);
         personVp = byView(R.id.person_vp);
 
 
@@ -50,11 +51,18 @@ public class PersonFragment extends AbsBaseFragment{
         datas.add(PersonSingleFragment.newInstance());
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(),datas);
         personVp.setAdapter(pagerAdapter);
-        personTl.setupWithViewPager(personVp);
-        personTl.setTabTextColors(Color.BLACK,Color.BLACK);
-        personTl.setSelectedTabIndicatorColor(myColor);
-        personTl.getTabAt(0).setText("攻略");
-        personTl.getTabAt(1).setText("单品");
+        personRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.person_guides_rb:
+                        break;
+                    case R.id.person_single_rb:
+                        break;
+                }
+            }
+        });
+
 
     }
 }

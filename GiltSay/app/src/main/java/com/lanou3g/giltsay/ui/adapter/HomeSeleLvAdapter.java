@@ -65,16 +65,16 @@ public class HomeSeleLvAdapter extends BaseAdapter{
             homeSeleLvViewHolder = (HomeSeleLvViewHolder) convertView.getTag();
         }
         //HomeSeleLvBean homeSeleLvBean = new HomeSeleLvBean();
-        HomeSeleBean.DataBean.ItemsBean bean = datas.get(position);
+        HomeSeleBean.DataBean.ItemsBean bean = (HomeSeleBean.DataBean.ItemsBean) getItem(position);
         Log.d("zzz", "zhixing");
         if (bean != null) {
-            homeSeleLvViewHolder.categoryTv.setText(bean.getLikes_count());
-            // homeSeleLvViewHolder.descriptionTv.setText((CharSequence) datas.get(position).getTitle());
-            homeSeleLvViewHolder.nicknameTv.setText(bean.getTitle());
-            Log.d("zzz", "null" + bean.getTitle());
-//            homeSeleLvViewHolder.titleTv.setText(datas.get(position).getTitle());
-//            Log.d("HomePageSelectedFragmen", datas.get(position).getTitle()+"null");
-//            homeSeleLvViewHolder.likesCountTv.setText(datas.get(position).getLikes_count());
+//           homeSeleLvViewHolder.categoryTv.setText(bean.getColumn().getCategory());
+//            homeSeleLvViewHolder.descriptionTv.setText(bean.getColumn().getDescription());
+            homeSeleLvViewHolder.nicknameTv.setText(bean.getAuthor().getNickname());
+
+            homeSeleLvViewHolder.titleTv.setText(bean.getTitle());
+            Log.d("HomePageSelectedFragmen", datas.get(position).getTitle()+"null");
+//            homeSeleLvViewHolder.likesCountTv.setText(bean.getColumn().getCategory());
         }
             return convertView;
     }

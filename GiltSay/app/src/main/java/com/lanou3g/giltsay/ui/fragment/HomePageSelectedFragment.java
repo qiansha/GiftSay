@@ -33,7 +33,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
     private List<HomeSeleRvBean>datas;
     private List<HomeSeleLvBean>lvDatas;
     private HomeSeleLvAdapter homeSeleLvAdapter;
-    private String seleUrl = "http://api.liwushuo.com/v2/banners?channel=IOS";
+    private String seleUrl = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
     private RequestQueue queue;
     public static HomePageSelectedFragment newInstance() {
         
@@ -53,7 +53,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
 
         homeSeleRecyclerView = byView(R.id.homepage_selected_rv);
         homeSeleListView = byView(R.id.homepage_selected_lv);
-        queue = Volley.newRequestQueue(getActivity());
+        queue = Volley.newRequestQueue(getContext());
 
 
     }
@@ -93,7 +93,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
 //                for (int i = 0; i < homeSeleBeanData.size(); i++) {
 //                    Log.d("HomePageSelectedFragmen", null);
 //                }
-                homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
+               homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
                 homeSeleListView.setAdapter(homeSeleLvAdapter);
                 homeSeleLvAdapter.setDatas(homeSeleBeanData);
                 Log.d("zzz", response);

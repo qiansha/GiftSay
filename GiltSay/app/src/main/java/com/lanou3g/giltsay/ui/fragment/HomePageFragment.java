@@ -67,7 +67,7 @@ public class HomePageFragment extends AbsBaseFragment{
         homePageTl.setSelectedTabIndicatorColor(myColor);
         homePageTl.setTabMode (TabLayout.MODE_SCROLLABLE);
 
-        homePageTl.getTabAt(0).setText("推荐");
+        homePageTl.getTabAt(0).setText("精选");
         String[]str = {"送男票","穿搭","海淘","礼物","美护","送闺蜜","送爸妈",
                 "送基友","送同事","送宝贝","创意生活","手工","设计感","文艺风","科技范","奇葩搞怪","萌萌哒"};
         for (int i = 1; i <18 ; i++) {
