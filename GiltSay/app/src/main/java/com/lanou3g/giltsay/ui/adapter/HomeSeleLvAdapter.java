@@ -18,7 +18,7 @@ import java.util.zip.Inflater;
 
 /**
  * Created by dllo on 16/9/12.
- * 精选页面ListView的适配器
+ *
  */
 public class HomeSeleLvAdapter extends BaseAdapter {
     private Context context;

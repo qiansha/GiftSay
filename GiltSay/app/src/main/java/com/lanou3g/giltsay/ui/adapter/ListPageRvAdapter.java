@@ -1,43 +1,80 @@
 package com.lanou3g.giltsay.ui.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 /**
  * Created by dllo on 16/9/14.
  * 榜单的适配器
  */
 public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.ListViewHolder>{
+    private Context context;
+    private List<ListPageRecyclerViewBean.DataBean.ItemsBean> datas;
+
+    public ListPageRvAdapter(Context context) {
+        this.context = context;
+    }
+
+    public void setDatas(List<ListPageRecyclerViewBean.DataBean.ItemsBean> datas) {
+        this.datas = datas;
+        notifyDataSetChanged();
+    }
+
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+
+        View view = LayoutInflater.from(context).inflate(R.layout.item_listpage_rv,parent,false);
+        ListViewHolder listViewHolder = new ListViewHolder(view);
+//        ListPageRecyclerViewBean.DataBean.ItemsBean bean = datas.get(position);
+
+        return listViewHolder;
     }
 
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
-
+        Log.d("ListPageRvAdapter", "进来没?");
+        ListPageRecyclerViewBean.DataBean.ItemsBean bean = datas.get(position);
+        if (bean !=null) {
+            Log.d("ListPageRvAdapter", bean.getName() + "名字");
+            Log.d("ListPageRvAdapter", bean.getDescription() + "描述");
+            Log.d("ListPageRvAdapter", bean.getPrice() + "价格");
+            holder.listNameTv.setText(bean.getName());
+            holder.listDescriptionTv.setText(bean.getShort_description());
+            holder.listPriceTv.setText(bean.getPrice());
+            Picasso.with(context).load(bean.getCover_image_url()).into(holder.listImg);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return datas == null ? 0 : datas.size();
     }
 
     class ListViewHolder extends RecyclerView.ViewHolder{
         ImageView listImg;
         TextView listDescriptionTv;
         TextView listNameTv;
+        TextView listPriceTv;
 
         public ListViewHolder(View itemView) {
             super(itemView);
             listImg = (ImageView) itemView.findViewById(R.id.listpage_cv_img);
             listDescriptionTv = (TextView) itemView.findViewById(R.id.listpage_cv_description_tv);
             listNameTv = (TextView) itemView.findViewById(R.id.listpage_cv_name_tv);
+           listPriceTv = (TextView) itemView.findViewById(R.id.listpage_cv_price_tv);
+
         }
     }
 }
