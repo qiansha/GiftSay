@@ -15,10 +15,11 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/11.
+ * 精选页面RecyclerView的适配器
  */
-public class HomePageSelectedRvAdapter  extends RecyclerView.Adapter<HomePageSelectedRvAdapter.HomeSeleRvViewHolder>{
+public class HomePageSelectedRvAdapter extends RecyclerView.Adapter<HomePageSelectedRvAdapter.HomeSeleRvViewHolder> {
     private Context context;
-    private List<HomeSeleRvBean>datas;
+    private List<HomeSeleRvBean> datas;
 
     public void setDatas(List<HomeSeleRvBean> datas) {
         this.datas = datas;
@@ -31,7 +32,7 @@ public class HomePageSelectedRvAdapter  extends RecyclerView.Adapter<HomePageSel
 
     @Override
     public HomeSeleRvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_homepage_selected_rv,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_homepage_selected_rv, parent, false);
         HomeSeleRvViewHolder homeSeleRvViewHolder = new HomeSeleRvViewHolder(view);
         return homeSeleRvViewHolder;
     }
@@ -44,14 +45,15 @@ public class HomePageSelectedRvAdapter  extends RecyclerView.Adapter<HomePageSel
 
     @Override
     public int getItemCount() {
-        return datas == null ? 0: datas.size();
+        return datas == null ? 0 : datas.size();
     }
 
-    class HomeSeleRvViewHolder extends RecyclerView.ViewHolder{
-         private ImageView homeSeleImg;
-       public HomeSeleRvViewHolder(View itemView) {
-           super(itemView);
-           homeSeleImg = (ImageView) itemView.findViewById(R.id.item_home_sele_rv_img);
-       }
-   }
+    class HomeSeleRvViewHolder extends RecyclerView.ViewHolder {
+        private ImageView homeSeleImg;
+
+        public HomeSeleRvViewHolder(View itemView) {
+            super(itemView);
+            homeSeleImg = (ImageView) itemView.findViewById(R.id.item_home_sele_rv_img);
+        }
+    }
 }

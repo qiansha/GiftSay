@@ -18,8 +18,9 @@ import java.util.zip.Inflater;
 
 /**
  * Created by dllo on 16/9/12.
+ * 精选页面ListView的适配器
  */
-public class HomeSeleLvAdapter extends BaseAdapter{
+public class HomeSeleLvAdapter extends BaseAdapter {
     private Context context;
     private List<HomeSeleBean.DataBean.ItemsBean> datas;
 
@@ -40,12 +41,12 @@ public class HomeSeleLvAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return  datas == null ? 0:datas.size();
+        return datas == null ? 0 : datas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return datas == null? null : datas.get(position);
+        return datas == null ? null : datas.get(position);
     }
 
     @Override
@@ -57,11 +58,11 @@ public class HomeSeleLvAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         HomeSeleLvViewHolder homeSeleLvViewHolder = null;
         Log.d("zzz", "111111");
-        if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_homepage_selected_lv,parent,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_homepage_selected_lv, parent, false);
             homeSeleLvViewHolder = new HomeSeleLvViewHolder(convertView);
             convertView.setTag(homeSeleLvViewHolder);
-        }else {
+        } else {
             homeSeleLvViewHolder = (HomeSeleLvViewHolder) convertView.getTag();
         }
         //HomeSeleLvBean homeSeleLvBean = new HomeSeleLvBean();
@@ -73,14 +74,16 @@ public class HomeSeleLvAdapter extends BaseAdapter{
             homeSeleLvViewHolder.nicknameTv.setText(bean.getAuthor().getNickname());
 
             homeSeleLvViewHolder.titleTv.setText(bean.getTitle());
-            Log.d("HomePageSelectedFragmen", datas.get(position).getTitle()+"null");
+            Log.d("HomePageSelectedFragmen", datas.get(position).getTitle() + "null");
 //            homeSeleLvViewHolder.likesCountTv.setText(bean.getColumn().getCategory());
         }
-            return convertView;
+        return convertView;
     }
-    class HomeSeleLvViewHolder{
-        TextView categoryTv,descriptionTv,nicknameTv,titleTv,likesCountTv;
-        public HomeSeleLvViewHolder(View view){
+
+    class HomeSeleLvViewHolder {
+        TextView categoryTv, descriptionTv, nicknameTv, titleTv, likesCountTv;
+
+        public HomeSeleLvViewHolder(View view) {
             categoryTv = (TextView) view.findViewById(R.id.homesele_list_cateory_tv);
             descriptionTv = (TextView) view.findViewById(R.id.homesele_list_description_tv);
             nicknameTv = (TextView) view.findViewById(R.id.homesele_nickname_tv);

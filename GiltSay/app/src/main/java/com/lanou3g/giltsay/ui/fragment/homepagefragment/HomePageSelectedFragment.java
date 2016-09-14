@@ -1,7 +1,6 @@
-package com.lanou3g.giltsay.ui.fragment;
+package com.lanou3g.giltsay.ui.fragment.homepagefragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,30 +18,34 @@ import com.lanou3g.giltsay.model.bean.HomeSeleLvBean;
 import com.lanou3g.giltsay.model.bean.HomeSeleRvBean;
 import com.lanou3g.giltsay.ui.adapter.HomePageSelectedRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.HomeSeleLvAdapter;
+import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dllo on 16/9/9.
+ * 首页的精选页面
  */
-public class HomePageSelectedFragment extends AbsBaseFragment{
+public class HomePageSelectedFragment extends AbsBaseFragment {
     private ListView homeSeleListView;
     private RecyclerView homeSeleRecyclerView;
     private HomePageSelectedRvAdapter homePageSelectedRvAdapter;
-    private List<HomeSeleRvBean>datas;
-    private List<HomeSeleLvBean>lvDatas;
+    private List<HomeSeleRvBean> datas;
+    private List<HomeSeleLvBean> lvDatas;
     private HomeSeleLvAdapter homeSeleLvAdapter;
     private String seleUrl = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
     private RequestQueue queue;
+
     public static HomePageSelectedFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         HomePageSelectedFragment fragment = new HomePageSelectedFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_homepage_selected;
@@ -53,7 +56,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
 
         homeSeleRecyclerView = byView(R.id.homepage_selected_rv);
         homeSeleListView = byView(R.id.homepage_selected_lv);
-        queue = Volley.newRequestQueue(getContext());
+        queue = Volley.newRequestQueue(context);
 
 
     }
@@ -63,10 +66,10 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
         datas = new ArrayList<>();
         homePageSelectedRvAdapter = new HomePageSelectedRvAdapter(getContext());
         homeSeleRecyclerView.setAdapter(homePageSelectedRvAdapter);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         homeSeleRecyclerView.setLayoutManager(llm);
         for (int i = 0; i < 17; i++) {
-           HomeSeleRvBean hb = new HomeSeleRvBean();
+            HomeSeleRvBean hb = new HomeSeleRvBean();
             hb.setImg(R.mipmap.abc_ab_bottom_solid_dark_holo9);
             datas.add(hb);
         }
@@ -86,14 +89,14 @@ public class HomePageSelectedFragment extends AbsBaseFragment{
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                HomeSeleBean homeSeleBean = gson.fromJson(response,HomeSeleBean.class);
-                List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData =  homeSeleBean.getData().getItems();
+                HomeSeleBean homeSeleBean = gson.fromJson(response, HomeSeleBean.class);
+                List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData = homeSeleBean.getData().getItems();
 //                Log.d("HomePageSelectedFragmen", "homeSeleBeanData.get(0).getColumn():" + homeSeleBeanData.get);
 //                Log.d("HomePageSelectedFragmen", homeSeleBeanData.get(1).getTitle());
 //                for (int i = 0; i < homeSeleBeanData.size(); i++) {
 //                    Log.d("HomePageSelectedFragmen", null);
 //                }
-               homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
+                homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
                 homeSeleListView.setAdapter(homeSeleLvAdapter);
                 homeSeleLvAdapter.setDatas(homeSeleBeanData);
                 Log.d("zzz", response);

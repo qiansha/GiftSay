@@ -6,8 +6,9 @@ import android.widget.GridView;
 
 /**
  * Created by dllo on 16/9/13.
+ * 自定义的GridView
  */
-public class HomeGridView extends GridView{
+public class HomeGridView extends GridView {
     public HomeGridView(Context context) {
         super(context);
 
@@ -19,7 +20,7 @@ public class HomeGridView extends GridView{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,MeasureSpec.AT_MOST);
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
 }

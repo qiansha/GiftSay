@@ -1,4 +1,4 @@
-package com.lanou3g.giltsay.ui.fragment;
+package com.lanou3g.giltsay.ui.fragment.homepagefragment;
 
 import android.os.Bundle;
 import android.widget.ListView;
@@ -12,13 +12,15 @@ import com.google.gson.Gson;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeleBean;
 import com.lanou3g.giltsay.ui.adapter.HomeSeleLvAdapter;
+import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
 import java.util.List;
 
 /**
  * Created by dllo on 16/9/9.
+ * 首页的其他分页面
  */
-public class HomePageNormalFragment extends AbsBaseFragment{
+public class HomePageNormalFragment extends AbsBaseFragment {
     private String normalUrl = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
     private ListView homeNormalListView;
     private String tag;
@@ -26,13 +28,14 @@ public class HomePageNormalFragment extends AbsBaseFragment{
     private HomeSeleLvAdapter homeSeleLvAdapter;
 
     public static HomePageNormalFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         HomePageNormalFragment fragment = new HomePageNormalFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_homepage_normal;
@@ -53,8 +56,8 @@ public class HomePageNormalFragment extends AbsBaseFragment{
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                HomeSeleBean homeSeleBean = gson.fromJson(response,HomeSeleBean.class);
-                List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData =  homeSeleBean.getData().getItems();
+                HomeSeleBean homeSeleBean = gson.fromJson(response, HomeSeleBean.class);
+                List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData = homeSeleBean.getData().getItems();
                 homeSeleLvAdapter.setDatas(homeSeleBeanData);
             }
         }, new Response.ErrorListener() {

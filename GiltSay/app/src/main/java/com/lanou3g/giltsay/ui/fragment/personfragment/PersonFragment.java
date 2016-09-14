@@ -1,36 +1,37 @@
-package com.lanou3g.giltsay.ui.fragment;
+package com.lanou3g.giltsay.ui.fragment.personfragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
 import android.widget.RadioGroup;
 
 import com.lanou3g.giltsay.R;
-import com.lanou3g.giltsay.ui.adapter.PagerAdapter;
+import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
+import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dllo on 16/9/8.
+ * 个人页面
  */
-public class PersonFragment extends AbsBaseFragment{
+public class PersonFragment extends AbsBaseFragment {
     private static final int myColor = 0XFFFF0033;
     private RadioGroup personRg;
     private ViewPager personVp;
-    private List<Fragment>datas;
+    private List<Fragment> datas;
 
     public static PersonFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         PersonFragment fragment = new PersonFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_person;
@@ -49,8 +50,8 @@ public class PersonFragment extends AbsBaseFragment{
         datas = new ArrayList<>();
         datas.add(PersonGuidesFragment.newInstance());
         datas.add(PersonSingleFragment.newInstance());
-        PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(),datas);
-        personVp.setAdapter(pagerAdapter);
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
+        personVp.setAdapter(mainPagerAdapter);
         personRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

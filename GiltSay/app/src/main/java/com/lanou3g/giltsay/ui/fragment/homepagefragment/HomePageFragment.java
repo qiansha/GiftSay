@@ -1,4 +1,4 @@
-package com.lanou3g.giltsay.ui.fragment;
+package com.lanou3g.giltsay.ui.fragment.homepagefragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.lanou3g.giltsay.R;
-import com.lanou3g.giltsay.ui.adapter.PagerAdapter;
+import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
+import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
 
 import java.util.ArrayList;
@@ -17,22 +18,24 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/8.
+ * 首页页面
  */
-public class HomePageFragment extends AbsBaseFragment{
-    public static final int myColor       = 0xFFFF0033;
+public class HomePageFragment extends AbsBaseFragment {
+    public static final int myColor = 0xFFFF0033;
 
 
     private TabLayout homePageTl;
     private ViewPager homePageVp;
 
     public static HomePageFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         HomePageFragment fragment = new HomePageFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_homepage;
@@ -48,8 +51,7 @@ public class HomePageFragment extends AbsBaseFragment{
 
     @Override
     protected void initDatas() {
-        List<Fragment>datas = new ArrayList<>();
-
+        List<Fragment> datas = new ArrayList<>();
 
 
         datas.add(HomePageSelectedFragment.newInstance());
@@ -58,20 +60,19 @@ public class HomePageFragment extends AbsBaseFragment{
         }
 
 
-
-        PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(),datas);
-        homePageVp.setAdapter(pagerAdapter);
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
+        homePageVp.setAdapter(mainPagerAdapter);
         homePageTl.setupWithViewPager(homePageVp);
         homePageTl.setSelectedTabIndicatorHeight(3);
-        homePageTl.setTabTextColors(Color.GRAY,myColor);
+        homePageTl.setTabTextColors(Color.GRAY, myColor);
         homePageTl.setSelectedTabIndicatorColor(myColor);
-        homePageTl.setTabMode (TabLayout.MODE_SCROLLABLE);
+        homePageTl.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         homePageTl.getTabAt(0).setText("精选");
-        String[]str = {"送男票","穿搭","海淘","礼物","美护","送闺蜜","送爸妈",
-                "送基友","送同事","送宝贝","创意生活","手工","设计感","文艺风","科技范","奇葩搞怪","萌萌哒"};
-        for (int i = 1; i <18 ; i++) {
-           homePageTl.getTabAt(i).setText(str[i-1]);
+        String[] str = {"送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
+                "送基友", "送同事", "送宝贝", "创意生活", "手工", "设计感", "文艺风", "科技范", "奇葩搞怪", "萌萌哒"};
+        for (int i = 1; i < 18; i++) {
+            homePageTl.getTabAt(i).setText(str[i - 1]);
         }
 
     }

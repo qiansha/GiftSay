@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:background="#FFFF0033"
 
-        android:background="#FFFF0033">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="礼物榜"
             android:textColor="#fff"
-            android:layout_centerInParent="true"
-            android:textSize="22sp"
-            />
+            android:textSize="22sp" />
+
         <ImageView
             android:id="@+id/list_more_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@mipmap/attendance_share_icon"
             android:layout_alignParentRight="true"
-            />
+            android:layout_margin="15dp"
+            android:background="@mipmap/attendance_share_icon" />
 
     </RelativeLayout>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/list_tl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/list_vp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

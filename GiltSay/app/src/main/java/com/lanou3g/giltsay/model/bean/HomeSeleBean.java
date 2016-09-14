@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/13.
+ * 首页中所有分页Fragment的ListView的实体类
  */
 public class HomeSeleBean {
 

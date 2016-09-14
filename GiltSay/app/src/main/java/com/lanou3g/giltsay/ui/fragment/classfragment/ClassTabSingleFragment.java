@@ -1,13 +1,15 @@
-package com.lanou3g.giltsay.ui.fragment;
+package com.lanou3g.giltsay.ui.fragment.classfragment;
 
 import android.os.Bundle;
 
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
 /**
  * Created by dllo on 16/9/9.
+ * 分类中的单品页面
  */
-public class ClassTabSingleFragment extends AbsBaseFragment{
+public class ClassTabSingleFragment extends AbsBaseFragment {
     public static ClassTabSingleFragment newInstance() {
         
         Bundle args = new Bundle();
