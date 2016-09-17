@@ -21,6 +21,7 @@ import com.lanou3g.giltsay.model.net.VolleyResult;
 import com.lanou3g.giltsay.ui.adapter.HomePageSelectedRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.HomeSeleLvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,15 +35,16 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     private RecyclerView homeSeleRecyclerView;
     private HomePageSelectedRvAdapter homePageSelectedRvAdapter;
     private List<HomeSeleRvBean> datas;
+    private String url;
     private List<HomeSeleLvBean> lvDatas;
     private HomeSeleLvAdapter homeSeleLvAdapter;
-    private String seleUrl = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
 
 
-    public static HomePageSelectedFragment newInstance() {
+
+    public static HomePageSelectedFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-
+          args.putString("url",url);
         HomePageSelectedFragment fragment = new HomePageSelectedFragment();
         fragment.setArguments(args);
         return fragment;
@@ -61,7 +63,9 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     @Override
     protected void initDatas() {
-        VolleyInstance.getInstance().startRequest(seleUrl, this);
+        Bundle bundle = getArguments();
+        this.url = bundle.getString("url");
+        VolleyInstance.getInstance().startRequest(url, this);
         datas = new ArrayList<>();
         homePageSelectedRvAdapter = new HomePageSelectedRvAdapter(getContext());
         homeSeleRecyclerView.setAdapter(homePageSelectedRvAdapter);
@@ -78,12 +82,12 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     @Override
     public void success(String resultStr) {
-//        Gson gson = new Gson();
-//        HomeSeleBean homeSeleBean = gson.fromJson(resultStr, HomeSeleBean.class);
-//        List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData = homeSeleBean.getData().getItems();
-//        homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
-//        homeSeleListView.setAdapter(homeSeleLvAdapter);
-//        homeSeleLvAdapter.setDatas(homeSeleBeanData);
+        Gson gson = new Gson();
+        HomeSeleBean homeSeleBean = gson.fromJson(resultStr, HomeSeleBean.class);
+        List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData = homeSeleBean.getData().getItems();
+        homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
+        homeSeleListView.setAdapter(homeSeleLvAdapter);
+        homeSeleLvAdapter.setDatas(homeSeleBeanData);
         Log.d("zzz", resultStr);
     }
 

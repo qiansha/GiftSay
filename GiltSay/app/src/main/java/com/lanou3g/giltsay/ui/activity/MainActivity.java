@@ -8,6 +8,7 @@ import com.lanou3g.giltsay.ui.fragment.classfragment.ClassFragment;
 import com.lanou3g.giltsay.ui.fragment.homepagefragment.HomePageFragment;
 import com.lanou3g.giltsay.ui.fragment.listfragment.ListFragment;
 import com.lanou3g.giltsay.ui.fragment.personfragment.PersonFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 import android.widget.RadioGroup;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AbsBaseActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 switch (checkedId) {
                     case R.id.homepage_rbtn:
-                        transaction.replace(R.id.main_repace_view, HomePageFragment.newInstance());
+                        transaction.replace(R.id.main_repace_view, HomePageFragment.newInstance(StaticClassHelper.homeSeleUrl));
                         break;
                     case R.id.list_rbtn:
                         transaction.replace(R.id.main_repace_view, ListFragment.newInstance());

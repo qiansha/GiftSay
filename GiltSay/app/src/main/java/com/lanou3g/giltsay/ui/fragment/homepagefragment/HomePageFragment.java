@@ -18,6 +18,7 @@ import com.lanou3g.giltsay.model.bean.HomePopRvBean;
 import com.lanou3g.giltsay.ui.adapter.HomePagePopRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class HomePageFragment extends AbsBaseFragment {
     private HomePagePopRvAdapter homePopAdapter;
     private RecyclerView homePopRecyclerView;
     private List<String>data;
-    public static final int myColor = 0xFFFF0033;
+
     private String[] popStr = {"精选","送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
             "送基友", "送同事", "送宝贝", "创意生活", "手工", "设计感", "文艺风", "科技范", "奇葩搞怪", "萌萌哒"};
 
@@ -40,10 +41,10 @@ public class HomePageFragment extends AbsBaseFragment {
     private TabLayout homePageTl;
     private ViewPager homePageVp;
 
-    public static HomePageFragment newInstance() {
+    public static HomePageFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-
+        args.putString("url",url);
         HomePageFragment fragment = new HomePageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -69,18 +70,23 @@ public class HomePageFragment extends AbsBaseFragment {
         List<Fragment> datas = new ArrayList<>();
 
 
-        datas.add(HomePageSelectedFragment.newInstance());
-        for (int i = 0; i < 17; i++) {
-            datas.add(HomePageNormalFragment.newInstance());
+        datas.add(HomePageSelectedFragment.newInstance(StaticClassHelper.homeSeleUrl));
+
+            datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoyFriend));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homrOutFitUrl));
+        for (int i = 0; i < 15; i++) {
+            datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoyFriend));
+
         }
+
 
 
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         homePageVp.setAdapter(mainPagerAdapter);
         homePageTl.setupWithViewPager(homePageVp);
         homePageTl.setSelectedTabIndicatorHeight(3);
-        homePageTl.setTabTextColors(Color.GRAY, myColor);
-        homePageTl.setSelectedTabIndicatorColor(myColor);
+        homePageTl.setTabTextColors(Color.GRAY, StaticClassHelper.myColor);
+        homePageTl.setSelectedTabIndicatorColor(StaticClassHelper.myColor);
         homePageTl.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         homePageTl.getTabAt(0).setText("精选");

@@ -13,6 +13,7 @@ import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
 import com.lanou3g.giltsay.ui.adapter.ListPageRvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,8 +28,7 @@ import static com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean.DataBean.*
 public class ListTabNormalFragment extends AbsBaseFragment {
     private ListPageRvAdapter listPageRvAdapter;
     private ImageView topImg;
-    private String imgUrl = "http://img02.liwushuo.com/image/160909/2q09s3yzy.png-w720";
-    private String topUrl = "http://api.liwushuo.com/v2/ranks_v2/ranks/3?limit=20&offset=0";
+
     private RecyclerView recyclerView;
     public static ListTabNormalFragment newInstance() {
 
@@ -56,7 +56,7 @@ public class ListTabNormalFragment extends AbsBaseFragment {
 //        VolleyInstance.getInstance().startRequest(topUrl,this);
         listPageRvAdapter = new ListPageRvAdapter(context);
         recyclerView.setAdapter(listPageRvAdapter);
-        VolleyInstance.getInstance().startRequest(topUrl, new VolleyResult() {
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.listTopUrl, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 Gson gson = new Gson();
@@ -67,7 +67,7 @@ public class ListTabNormalFragment extends AbsBaseFragment {
 
                 GridLayoutManager glm = new GridLayoutManager(context,2);
                 recyclerView.setLayoutManager(glm);
-                Picasso.with(context).load(imgUrl).fit().into(topImg);
+                Picasso.with(context).load(StaticClassHelper.listImgUrl).fit().into(topImg);
             }
 
             @Override

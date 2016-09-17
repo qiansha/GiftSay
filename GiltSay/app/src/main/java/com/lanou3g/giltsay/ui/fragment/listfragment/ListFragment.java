@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  * 榜单总页面
  */
 public class ListFragment extends AbsBaseFragment {
-    public static final int myColor = 0xFFFF0033;
+
     private TabLayout listTl;
     private ViewPager listVp;
 
@@ -54,7 +55,7 @@ public class ListFragment extends AbsBaseFragment {
         MainPagerAdapter listTabAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         listVp.setAdapter(listTabAdapter);
         listTl.setupWithViewPager(listVp);
-        listTl.setTabTextColors(Color.GRAY, myColor);
+        listTl.setTabTextColors(Color.GRAY, StaticClassHelper.myColor);
         listTl.getTabAt(0).setText("每日推荐");
         listTl.getTabAt(1).setText("TOP100");
         listTl.getTabAt(2).setText("独立原创榜");

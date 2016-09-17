@@ -13,6 +13,7 @@ import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeleBean;
 import com.lanou3g.giltsay.ui.adapter.HomeSeleLvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 import java.util.List;
 
@@ -21,16 +22,16 @@ import java.util.List;
  * 首页的其他分页面
  */
 public class HomePageNormalFragment extends AbsBaseFragment {
-    private String normalUrl = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
+
     private ListView homeNormalListView;
     private String tag;
     private RequestQueue queue;
     private HomeSeleLvAdapter homeSeleLvAdapter;
 
-    public static HomePageNormalFragment newInstance() {
+    public static HomePageNormalFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-
+        args.putString("url",url);
         HomePageNormalFragment fragment = new HomePageNormalFragment();
         fragment.setArguments(args);
         return fragment;
@@ -49,10 +50,12 @@ public class HomePageNormalFragment extends AbsBaseFragment {
 
     @Override
     protected void initDatas() {
+        Bundle bundle = getArguments();
+        this.tag = bundle.getString("url");
         queue = Volley.newRequestQueue(getContext());
         homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
         homeNormalListView.setAdapter(homeSeleLvAdapter);
-        StringRequest sr = new StringRequest(normalUrl, new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(tag, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
@@ -69,4 +72,5 @@ public class HomePageNormalFragment extends AbsBaseFragment {
         queue.add(sr);
 
     }
+
 }
