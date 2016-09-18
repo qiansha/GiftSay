@@ -12,7 +12,18 @@ public class StaticClassHelper {
     public static String homeSeleUrl = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
     public static String homeNorSendBoyFriend = "http://api.liwushuo.com/v2/channels/9/items_v2?gender=2&limit=20&offset=0&generation=2";
     public static String homrOutFitUrl = "http://api.liwushuo.com/v2/channels/110/items_v2?gender=2&limit=20&offset=0&generation=2";
-
+    /**
+     * 分类攻略栏目网址
+     */
+    public static String classColumnUrl = "http://api.liwushuo.com/v2/columns";
+    /**
+     *分类攻略品类网址
+     */
+    public static String classClassUrl = "http://api.liwushuo.com/v2/channel_groups/all";
+    /**
+     * 分类攻略风格网址
+     */
+    public static String classStyleUrl = "http://api.liwushuo.com/v2/item_categories/tree";
 
 
 

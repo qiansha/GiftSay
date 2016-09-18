@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ClassFragment extends AbsBaseFragment {
     @Override
     protected void initDatas() {
         List<Fragment> datas = new ArrayList<>();
-        datas.add(ClassTabGuidesFragment.newInstance());
+        datas.add(ClassTabGuidesFragment.newInstance(StaticClassHelper.classColumnUrl));
         datas.add(ClassTabSingleFragment.newInstance());
         MainPagerAdapter classAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         classVp.setAdapter(classAdapter);

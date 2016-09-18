@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="40dp"
+    >
+    <ImageView
+        android:id="@+id/item_class_column_img_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginRight="5dp"/>
+    <TextView
+        android:id="@+id/item_class_column_rv_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/item_class_column_img_rv"
+        android:text="文具集中营"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"/>
+    <TextView
+        android:id="@+id/item_class_column_rv_subtitle_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新至第一期"
+        android:layout_marginTop="5dp"
+        android:textSize="11sp"
+        android:layout_toRightOf="@id/item_class_column_img_rv"
+        android:layout_below="@id/item_class_column_rv_title_tv"/>
+    <TextView
+        android:id="@+id/item_class_column_rv_author_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文具菌"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/item_class_column_img_rv"
+        android:layout_below="@id/item_class_column_rv_subtitle_tv"
+        android:textSize="11sp"
+        />
+</RelativeLayout>
