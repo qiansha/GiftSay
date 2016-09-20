@@ -9,8 +9,12 @@ import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeRotateBean;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/9/17.
@@ -52,7 +56,9 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
         int newPosition = position % datas.size();
         View convertView = inflater.inflate(R.layout.item_homepage_sele_rotate_vp, container, false);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_sele_rotate_iv);
-        imageView.setImageResource(datas.get(newPosition).getImgId());
+//        imageView.setImageResource(datas.get(newPosition).getImgId());
+        HomeSeRotateBean bean = datas.get(newPosition);
+        Picasso.with(context).load(bean.getImgUrl()).into(imageView);
         container.addView(convertView);
         return convertView;
 

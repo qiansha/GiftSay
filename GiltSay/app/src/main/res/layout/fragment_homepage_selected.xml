@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/home_sele_pointhei"
                 android:layout_gravity="bottom|center"
+                android:gravity="center"
                 android:layout_marginBottom="@dimen/home_sele_point_marbottom"
                 android:orientation="horizontal" />
         </FrameLayout>

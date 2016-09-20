@@ -33,7 +33,7 @@
             android:textSize="13sp"
             android:text="描述" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/homesele_list_author_img"
             android:layout_width="20dp"
             android:layout_height="20dp"

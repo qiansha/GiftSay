@@ -75,19 +75,5 @@ public class ListTabNormalFragment extends AbsBaseFragment {
 
             }
         });
-
     }
-
-//    @Override
-//    public void success(String resultStr) {
-
-//
-//
-//
-//    }
-//
-//    @Override
-//    public void failure() {
-//
-//    }
 }

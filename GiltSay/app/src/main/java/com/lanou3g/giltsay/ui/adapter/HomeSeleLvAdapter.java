@@ -12,11 +12,13 @@ import android.widget.TextView;
 import com.lanou3g.giltsay.*;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeleBean;
-import com.lanou3g.giltsay.model.bean.HomeSeleLvBean;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.zip.Inflater;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/9/12.
@@ -89,7 +91,7 @@ public class HomeSeleLvAdapter extends BaseAdapter {
 
     class HomeSeleLvViewHolder {
         TextView categoryTv, descriptionTv, nicknameTv, titleTv, likesCountTv;
-        ImageView authorImg;
+        CircleImageView authorImg;
         ImageView coverImg;
 
         public HomeSeleLvViewHolder(View view) {
@@ -98,7 +100,7 @@ public class HomeSeleLvAdapter extends BaseAdapter {
             nicknameTv = (TextView) view.findViewById(R.id.homesele_list_nickname_tv);
             titleTv = (TextView) view.findViewById(R.id.homesele_list_title_tv);
             likesCountTv = (TextView) view.findViewById(R.id.homesele_list_likes_count_tv);
-            authorImg = (ImageView) view.findViewById(R.id.homesele_list_author_img);
+            authorImg = (CircleImageView) view.findViewById(R.id.homesele_list_author_img);
             coverImg = (ImageView) view.findViewById(R.id.homesele_list_big_img);
 
         }

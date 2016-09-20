@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeRotateBean;
 import com.lanou3g.giltsay.model.bean.HomeSeleBean;
-import com.lanou3g.giltsay.model.bean.HomeSeleLvBean;
+
 import com.lanou3g.giltsay.model.bean.HomeSeleRvBean;
 import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
@@ -29,9 +29,12 @@ import com.lanou3g.giltsay.ui.adapter.HomeSeleRotateAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.lanou3g.giltsay.view.ChildViewPager;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/9/9.
@@ -44,17 +47,12 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     private LinearLayout pointLl;
     private List<HomeSeRotateBean> reDatas;
     private HomeSeleRotateAdapter homeSeleRotateAdapter;
-
-
     private ListView homeSeleListView;
     private RecyclerView homeSeleRecyclerView;
     private HomePageSelectedRvAdapter homePageSelectedRvAdapter;
     private List<HomeSeleRvBean> datas;
     private String url;
-    private List<HomeSeleLvBean> lvDatas;
     private HomeSeleLvAdapter homeSeleLvAdapter;
-
-
     public static HomePageSelectedFragment newInstance(String url) {
 
         Bundle args = new Bundle();
@@ -99,7 +97,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
         //轮播图
         buildDatas();
-        homeSeleRotateAdapter = new HomeSeleRotateAdapter(reDatas,getContext());
+        homeSeleRotateAdapter = new HomeSeleRotateAdapter(reDatas,context);
         rotateViewPager.setAdapter(homeSeleRotateAdapter);
         rotateViewPager.setCurrentItem(reDatas.size() * 100);
 
@@ -142,7 +140,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     private void addPoints() {
         for (int i = 0; i < reDatas.size(); i++) {
-            ImageView pointIv = new ImageView(context);
+            CircleImageView pointIv = new CircleImageView(context);
             pointIv.setPadding(5, 5, 5, 5);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(20, 20);
             pointIv.setLayoutParams(params);
@@ -182,10 +180,15 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     private void buildDatas() {
         reDatas = new ArrayList<>();
-        reDatas.add(new HomeSeRotateBean(R.mipmap.ic_launcher));
-        reDatas.add(new HomeSeRotateBean(R.mipmap.ic_action_compact_share));
-        reDatas.add(new HomeSeRotateBean(R.mipmap.ic_tab_category_selected));
-        reDatas.add(new HomeSeRotateBean(R.mipmap.ic_tab_gift_normal));
+//        ImageView imageView1 = new ImageView(context);
+////        ImageView imageView2 = new ImageView(context);
+//        Picasso.with(context).load(StaticClassHelper.rotateImgUrl1).into(imageView1);
+////        Picasso.with(context).load(StaticClassHelper.rotateImgUrl2).into(imageView2);
+
+        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl1));
+        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl2));
+        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl3));
+        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl4));
 
     }
 
@@ -199,7 +202,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         homeSeleListView.setAdapter(homeSeleLvAdapter);
         homeSeleLvAdapter.setDatas(homeSeleBeanData);
         // 轮播图
-//        homeSeleListView.addHeaderView();
+//        homeSeleListView.addHeaderView(rotateViewPager);
         // 横图片
 //        homeSeleListView.addHeaderView();
         // 更新

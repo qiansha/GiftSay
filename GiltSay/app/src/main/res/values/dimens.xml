@@ -14,7 +14,7 @@
     <!--分类输入框图片到文字的距离-->
     <dimen name="class_et_img_pad">5dp</dimen>
     <!--分类输入框图片和文字到控件上方的距离-->
-    <dimen name="class_et_padingtop">3dp</dimen>
+    <dimen name="class_et_padingtop">5dp</dimen>
     <!--分类输入框文字的大小-->
     <dimen name="class_et_textsize">14sp</dimen>
     <!--分类攻略又指图标据上方的距离-->
@@ -34,7 +34,7 @@
     <!--首页搜索框的margin-->
     <dimen name="home_search_margin">10dp</dimen>
     <!--首页搜索框中图片的pad-->
-    <dimen name="home_searchimg_pad">3dp</dimen>
+    <dimen name="home_searchimg_pad">6dp</dimen>
     <!--首页搜索框中文字的pad-->
     <dimen name="home_searchtext_pad">7dp</dimen>
     <!--首页搜索框中文字的大小-->
