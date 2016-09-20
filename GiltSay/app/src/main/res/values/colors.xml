@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_radioButton">#f03</color>
     <color name="color_noselected">#000</color>
+    <color name="main_view_background">#868686</color>
 </resources>

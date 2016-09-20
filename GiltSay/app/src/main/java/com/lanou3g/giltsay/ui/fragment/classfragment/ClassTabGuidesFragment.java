@@ -14,11 +14,13 @@ import com.lanou3g.giltsay.model.bean.ClassGuidesMoreRvBean;
 import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
 //import com.lanou3g.giltsay.ui.adapter.ClassGuidesColumnRvAdapter;
+import com.lanou3g.giltsay.ui.adapter.ClassGuidesColumnRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.ClassGuidesMoreRvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.lanou3g.giltsay.view.FullyGridLayoutManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,18 +30,22 @@ import java.util.List;
 public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyResult {
 
     private RecyclerView classColumnRecyclerView;//栏目RecyclerView
-    private RecyclerView classMoreRecyclerView;   //品类RecyclerView
-
-    private List<ClassGuidesColumnRvBean>datas;
-//    private ClassGuidesColumnRvAdapter classGuidesColumnRvAdapter;//栏目Adapter
-    private ClassGuidesMoreRvAdapter classGuidesMoreRvAdapter;//品类,风格,对象Adapter
+    //    private RecyclerView classMoreRecyclerView;   //品类RecyclerView
+    private RecyclerView classClassRecyclerView;//品类RecyclerView
+    private RecyclerView classStyleRecyclerView;//风格RecyclerView
+    private RecyclerView classObjectRecyclerView;   //对象RecyclerView
+    private List<ClassGuidesColumnRvBean> datas;
+    private ClassGuidesColumnRvAdapter classGuidesColumnRvAdapter;//栏目Adapter
+    private ClassGuidesMoreRvAdapter classRvAdapter;//品类Adapter
+    private ClassGuidesMoreRvAdapter styleRvAdapter;//风格Adapter
+    private ClassGuidesMoreRvAdapter objectRvAdapter;//对象Adapter
 
     private String url;
 
     public static ClassTabGuidesFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-        args.putString("url",url);
+        args.putString("url", url);
         ClassTabGuidesFragment fragment = new ClassTabGuidesFragment();
         fragment.setArguments(args);
         return fragment;
@@ -52,8 +58,11 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
 
     @Override
     protected void initViews() {
-//        classColumnRecyclerView = byView(R.id.class_column_rv);
-       classMoreRecyclerView = byView(R.id.class_more_rv);
+        classColumnRecyclerView = byView(R.id.class_column_rv);
+//       classMoreRecyclerView = byView(R.id.class_class_rv);
+        classClassRecyclerView = byView(R.id.class_class_rv);
+        classStyleRecyclerView = byView(R.id.class_style_rv);
+        classObjectRecyclerView = byView(R.id.class_object_rv);
 
     }
 
@@ -62,43 +71,73 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
         Bundle bundle = new Bundle();
         this.url = bundle.getString("url");
         //栏目
-        VolleyInstance.getInstance().startRequest(StaticClassHelper.classColumnUrl,this);
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.classColumnUrl, this);
         //品类
-        VolleyInstance.getInstance().startRequest(StaticClassHelper.classClassUrl,this);
-        //风格
-        //对象
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.classClassUrl, new VolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                Gson gson = new Gson();
+                //    品类
+                ClassGuidesMoreRvBean classGuidesMoreRvBean = gson.fromJson(resultStr, ClassGuidesMoreRvBean.class);
+                List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean> channelGroupsBeen = classGuidesMoreRvBean.getData().getChannel_groups();
+                classRvAdapter = new ClassGuidesMoreRvAdapter(context);
+                GridLayoutManager gmMore = new GridLayoutManager(context, 2);
+                classClassRecyclerView.setLayoutManager(gmMore);
+                classClassRecyclerView.setAdapter(classRvAdapter);
+
+                styleRvAdapter = new ClassGuidesMoreRvAdapter(context);
+                GridLayoutManager gmStyle = new GridLayoutManager(context, 2);
+                classStyleRecyclerView.setLayoutManager(gmStyle);
+                classStyleRecyclerView.setAdapter(styleRvAdapter);
+
+                objectRvAdapter = new ClassGuidesMoreRvAdapter(context);
+                GridLayoutManager gmObject = new GridLayoutManager(context, 2);
+                classObjectRecyclerView.setLayoutManager(gmObject);
+                classObjectRecyclerView.setAdapter(objectRvAdapter);
+
+                //品类
+                if (channelGroupsBeen.get(0).getName().equals("品类")) {
+                    List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> classBean = new ArrayList<>();
+                    for (int i = 0; i < 6; i++) {
+                        classBean.add(channelGroupsBeen.get(0).getChannels().get(i));
+                        classRvAdapter.setDatas(classBean);
+                    }
+                }
+                //风格
+                if (channelGroupsBeen.get(1).getName().equals("风格")) {
+                    List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> styleBean = new ArrayList<>();
+                    for (int i = 0; i < 6; i++) {
+                        styleBean.add(channelGroupsBeen.get(1).getChannels().get(i));
+                        styleRvAdapter.setDatas(styleBean);
+                    }
+                }
+                //对象
+                List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> objectBean = new ArrayList<>();
+                for (int i = 0; i < 6; i++) {
+                    objectBean.add(channelGroupsBeen.get(2).getChannels().get(i));
+                    objectRvAdapter.setDatas(objectBean);
+                }
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
     }
 
     @Override
     public void success(String resultStr) {
-
-        Gson gson = new Gson();
         //栏目
-        ClassGuidesColumnRvBean classGuidesColumnRvBean = gson.fromJson(resultStr,ClassGuidesColumnRvBean.class);
-        List<ClassGuidesColumnRvBean.DataBean.ColumnsBean>columnsBeen = classGuidesColumnRvBean.getData().getColumns();
-//        classGuidesColumnRvAdapter = new ClassGuidesColumnRvAdapter(context);
-        GridLayoutManager gm = new GridLayoutManager(context,3, LinearLayoutManager.HORIZONTAL,false);
-//        classColumnRecyclerView.setLayoutManager(gm);
-//        classColumnRecyclerView.setAdapter(classGuidesColumnRvAdapter);
-       // classGuidesColumnRvAdapter.setDatas(columnsBeen);
+        Gson gson = new Gson();
+        ClassGuidesColumnRvBean classGuidesColumnRvBean = gson.fromJson(resultStr, ClassGuidesColumnRvBean.class);
+        List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> columnsBeen = classGuidesColumnRvBean.getData().getColumns();
+        classGuidesColumnRvAdapter = new ClassGuidesColumnRvAdapter(context);
+        GridLayoutManager gm = new GridLayoutManager(context, 3, LinearLayoutManager.HORIZONTAL, false);
+        classColumnRecyclerView.setLayoutManager(gm);
+        classColumnRecyclerView.setAdapter(classGuidesColumnRvAdapter);
+        classGuidesColumnRvAdapter.setDatas(columnsBeen);
         Log.d("ClassTabGuidesFragment", "columnsBeen:" + columnsBeen);
-        //品类
-        ClassGuidesMoreRvBean classGuidesMoreRvBean = gson.fromJson(resultStr,ClassGuidesMoreRvBean.class);
-        List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean>channelGroupsBeen = classGuidesMoreRvBean.getData().getChannel_groups();
-        classGuidesMoreRvAdapter = new ClassGuidesMoreRvAdapter(context);
-//        GridLayoutManager gmMore = new GridLayoutManager(context,2);
-//        classClassRecyclerView.setLayoutManager(gmMore);
-//        //classStyleRecyclerView.setLayoutManager(gmMore);
-//      //  classObjectRecyclerView.setLayoutManager(gmMore);
-//        classClassRecyclerView.setAdapter(classGuidesMoreRvAdapter);
-//        classGuidesMoreRvAdapter.setDatas(channelGroupsBeen);
-        LinearLayoutManager gnMore = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-        classMoreRecyclerView.setLayoutManager(gnMore);
-        classMoreRecyclerView.setAdapter(classGuidesMoreRvAdapter);
-        classGuidesMoreRvAdapter.setDatas(channelGroupsBeen);
-
-        //风格
-        //对象
 
     }
 

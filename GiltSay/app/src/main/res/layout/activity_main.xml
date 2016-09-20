@@ -8,32 +8,29 @@
     <FrameLayout
         android:id="@+id/main_repace_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/main_frame_height"
         android:layout_weight="1" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#868686" />
+        android:background="@color/main_view_background" />
 
     <RadioGroup
         android:id="@+id/main_radio"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/homepage_rbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selected_homepage"
-
-
             android:gravity="center"
-            android:text="首页"
+            android:text="@string/main_first_radiobutton_name"
             android:textColor="@color/color_radiobuttontext"
 
 
@@ -41,35 +38,35 @@
 
         <RadioButton
             android:id="@+id/list_rbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selected_list"
             android:gravity="center"
-            android:text="榜单"
+            android:text="@string/main_second_radiobutton_name"
             android:textColor="@color/color_radiobuttontext" />
 
         <RadioButton
             android:id="@+id/class_rbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selected_class"
             android:gravity="center"
-            android:text="分类"
+            android:text="@string/main_third_radiobutton_name"
             android:textColor="@color/color_radiobuttontext" />
 
         <RadioButton
             android:id="@+id/person_rbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selected_person"
             android:gravity="center"
-            android:text="个人"
+            android:text="@string/main_forth_radiobutton_name"
             android:textColor="@color/color_radiobuttontext" />
     </RadioGroup>
 

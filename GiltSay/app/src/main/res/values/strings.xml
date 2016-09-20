@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GiltSay</string>
+    <string name="main_first_radiobutton_name">首页</string>
+    <string name="main_second_radiobutton_name">榜单</string>
+    <string name="main_third_radiobutton_name">分类</string>
+    <string name="main_forth_radiobutton_name">个人</string>
 </resources>

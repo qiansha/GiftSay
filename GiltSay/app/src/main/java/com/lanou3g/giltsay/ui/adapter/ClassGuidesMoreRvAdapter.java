@@ -23,13 +23,13 @@ import java.util.List;
 public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter{
     private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean>columnDatas;
     private Context context;
-    private List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean> datas;
+    private List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> datas;
 
     public ClassGuidesMoreRvAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean> datas) {
+    public void setDatas(List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
@@ -41,50 +41,52 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder = null;
-        switch (viewType){
-            case 0:
-                View columnView = LayoutInflater.from(context).inflate(R.layout.item_class_guides_column_rv,parent,false);
-                holder = new ClassGuidesColumnRvViewHolder(columnView);
-                 break;
-            case 1:
-                View v = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_title_rv,parent,false);
-                holder = new ClassGuidesMoreTitleViewHolder(v);
-                break;
-            case 2:
+//        RecyclerView.ViewHolder holder = null;
+//        switch (viewType){
+//            case 0:
+//                View columnView = LayoutInflater.from(context).inflate(R.layout.item_class_guides_column_rv,parent,false);
+//                holder = new ClassGuidesColumnRvViewHolder(columnView);
+//                 break;
+//            case 1:
+//                View v = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_title_rv,parent,false);
+//                holder = new ClassGuidesMoreTitleViewHolder(v);
+//                break;
+//            case 2:
                 View view = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_img_rv,parent,false);
-                holder = new ClassGuidesMoreImgViewHolder(view);
-                break;
-        }
+             ClassGuidesMoreImgViewHolder   holder = new ClassGuidesMoreImgViewHolder(view);
+//                break;
+      //  }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        int type = getItemViewType(position);
-        switch (type){
-            case 0:
-                ClassGuidesColumnRvViewHolder columnViewHolder = (ClassGuidesColumnRvViewHolder) holder;
-                ClassGuidesColumnRvBean.DataBean.ColumnsBean columnBean = columnDatas.get(position);
-                if (columnBean != null){
-                    columnViewHolder.classColumnTitle.setText(columnBean.getTitle());
-                    columnViewHolder.classColumnSubTitle.setText(columnBean.getSubtitle());
-                    columnViewHolder.classColumnAuthor.setText(columnBean.getAuthor());
-                }
-                Picasso.with(context).load(columnBean.getBanner_image_url()).into(columnViewHolder.classColumnImg);
-
-            case 1:
-                //ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean bean =g;
-                        ClassGuidesMoreTitleViewHolder titleViewHolder = (ClassGuidesMoreTitleViewHolder) holder;
-                titleViewHolder.classMoreTitle.setText("风格");
-                break;
-            case 2:
+//        int type = getItemViewType(position);
+//        switch (type){
+//            case 0:
+//
+//                ClassGuidesColumnRvViewHolder columnViewHolder = (ClassGuidesColumnRvViewHolder) holder;
+//                ClassGuidesColumnRvBean.DataBean.ColumnsBean columnBean = columnDatas.get(position);
+//                if (columnBean != null){
+//                    columnViewHolder.classColumnTitle.setText(columnBean.getTitle());
+//                    columnViewHolder.classColumnSubTitle.setText(columnBean.getSubtitle());
+//                    columnViewHolder.classColumnAuthor.setText(columnBean.getAuthor());
+//                }
+//                Picasso.with(context).load(columnBean.getBanner_image_url()).into(columnViewHolder.classColumnImg);
+//
+//            case 1:
+//                //ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean bean =g;
+//                        ClassGuidesMoreTitleViewHolder titleViewHolder = (ClassGuidesMoreTitleViewHolder) holder;
+//                titleViewHolder.classMoreTitle.setText("风格");
+//                break;
+//            case 2:
                 ClassGuidesMoreImgViewHolder imgViewHolder = (ClassGuidesMoreImgViewHolder) holder;
-                ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean bean = datas.get(position);
-                Picasso.with(context).load(bean.getChannels().get(position).getCover_image_url()).into(imgViewHolder.classMoreImg);
-                break;
-        }
+                ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean bean = datas.get(position);
+
+            Picasso.with(context).load(bean.getCover_image_url()).into(imgViewHolder.classMoreImg);
+
+
 
 
     }
