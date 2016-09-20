@@ -7,38 +7,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFF0033"
+        android:background="@color/color_home"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="礼物说"
-            android:textColor="#fff"
-            android:textSize="20sp" />
+            android:layout_margin="@dimen/home_liwushuo_mar"
+            android:text="@string/home_liwushuo_text"
+            android:textColor="@color/color_home_liwushuo_tv"
+            android:textSize="@dimen/home_liwushuo_textsize" />
 
         <EditText
             android:id="@+id/home_search_et"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/home_search_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/home_search_margin"
             android:background="@drawable/rounded_editview"
             android:drawableLeft="@mipmap/icon_search_grey"
-            android:drawablePadding="3dp"
-            android:padding="7dp"
-            android:text="中秋佳节送好礼"
-            android:textSize="14sp"
-
-
-            android:textColor="#868686" />
+            android:drawablePadding="@dimen/home_searchimg_pad"
+            android:padding="@dimen/home_searchtext_pad"
+            android:text="@string/home_search_text"
+            android:textColor="@color/color_home_search_text"
+            android:textSize="@dimen/home_search_textsize" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="@dimen/home_signinimg_widhei"
+            android:layout_height="@dimen/home_signinimg_widhei"
+            android:layout_marginLeft="@dimen/home_signimg_marleft"
+            android:layout_marginTop="@dimen/home_signimg_martop"
             android:background="@mipmap/btn_signin" />
 
     </LinearLayout>
@@ -46,7 +44,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/home_tab_martop"
         android:orientation="horizontal">
 
         <android.support.design.widget.TabLayout
@@ -56,8 +54,8 @@
             android:layout_weight="1" />
 
         <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/home_popimg_widhei"
+            android:layout_height="@dimen/home_popimg_widhei"
             android:gravity="center">
 
             <ImageView
@@ -65,7 +63,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
                 android:background="@mipmap/arrow_grey_down" />
         </LinearLayout>
     </LinearLayout>
@@ -74,10 +71,5 @@
         android:id="@+id/homepage_vp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="首页"/>-->
-
 
 </LinearLayout>

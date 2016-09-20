@@ -19,9 +19,10 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/18.
+ * 分类中品类,风格,对象RecyclerView的适配器
  */
-public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter{
-    private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean>columnDatas;
+public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter {
+    private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> columnDatas;
     private Context context;
     private List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> datas;
 
@@ -41,54 +42,16 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        RecyclerView.ViewHolder holder = null;
-//        switch (viewType){
-//            case 0:
-//                View columnView = LayoutInflater.from(context).inflate(R.layout.item_class_guides_column_rv,parent,false);
-//                holder = new ClassGuidesColumnRvViewHolder(columnView);
-//                 break;
-//            case 1:
-//                View v = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_title_rv,parent,false);
-//                holder = new ClassGuidesMoreTitleViewHolder(v);
-//                break;
-//            case 2:
-                View view = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_img_rv,parent,false);
-             ClassGuidesMoreImgViewHolder   holder = new ClassGuidesMoreImgViewHolder(view);
-//                break;
-      //  }
+        View view = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_img_rv, parent, false);
+        ClassGuidesMoreImgViewHolder holder = new ClassGuidesMoreImgViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-//        int type = getItemViewType(position);
-//        switch (type){
-//            case 0:
-//
-//                ClassGuidesColumnRvViewHolder columnViewHolder = (ClassGuidesColumnRvViewHolder) holder;
-//                ClassGuidesColumnRvBean.DataBean.ColumnsBean columnBean = columnDatas.get(position);
-//                if (columnBean != null){
-//                    columnViewHolder.classColumnTitle.setText(columnBean.getTitle());
-//                    columnViewHolder.classColumnSubTitle.setText(columnBean.getSubtitle());
-//                    columnViewHolder.classColumnAuthor.setText(columnBean.getAuthor());
-//                }
-//                Picasso.with(context).load(columnBean.getBanner_image_url()).into(columnViewHolder.classColumnImg);
-//
-//            case 1:
-//                //ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean bean =g;
-//                        ClassGuidesMoreTitleViewHolder titleViewHolder = (ClassGuidesMoreTitleViewHolder) holder;
-//                titleViewHolder.classMoreTitle.setText("风格");
-//                break;
-//            case 2:
-                ClassGuidesMoreImgViewHolder imgViewHolder = (ClassGuidesMoreImgViewHolder) holder;
-                ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean bean = datas.get(position);
-
-            Picasso.with(context).load(bean.getCover_image_url()).into(imgViewHolder.classMoreImg);
-
-
-
-
+        ClassGuidesMoreImgViewHolder imgViewHolder = (ClassGuidesMoreImgViewHolder) holder;
+        ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean bean = datas.get(position);
+        Picasso.with(context).load(bean.getCover_image_url()).into(imgViewHolder.classMoreImg);
     }
 
     @Override
@@ -96,39 +59,12 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter{
         return datas == null ? 0 : datas.size();
     }
 
-
-    class ClassGuidesMoreImgViewHolder extends RecyclerView.ViewHolder{
+    class ClassGuidesMoreImgViewHolder extends RecyclerView.ViewHolder {
         ImageView classMoreImg;
-
 
         public ClassGuidesMoreImgViewHolder(View itemView) {
             super(itemView);
             classMoreImg = (ImageView) itemView.findViewById(R.id.item_class_more_img_rv);
-
-        }
-    }
-    class ClassGuidesMoreTitleViewHolder extends RecyclerView.ViewHolder{
-        TextView  classMoreTitle;
-
-
-        public ClassGuidesMoreTitleViewHolder(View itemView) {
-            super(itemView);
-            classMoreTitle = (TextView) itemView.findViewById(R.id.item_class_more_title_rv);
-
-        }
-    }
-    class ClassGuidesColumnRvViewHolder extends RecyclerView.ViewHolder{
-        ImageView classColumnImg;
-        TextView classColumnTitle;
-        TextView classColumnSubTitle;
-        TextView classColumnAuthor;
-
-        public ClassGuidesColumnRvViewHolder(View itemView) {
-            super(itemView);
-            classColumnImg = (ImageView) itemView.findViewById(R.id.item_class_column_img_rv);
-            classColumnTitle = (TextView) itemView.findViewById(R.id.item_class_column_rv_title_tv);
-            classColumnSubTitle = (TextView) itemView.findViewById(R.id.item_class_column_rv_subtitle_tv);
-            classColumnAuthor = (TextView) itemView.findViewById(R.id.item_class_column_rv_author_tv);
         }
     }
 }

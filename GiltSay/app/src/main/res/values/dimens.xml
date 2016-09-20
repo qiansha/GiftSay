@@ -3,5 +3,86 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="main_frame_height">0dp</dimen>
+    <!--主Aty中View的高度-->
+    <dimen name="main_view_height">0.5dp</dimen>
+    <!--分类标题栏View的高度-->
+    <dimen name="class_view_height">3dp</dimen>
+    <!--分类输入框距四周的距离-->
+    <dimen name="class_et_margin">10dp</dimen>
+    <!--控制分类输入框文字在中间-->
+    <dimen name="class_et_padleft">100dp</dimen>
+    <!--分类输入框图片到文字的距离-->
+    <dimen name="class_et_img_pad">5dp</dimen>
+    <!--分类输入框图片和文字到控件上方的距离-->
+    <dimen name="class_et_padingtop">3dp</dimen>
+    <!--分类输入框文字的大小-->
+    <dimen name="class_et_textsize">14sp</dimen>
+    <!--分类攻略又指图标据上方的距离-->
+    <dimen name="class_moreimg_martop">3dp</dimen>
+    <!--分类攻略中TextView"查看全部"的字体大小-->
+    <dimen name="class_findmore_textsize">12sp</dimen>
+    <!--分类攻略中文字栏的margin-->
+    <dimen name="class_linlayout_margin">10dp</dimen>
+    <!--分类攻略text文字"查看全部"据右方的距离-->
+    <dimen name="class_findmore_marright">10dp</dimen>
+    <!--首页礼物说字体大小-->
+    <dimen name="home_liwushuo_textsize">20sp</dimen>
+    <!--首页礼物说文字的margin-->
+    <dimen name="home_liwushuo_mar">15dp</dimen>
+    <!--首页搜索框的宽-->
+    <dimen name="home_search_width">200dp</dimen>
+    <!--首页搜索框的margin-->
+    <dimen name="home_search_margin">10dp</dimen>
+    <!--首页搜索框中图片的pad-->
+    <dimen name="home_searchimg_pad">3dp</dimen>
+    <!--首页搜索框中文字的pad-->
+    <dimen name="home_searchtext_pad">7dp</dimen>
+    <!--首页搜索框中文字的大小-->
+    <dimen name="home_search_textsize">14sp</dimen>
+    <!--首页下指图标的宽高-->
+    <dimen name="home_popimg_widhei">40dp</dimen>
+    <!--首页TabLayout栏的marginTop-->
+    <dimen name="home_tab_martop">5dp</dimen>
+    <!--首页登录图标的宽高-->
+    <dimen name="home_signinimg_widhei">30dp</dimen>
+    <!--首页登录图标的marginLeft-->
+    <dimen name="home_signimg_marleft">30dp</dimen>
+    <!--首页登录图标的marginTop-->
+    <dimen name="home_signimg_martop">13dp</dimen>
+    <!--首页精选轮播图高度-->
+    <dimen name="home_sele_imghei">200dp</dimen>
+    <!--首页精选轮播图小点布局高度-->
+    <dimen name="home_sele_pointhei">20dp</dimen>
+    <!--首页精选轮播图小点布局距下方的距离-->
+    <dimen name="home_sele_point_marbottom">10dp</dimen>
+    <!--首页精选时间的marginTop-->
+    <dimen name="home_sele_time_martop">20dp</dimen>
+    <!--榜单标题栏图标的margin-->
+    <dimen name="list_imgmar">15dp</dimen>
+    <!--榜单标题栏字体-->
+    <dimen name="list_textsize">22sp</dimen>
+    <!--个人message图片的margin-->
+    <dimen name="person_msgimg_mar">10dp</dimen>
+    <!--个人扫二维码图片的marginTop-->
+    <dimen name="person_zebra_martop">10dp</dimen>
+    <!--个人扫二维码图标的marginRight-->
+    <dimen name="person_zebraimg_marright">50dp</dimen>
+    <!--个人设置图标的marginTop-->
+    <dimen name="person_settingimg_mar">10dp</dimen>
+    <!--个人text请登录的marginTop-->
+    <dimen name="person_signintext_martop">50dp</dimen>
+    <!--个人页面5个图标的marginBottom-->
+    <dimen name="person_five_marbuttom">10dp</dimen>
+    <!--个人页面5个图标图片的margin-->
+    <dimen name="person_fiveimg_mar">5dp</dimen>
+    <!--个人页面RadioButton的高度-->
+    <dimen name="person_radiobutton_hei">50dp</dimen>
+    <!--个人页面RadioGroup的marginTop-->
+    <dimen name="person_radiogroup_martop">10dp</dimen>
+
+
+
+
+
 
 </resources>

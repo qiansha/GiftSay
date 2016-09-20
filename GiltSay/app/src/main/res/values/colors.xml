@@ -5,5 +5,34 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_radioButton">#f03</color>
     <color name="color_noselected">#000</color>
+    <!--Activity中横线View的颜色-->
     <color name="main_view_background">#868686</color>
+    <!--标题栏背景和TabLayout的颜色-->
+    <color name="color_class_bgtab">#FFFF0033</color>
+    <!--分类输入框文字颜色-->
+    <color name="color_class_editview">#868686</color>
+    <!--分类攻略中文字框和RecyclerView的背景颜色-->
+    <color name="color_class_guides_bg">#fff</color>
+    <!--分类攻略中TextView"查看全部"的字体颜色-->
+    <color name="color_class_guides_findmore_tv">#2e2d2d</color>
+    <!--首页礼物说字体颜色-->
+    <color name="color_home_liwushuo_tv">#fff</color>
+    <!--首页标题栏颜色-->
+    <color name="color_home">#FFFF0033</color>
+    <!--首页搜索栏文字的颜色-->
+    <color name="color_home_search_text">#868686</color>
+    <!--首页精选横向RecyclerView背景色-->
+    <color name="color_home_sele_rv_bg">#fff</color>
+    <!--首页精选时间背景色-->
+    <color name="color_home_sele_time_bg">#fff</color>
+    <!--榜单标题栏字体颜色-->
+    <color name="color_list_textcolor">#fff</color>
+    <!--榜单标题栏颜色-->
+    <color name="color_list_top_bg">#FFFF0033</color>
+    <!--个人页面text请登录的字体颜色-->
+    <color name="color_person_signin_text">#fff</color>
+    <!--个人页面5个选项的背景色-->
+    <color name="color_person_five_bg">#fff</color>
+    <!--个人页面RadioGroup背景色-->
+    <color name="color_person_radio_bg">#fff</color>
 </resources>

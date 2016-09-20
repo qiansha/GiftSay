@@ -4,4 +4,21 @@
     <string name="main_second_radiobutton_name">榜单</string>
     <string name="main_third_radiobutton_name">分类</string>
     <string name="main_forth_radiobutton_name">个人</string>
+    <string name="class_column_text">栏目</string>
+    <string name="class_class_text">品类</string>
+    <string name="class_style_text">风格</string>
+    <string name="class_object_text">对象</string>
+    <string name="class_findmore_text">查看全部</string>
+    <string name="home_liwushuo_text">礼物说</string>
+    <string name="home_search_text">中秋佳节送好礼</string>
+    <string name="list_top_text">礼物榜</string>
+    <string name="person_signin_text">请登录</string>
+    <string name="person_five_text1">购物车</string>
+    <string name="person_five_text2">订单</string>
+    <string name="person_five_text3">礼券</string>
+    <string name="person_five_text4">关注</string>
+    <string name="person_five_text5">客服</string>
+    <string name="person_radiobutton_text1">攻略</string>
+    <string name="person_radiobutton_text2">单品</string>
+
 </resources>

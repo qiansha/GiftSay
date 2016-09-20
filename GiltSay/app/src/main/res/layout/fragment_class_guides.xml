@@ -1,168 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="栏目" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:text="查看全部" />
-
-            <ImageView
-                android:id="@+id/class_more_column_img"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:src="@mipmap/ic_chevron_dark" />
-
-        </RelativeLayout>
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/class_column_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="品类" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:text="查看全部" />
-
-            <ImageView
-                android:id="@+id/class_more_class_img"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:src="@mipmap/ic_chevron_dark" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/class_class_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="风格" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:text="查看全部" />
-
-            <ImageView
-                android:id="@+id/class_more_style_img"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:src="@mipmap/ic_chevron_dark" />
-
-        </RelativeLayout>
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/class_style_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
-            android:layout_marginTop="10dp">
+            android:background="@color/color_class_guides_bg">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/class_linlayout_margin"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="对象" />
+                    android:text="@string/class_column_text"
+                    android:textSize="@dimen/class_findmore_textsize" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="15dp"
-                    android:text="查看全部" />
+                    android:layout_marginRight="@dimen/class_findmore_marright"
+                    android:text="@string/class_findmore_text"
+                    android:textColor="@color/color_class_guides_findmore_tv"
+                    android:textSize="@dimen/class_findmore_textsize" />
 
                 <ImageView
-                    android:id="@+id/class_more_object_img"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:id="@+id/class_more_column_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/class_moreimg_martop"
                     android:src="@mipmap/ic_chevron_dark" />
 
             </RelativeLayout>
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/class_column_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_class_guides_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/class_linlayout_margin"
+            android:background="@color/color_class_guides_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/class_linlayout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/class_class_text"
+                    android:textSize="@dimen/class_findmore_textsize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/class_findmore_marright"
+                    android:text="@string/class_findmore_text"
+                    android:textColor="@color/color_class_guides_findmore_tv"
+                    android:textSize="@dimen/class_findmore_textsize" />
+
+                <ImageView
+                    android:id="@+id/class_more_class_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/class_moreimg_martop"
+                    android:src="@mipmap/ic_chevron_dark" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/class_class_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_class_guides_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/class_linlayout_margin"
+            android:background="@color/color_class_guides_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/class_linlayout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/class_style_text"
+                    android:textSize="@dimen/class_findmore_textsize" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/class_style_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_class_guides_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/class_linlayout_margin"
+            android:background="@color/color_class_guides_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/class_linlayout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/class_object_text"
+                    android:textSize="@dimen/class_findmore_textsize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/class_findmore_marright"
+                    android:text="@string/class_findmore_text"
+                    android:textColor="@color/color_class_guides_findmore_tv"
+                    android:textSize="@dimen/class_findmore_textsize" />
+
+                <ImageView
+                    android:id="@+id/class_more_object_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/class_moreimg_martop"
+                    android:src="@mipmap/ic_chevron_dark" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/class_object_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"/>
-
+            android:background="@color/color_class_guides_bg" />
 
     </LinearLayout>
 
