@@ -66,7 +66,10 @@ public class StaticClassHelper {
      *分类攻略品类风格对象网址
      */
     public static String classClassUrl = "http://api.liwushuo.com/v2/channel_groups/all";
-
+    /**
+     * 分类单品网址
+     */
+     public static String classSingleUrl = "http://api.liwushuo.com/v2/item_categories/tree";
 
 
 

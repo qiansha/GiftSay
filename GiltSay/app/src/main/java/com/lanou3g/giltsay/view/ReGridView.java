@@ -8,13 +8,13 @@ import android.widget.GridView;
  * Created by dllo on 16/9/13.
  * 自定义的GridView
  */
-public class HomeGridView extends GridView {
-    public HomeGridView(Context context) {
+public class ReGridView extends GridView {
+    public ReGridView(Context context) {
         super(context);
 
     }
 
-    public HomeGridView(Context context, AttributeSet attrs) {
+    public ReGridView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
