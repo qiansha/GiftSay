@@ -16,6 +16,7 @@ import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean.*;
@@ -25,15 +26,17 @@ import static com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean.DataBean.*
  * Created by dllo on 16/9/9.
  * 榜单中分页面
  */
-public class ListTabNormalFragment extends AbsBaseFragment {
+public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResult {
     private ListPageRvAdapter listPageRvAdapter;
     private ImageView topImg;
+    private String url;
+    private String datasImg;
 
     private RecyclerView recyclerView;
-    public static ListTabNormalFragment newInstance() {
+    public static ListTabNormalFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-
+        args.putString("url",url);
         ListTabNormalFragment fragment = new ListTabNormalFragment();
         fragment.setArguments(args);
         return fragment;
@@ -53,27 +56,41 @@ public class ListTabNormalFragment extends AbsBaseFragment {
 
     @Override
     protected void initDatas() {
+        Bundle bundle = getArguments();
+        this.url = bundle.getString("url");
 //        VolleyInstance.getInstance().startRequest(topUrl,this);
         listPageRvAdapter = new ListPageRvAdapter(context);
         recyclerView.setAdapter(listPageRvAdapter);
-        VolleyInstance.getInstance().startRequest(StaticClassHelper.listTopUrl, new VolleyResult() {
-            @Override
-            public void success(String resultStr) {
-                Gson gson = new Gson();
-                ListPageRecyclerViewBean listPageRecyclerViewBean = gson.fromJson(resultStr,ListPageRecyclerViewBean.class);
-                List<ListPageRecyclerViewBean.DataBean.ItemsBean>itemsBeanListData = listPageRecyclerViewBean.getData().getItems();
+//        VolleyInstance.getInstance().startRequest(url, new VolleyResult() {
+//            @Override
+//            public void success(String resultStr) {
+//
+//            }
+//
+//            @Override
+//            public void failure() {
+//
+//            }
+//        });
+        VolleyInstance.getInstance().startRequest(url,this);
+    }
 
-                listPageRvAdapter.setDatas(itemsBeanListData);
+    @Override
+    public void success(String resultStr) {
+        Gson gson = new Gson();
+        ListPageRecyclerViewBean listPageRecyclerViewBean = gson.fromJson(resultStr,ListPageRecyclerViewBean.class);
+        List<ListPageRecyclerViewBean.DataBean.ItemsBean>itemsBeanListData = listPageRecyclerViewBean.getData().getItems();
 
-                GridLayoutManager glm = new GridLayoutManager(context,2);
-                recyclerView.setLayoutManager(glm);
-                Picasso.with(context).load(StaticClassHelper.listImgUrl).fit().into(topImg);
-            }
+        listPageRvAdapter.setDatas(itemsBeanListData);
 
-            @Override
-            public void failure() {
+        GridLayoutManager glm = new GridLayoutManager(context,2);
+        recyclerView.setLayoutManager(glm);
+        datasImg = listPageRecyclerViewBean.getData().getCover_image();
+                Picasso.with(context).load(datasImg).fit().into(topImg);
+    }
 
-            }
-        });
+    @Override
+    public void failure() {
+
     }
 }

@@ -50,10 +50,10 @@ public class MainActivity extends AbsBaseActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 switch (checkedId) {
                     case R.id.homepage_rbtn:
-                        transaction.replace(R.id.main_repace_view, HomePageFragment.newInstance(StaticClassHelper.homeSeleUrl));
+                        transaction.replace(R.id.main_repace_view, HomePageFragment.newInstance(StaticClassHelper.homeSele1Url));
                         break;
                     case R.id.list_rbtn:
-                        transaction.replace(R.id.main_repace_view, ListFragment.newInstance());
+                        transaction.replace(R.id.main_repace_view, ListFragment.newInstance(""));
                         break;
                     case R.id.class_rbtn:
                         transaction.replace(R.id.main_repace_view, ClassFragment.newInstance());

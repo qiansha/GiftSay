@@ -2,6 +2,7 @@ package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,34 +21,31 @@ import java.util.List;
  * Created by dllo on 16/9/21.
  * 攻略单品中右侧的ListView
  */
-public class ClassSingleRightListViewAdapter extends BaseAdapter{
+public class ClassSingleRightListViewAdapter extends BaseAdapter {
     private int selectIndex;
     private Context context;
-    private List<ReGridView>datas;
+
     private ClassSingleRightGvAdapter classSingleRightGvAdapter;
-    private List<ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean>data;
+    private List<ClassSingleBean.DataBean.CategoriesBean> data;
 
     public void setSelectIndex(int selectIndex) {
         this.selectIndex = selectIndex;
     }
-    //
-//    public void setClassSingleRightRvAdapter(ClassSingleRightRvAdapter classSingleRightRvAdapter) {
-//        this.classSingleRightRvAdapter = classSingleRightRvAdapter;
-//    }
+
+//    public ClassSingleRightListViewAdapter(int selectIndex, List<ClassSingleBean.DataBean> data) {
+//        this.selectIndex = selectIndex;
+//        this.data = data;
+//        notifyDataSetChanged();
+  //  }
 
     public ClassSingleRightListViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean> data) {
+    public void setDatas(List<ClassSingleBean.DataBean.CategoriesBean> data) {
         this.data = data;
         notifyDataSetChanged();
     }
-
-//    public void setDatas(List<RecyclerView> datas) {
-//        this.datas = datas;
-//        notifyDataSetChanged();
-//    }
 
     @Override
     public int getCount() {
@@ -68,37 +66,32 @@ public class ClassSingleRightListViewAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         RightLvViewHolderView rightLvViewHolderView = null;
 
-        if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_class_single_right_listview,parent,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_class_single_right_listview, parent, false);
             rightLvViewHolderView = new RightLvViewHolderView(convertView);
             convertView.setTag(rightLvViewHolderView);
-        }else {
+        } else {
             rightLvViewHolderView = (RightLvViewHolderView) convertView.getTag();
         }
-        ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean bean = data.get(position);
-       classSingleRightGvAdapter = new ClassSingleRightGvAdapter(context);
-        classSingleRightGvAdapter.setDatas(bean.);
+//        ClassSingleBean.DataBean.CategoriesBean bean = data.get(selectIndex);
+
+        ClassSingleBean.DataBean.CategoriesBean bean = data.get(position);
+        classSingleRightGvAdapter = new ClassSingleRightGvAdapter(context);
+        classSingleRightGvAdapter.setDatas(bean.getSubcategories());
         rightLvViewHolderView.singleGv.setAdapter(classSingleRightGvAdapter);
+//        Log.d("ClassSingleRightListVie", bean.getName());
+        rightLvViewHolderView.rightTitleTv.setText(bean.getName());
 
-//        Picasso.with(context).load(bean.getIcon_url()).into(rightLvViewHolderView.rightImg);
-//        GridLayoutManager gm = new GridLayoutManager(context,3, LinearLayoutManager.VERTICAL,false);
-//        classSingleRightRvAdapter  = new ClassSingleRightRvAdapter(context);
-
-//        classSingleRightRvAdapter.setDatas(bean.get(position).getName());
-//        rightLvViewHolderView.singleRv.setAdapter(classSingleRightRvAdapter);
-//
-//        rightLvViewHolderView.singleRv.setLayoutManager(gm);
         return convertView;
     }
-    class RightLvViewHolderView{
-//        ImageView rightImg;
-//        TextView rightTv;
-        ReGridView singleGv;
-        public RightLvViewHolderView(View view){
-            singleGv = (ReGridView) view.findViewById(R.id.item_class_rightlv_rgv);
-//            rightImg = (ImageView) view.findViewById(R.id.item_class_single_rightlv_img);
-//            rightTv = (TextView) view.findViewById(R.id.item_class_single_rightlv_tv);
 
+    class RightLvViewHolderView {
+        ReGridView singleGv;
+        TextView rightTitleTv;
+
+        public RightLvViewHolderView(View view) {
+            singleGv = (ReGridView) view.findViewById(R.id.item_class_rightlv_rgv);
+            rightTitleTv = (TextView) view.findViewById(R.id.item_class_single_rightlv_title_tv);
 
         }
     }

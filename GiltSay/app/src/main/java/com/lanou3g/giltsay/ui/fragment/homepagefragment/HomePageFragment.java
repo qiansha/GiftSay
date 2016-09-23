@@ -68,19 +68,24 @@ public class HomePageFragment extends AbsBaseFragment {
     @Override
     protected void initDatas() {
         List<Fragment> datas = new ArrayList<>();
-
-
-        datas.add(HomePageSelectedFragment.newInstance(StaticClassHelper.homeSeleUrl));
-
-            datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoyFriend));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homrOutFitUrl));
-        for (int i = 0; i < 15; i++) {
-            datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoyFriend));
-
-        }
-
-
-
+        datas.add(HomePageSelectedFragment.newInstance(StaticClassHelper.homeSele1Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoy2Friend));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homrOutFit3Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeHaitao4Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeGift5Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMeihu6Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeGuimi7Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendParents8Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendFriend9Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendCullgeure10Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendBody11Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeChuangyi12Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeShougong13Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSheji14Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeWenyi15Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeKeji16Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeQipa17Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMengmeng18Url));
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         homePageVp.setAdapter(mainPagerAdapter);
         homePageTl.setupWithViewPager(homePageVp);

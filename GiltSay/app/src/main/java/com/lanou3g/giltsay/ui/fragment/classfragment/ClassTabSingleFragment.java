@@ -5,7 +5,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou3g.giltsay.R;
@@ -36,7 +39,8 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
     }
     private ClassSingleLeftLvAdapter classSingleLeftLvAdapter;
     private ListView singleLeftLv;
-    private List<ClassSingleBean.DataBean>datas;
+    private List<ClassSingleBean.DataBean.CategoriesBean>datas;
+    private TextView singleTopTv;
 //    private ClassSingleRightRvAdapter classSingleRightRvAdapter;
 //    private RecyclerView rightRv;
     private ListView singleRightLv;
@@ -54,6 +58,7 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
         singleLeftLv = byView(R.id.class_single_lv);
 //        rightRv = byView(R.id.class_single_rv);
         singleRightLv = byView(R.id.class_single_rightlv);
+        singleTopTv = byView(R.id.calss_single_tv);
 
     }
 
@@ -94,18 +99,21 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
          */
 
 
-        List<ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean> data = new ArrayList<>();
+         datas = new ArrayList<>();
+        List<ClassSingleBean.DataBean.CategoriesBean>titleBean = classSingleBean.getData().getCategories();
+        List<ClassSingleBean.DataBean.CategoriesBean>dataBean = classSingleBean.getData().getCategories();
+        for (int i = 0; i < dataBean.size(); i++) {
+            datas.add(dataBean.get(i));
 
-        List<ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean>dataBean =  classSingleBean.getData().getCategories().;
-        for (int i = 0; i < categoriesBeen.get(1).getSubcategories().size(); i++) {
-            data.add(categoriesBeen.get(1).getSubcategories().get(i));
-            Log.d("ClassTabSingleFragment", "data:" + data + null);
+            Log.d("ClassTabSingleFragment", "data:" + datas + null);
         }
 
-        classSingleRightListViewAdapter.setData(data);
+        classSingleRightListViewAdapter.setDatas(datas);
+        singleRightLv.setAdapter(classSingleRightListViewAdapter);
 
 
-      // addScroll();
+        addScroll();
+
 
     }
 
@@ -113,23 +121,49 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
         singleLeftLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectIndex = position;
+//                selectIndex = position;
+//                List<ClassSingleBean.DataBean> categoriesBean = (List<ClassSingleBean.DataBean>) datas.get(position).getCategories().get(position);
+
                 classSingleLeftLvAdapter.setSelectIndex(position);
+
+
+
                 classSingleLeftLvAdapter.notifyDataSetChanged();
                 singleLeftLv.smoothScrollToPositionFromTop(position,0);
+//                classSingleRightListViewAdapter.setSelectIndex(position);
+//                singleRightLv.smoothScrollByOffset(position);
+//                singleRightLv.smoothScrollToPositionFromTop(position,0);
                 classSingleRightListViewAdapter.setSelectIndex(position);
-                singleRightLv.setAdapter(classSingleRightListViewAdapter);
+                singleRightLv.smoothScrollToPositionFromTop(position,0);
+
+
+//                datas.add(dataBean.get(selectIndex));
+//                Log.d("ClassTabSingleFragment", "data:" + datas + null);
+//                //  }
+//
+//                classSingleRightListViewAdapter.setDatas(datas);
+
+//                int rightPosition = singleLeftLv.getSelectedItemPosition();
+//                singleRightLv.setSelection(rightPosition);
+//                singleLeftLv.smoothScrollToPositionFromTop(position, 0);
+
+//                singleRightLv.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, items));
+
+
             }
         });
+
         singleRightLv.setOnScrollListener(new AbsListView.OnScrollListener() {
             private  int scrollState;
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                     this.scrollState = scrollState;
+
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                Toast.makeText(context, "firstVisibleItem:" + firstVisibleItem, Toast.LENGTH_SHORT).show();
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
                     return;
                 }
@@ -142,6 +176,11 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
 //                singleLeftLv.setAdapter(classSingleLeftLvAdapter);
             }
         });
+    }
+
+    private void updateLeftListView(int rightPosition, int position) {
+//        List<ClassSingleBean.DataBean.CategoriesBean>showTitle = new ArrayList<>();
+//        if (showTitle.get(position))
     }
 
     @Override

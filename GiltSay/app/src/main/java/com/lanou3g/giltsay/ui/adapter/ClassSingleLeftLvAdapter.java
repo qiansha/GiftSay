@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ClassSingleBean;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 import java.util.List;
 
@@ -63,6 +65,12 @@ public class ClassSingleLeftLvAdapter extends BaseAdapter{
         ClassSingleBean.DataBean.CategoriesBean bean = datas.get(position);
         if (bean != null){
             classSingleLeftLvViewHolder.classSingleLeftTv.setText(bean.getName());
+        }
+        if (position == selectIndex){
+            classSingleLeftLvViewHolder.classSingleLeftTv.setTextColor(StaticClassHelper.myColor);
+
+        }else {
+            classSingleLeftLvViewHolder.classSingleLeftTv.setTextColor(Color.parseColor("#dedede"));
         }
         return convertView;
     }

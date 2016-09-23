@@ -8,6 +8,7 @@
         android:id="@+id/item_class_single_rightlv_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
         android:text="111"/>
     <com.lanou3g.giltsay.view.ReGridView
         android:id="@+id/item_class_rightlv_rgv"

@@ -23,11 +23,12 @@ public class ListFragment extends AbsBaseFragment {
 
     private TabLayout listTl;
     private ViewPager listVp;
+    private String url;
 
-    public static ListFragment newInstance() {
+    public static ListFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-
+       args.putString("url",url);
         ListFragment fragment = new ListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -47,11 +48,13 @@ public class ListFragment extends AbsBaseFragment {
 
     @Override
     protected void initDatas() {
+        Bundle bundle = getArguments();
+        this.url = bundle.getString("url");
         List<Fragment> datas = new ArrayList<>();
-        datas.add(ListTabNormalFragment.newInstance());
-        datas.add(ListTabNormalFragment.newInstance());
-        datas.add(ListTabNormalFragment.newInstance());
-        datas.add(ListTabNormalFragment.newInstance());
+        datas.add(ListTabNormalFragment.newInstance(StaticClassHelper.listSuggestUrl));
+        datas.add(ListTabNormalFragment.newInstance(StaticClassHelper.listTopUrl));
+        datas.add(ListTabNormalFragment.newInstance(StaticClassHelper.listOneUrl));
+        datas.add(ListTabNormalFragment.newInstance(StaticClassHelper.listNewStarUrl));
         MainPagerAdapter listTabAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         listVp.setAdapter(listTabAdapter);
         listTl.setupWithViewPager(listVp);

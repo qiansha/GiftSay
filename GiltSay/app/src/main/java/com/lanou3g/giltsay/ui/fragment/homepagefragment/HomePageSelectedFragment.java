@@ -6,9 +6,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,6 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyResult {
     private static final int TIME = 3000;
 //    private ChildViewPager rotateViewPager;
+    private TextView homeHeadTimeTv1;
     private ViewPager rotateViewPager;
     private LinearLayout pointLl;
     private List<HomeSeRotateBean> reDatas;
@@ -69,9 +72,9 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     @Override
     protected void initViews() {
-        rotateViewPager = byView(R.id.homepage_sele_rotate_vp);
+//        rotateViewPager = byView(R.id.homepage_sele_rotate_vp);
         pointLl = byView(R.id.homepage_sele_rotate_point_ll);
-        homeSeleRecyclerView = byView(R.id.homepage_selected_rv);
+//        homeSeleRecyclerView = byView(R.id.homepage_selected_rv);
         homeSeleListView = byView(R.id.homepage_selected_lv);
 
     }
@@ -82,17 +85,16 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         this.url = bundle.getString("url");
         VolleyInstance.getInstance().startRequest(url, this);
 
-        datas = new ArrayList<>();
-        homePageSelectedRvAdapter = new HomePageSelectedRvAdapter(getContext());
-        homeSeleRecyclerView.setAdapter(homePageSelectedRvAdapter);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        homeSeleRecyclerView.setLayoutManager(llm);
-        for (int i = 0; i < 17; i++) {
-            HomeSeleRvBean hb = new HomeSeleRvBean();
-            hb.setImg(R.mipmap.abc_ab_bottom_solid_dark_holo9);
-            datas.add(hb);
-        }
-        homePageSelectedRvAdapter.setDatas(datas);
+
+        /**
+         * 加头布局
+         */
+        View headView = getActivity().getLayoutInflater().inflate(R.layout.head_home_sele,null);
+        rotateViewPager = (ViewPager) headView.findViewById(R.id.homepage_sele_rotate_vp);
+        homeSeleRecyclerView = (RecyclerView) headView.findViewById(R.id.homepage_selected_rv);
+        homeHeadTimeTv1 = (TextView) headView.findViewById(R.id.home_sele_time_tv1);
+        pointLl = (LinearLayout) headView.findViewById(R.id.homepage_sele_rotate_point_ll);
+
 
 
         //轮播图
@@ -106,8 +108,23 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         startRotate();
 //        添加轮播小点
         addPoints();
-//        随着轮播改变小点
+        //    随着轮播改变小点
         changePoints();
+
+        datas = new ArrayList<>();
+        homePageSelectedRvAdapter = new HomePageSelectedRvAdapter(context);
+        homeSeleRecyclerView.setAdapter(homePageSelectedRvAdapter);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        homeSeleRecyclerView.setLayoutManager(llm);
+        for (int i = 0; i < 17; i++) {
+            HomeSeleRvBean hb = new HomeSeleRvBean();
+            hb.setImg(R.mipmap.abc_ab_bottom_solid_dark_holo9);
+            datas.add(hb);
+        }
+        homePageSelectedRvAdapter.setDatas(datas);
+
+
+
 
     }
 
@@ -180,11 +197,6 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     private void buildDatas() {
         reDatas = new ArrayList<>();
-//        ImageView imageView1 = new ImageView(context);
-////        ImageView imageView2 = new ImageView(context);
-//        Picasso.with(context).load(StaticClassHelper.rotateImgUrl1).into(imageView1);
-////        Picasso.with(context).load(StaticClassHelper.rotateImgUrl2).into(imageView2);
-
         reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl1));
         reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl2));
         reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl3));
@@ -201,13 +213,48 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
         homeSeleListView.setAdapter(homeSeleLvAdapter);
         homeSeleLvAdapter.setDatas(homeSeleBeanData);
+
+
+
+//        addRotateView();
         // 轮播图
-//        homeSeleListView.addHeaderView(rotateViewPager);
+        homeSeleListView.addHeaderView(rotateViewPager);
+        //小点
+        homeSeleListView.addHeaderView(pointLl);
         // 横图片
-//        homeSeleListView.addHeaderView();
+        homeSeleListView.addHeaderView(homeSeleRecyclerView);
         // 更新
-//        homeSeleListView.addHeaderView();
+        homeSeleListView.addHeaderView(homeHeadTimeTv1);
         Log.d("zzz", resultStr);
+    }
+
+    private void addRotateView() {
+        datas = new ArrayList<>();
+        homePageSelectedRvAdapter = new HomePageSelectedRvAdapter(getContext());
+        homeSeleRecyclerView.setAdapter(homePageSelectedRvAdapter);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        homeSeleRecyclerView.setLayoutManager(llm);
+        for (int i = 0; i < 17; i++) {
+            HomeSeleRvBean hb = new HomeSeleRvBean();
+            hb.setImg(R.mipmap.abc_ab_bottom_solid_dark_holo9);
+            datas.add(hb);
+        }
+        homePageSelectedRvAdapter.setDatas(datas);
+
+
+        //轮播图
+        buildDatas();
+        homeSeleRotateAdapter = new HomeSeleRotateAdapter(reDatas,context);
+        rotateViewPager.setAdapter(homeSeleRotateAdapter);
+        rotateViewPager.setCurrentItem(reDatas.size() * 100);
+
+        //开始轮播
+        handler = new Handler();
+        startRotate();
+//        添加轮播小点
+        addPoints();
+//        随着轮播改变小点
+        changePoints();
     }
 
     @Override
