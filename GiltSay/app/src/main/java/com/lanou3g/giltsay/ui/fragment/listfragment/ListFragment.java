@@ -26,9 +26,8 @@ public class ListFragment extends AbsBaseFragment {
     private String url;
 
     public static ListFragment newInstance(String url) {
-
         Bundle args = new Bundle();
-       args.putString("url",url);
+        args.putString("url", url);
         ListFragment fragment = new ListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -43,7 +42,6 @@ public class ListFragment extends AbsBaseFragment {
     protected void initViews() {
         listTl = byView(R.id.list_tl);
         listVp = byView(R.id.list_vp);
-
     }
 
     @Override

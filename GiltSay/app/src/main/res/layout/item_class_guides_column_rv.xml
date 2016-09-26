@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="40dp"
-    >
+    android:layout_marginRight="40dp">
+    <!--分类攻略栏目Rv行布局-->
     <ImageView
         android:id="@+id/item_class_column_img_rv"
         android:layout_width="wrap_content"

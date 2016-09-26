@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
-    android:gravity="center">
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:background="#dfdfdfdf" />
+    <!--分类单品右边ListView行布局-->
     <TextView
         android:id="@+id/item_class_single_rightlv_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:text="111"/>
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:text="111"
+        android:textSize="12sp" />
+    </RelativeLayout>
+
     <com.lanou3g.giltsay.view.ReGridView
         android:id="@+id/item_class_rightlv_rgv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="3"/>
-
-
+        android:layout_marginBottom="20dp"
+        android:numColumns="3"
+        />
 
 </LinearLayout>

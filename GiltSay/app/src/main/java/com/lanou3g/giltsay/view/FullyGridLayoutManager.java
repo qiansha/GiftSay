@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by dllo on 16/9/14.
+ * 自定义布局管理者
  */
 public class FullyGridLayoutManager extends GridLayoutManager{
     public FullyGridLayoutManager(Context context, int spanCount) {

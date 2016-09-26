@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +23,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/9/12.
+ * 首页精选ListView适配器
  */
 public class HomeSeleLvAdapter extends BaseAdapter {
-    private String authorImgUrl = "http://img01.liwushuo.com/image/160902/pkwjxp8s1.jpg";
     private Context context;
     private List<HomeSeleBean.DataBean.ItemsBean> datas;
 
@@ -36,13 +37,6 @@ public class HomeSeleLvAdapter extends BaseAdapter {
         this.datas = datas;
         notifyDataSetChanged();
     }
-
-
-//    public void setDatas(List<HomeSeleBean.DataBean> datas) {
-//        this.datas = datas;
-//        notifyDataSetChanged();
-//    }
-
     @Override
     public int getCount() {
         return datas == null ? 0 : datas.size();
@@ -69,7 +63,6 @@ public class HomeSeleLvAdapter extends BaseAdapter {
         } else {
             homeSeleLvViewHolder = (HomeSeleLvViewHolder) convertView.getTag();
         }
-        //HomeSeleLvBean homeSeleLvBean = new HomeSeleLvBean();
         HomeSeleBean.DataBean.ItemsBean bean = (HomeSeleBean.DataBean.ItemsBean) getItem(position);
         Log.d("zzz", "zhixing");
         if (bean != null) {
@@ -80,10 +73,9 @@ public class HomeSeleLvAdapter extends BaseAdapter {
 
             }
             homeSeleLvViewHolder.nicknameTv.setText(bean.getAuthor().getNickname());
-
             homeSeleLvViewHolder.likesCountTv.setText(bean.getLikes_count() + "");
-            Picasso.with(context).load(bean.getCover_image_url()).into(homeSeleLvViewHolder.coverImg);
-            Picasso.with(context).load(bean.getAuthor().getAvatar_url()).into(homeSeleLvViewHolder.authorImg);
+            Picasso.with(context).load(bean.getCover_image_url()).config(Bitmap.Config.RGB_565).into(homeSeleLvViewHolder.coverImg);
+            Picasso.with(context).load(bean.getAuthor().getAvatar_url()).config(Bitmap.Config.RGB_565).into(homeSeleLvViewHolder.authorImg);
             Log.d("HomePageSelectedFragmen", datas.get(position).getTitle() + "null");
         }
         return convertView;

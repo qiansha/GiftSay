@@ -9,20 +9,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomePopRvBean;
 import com.lanou3g.giltsay.ui.adapter.HomePagePopRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lanou3g.giltsay.utils.StaticClassHelper.seleBgColor;
 
 /**
  * Created by dllo on 16/9/8.
@@ -32,9 +37,10 @@ public class HomePageFragment extends AbsBaseFragment {
     private ImageView popImg;
     private HomePagePopRvAdapter homePopAdapter;
     private RecyclerView homePopRecyclerView;
-    private List<String>data;
+    private List<String> data;
 
-    private String[] popStr = {"精选","送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
+
+    private String[] popStr = {"精选", "送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
             "送基友", "送同事", "送宝贝", "创意生活", "手工", "设计感", "文艺风", "科技范", "奇葩搞怪", "萌萌哒"};
 
 
@@ -44,7 +50,7 @@ public class HomePageFragment extends AbsBaseFragment {
     public static HomePageFragment newInstance(String url) {
 
         Bundle args = new Bundle();
-        args.putString("url",url);
+        args.putString("url", url);
         HomePageFragment fragment = new HomePageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -60,32 +66,12 @@ public class HomePageFragment extends AbsBaseFragment {
         homePageTl = byView(R.id.homepage_tl);
         homePageVp = byView(R.id.homepage_vp);
         popImg = byView(R.id.homepage_pop_img);
-
-
-
     }
 
     @Override
     protected void initDatas() {
         List<Fragment> datas = new ArrayList<>();
-        datas.add(HomePageSelectedFragment.newInstance(StaticClassHelper.homeSele1Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoy2Friend));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homrOutFit3Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeHaitao4Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeGift5Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMeihu6Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeGuimi7Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendParents8Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendFriend9Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendCullgeure10Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendBody11Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeChuangyi12Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeShougong13Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSheji14Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeWenyi15Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeKeji16Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeQipa17Url));
-        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMengmeng18Url));
+        addDataUrl(datas);
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         homePageVp.setAdapter(mainPagerAdapter);
         homePageTl.setupWithViewPager(homePageVp);
@@ -106,22 +92,67 @@ public class HomePageFragment extends AbsBaseFragment {
                 createPop();
             }
         });
+        homePopAdapter = new HomePagePopRvAdapter(context);//new适配器要和创建PopWindow分开写
+
 
 
 
     }
 
+    /**
+     * PopWindow的点击事件
+     */
+    private void addPopWindowListener(final PopupWindow homePop) {
+        homePopAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
+            @Override
+            public void onRvItemClickListener(int position, String str) {
+                homePageVp.setCurrentItem(position);
+                homePopAdapter.setSelectedIndex(position);
+                Log.d("数", "position:" + position+"----");
+               // homePopAdapter.getSelectedIndex(homePageVp.getCurrentItem());
+                Log.d("HomePageFragment", "homePageVp.getCurrentItem():" + homePageVp.getCurrentItem());
+                homePopAdapter.notifyDataSetChanged();
+                homePop.dismiss();
+
+            }
+        });
+
+
+    }
+
+    private void addDataUrl(List<Fragment> datas) {
+        datas.add(HomePageSelectedFragment.newInstance(StaticClassHelper.homeSele1Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeNorSendBoy2Friend));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homrOutFit3Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeHaitao4Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeGift5Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMeihu6Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeGuimi7Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendParents8Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendFriend9Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendCullgeure10Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSendBody11Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeChuangyi12Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeShougong13Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeSheji14Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeWenyi15Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeKeji16Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeQipa17Url));
+        datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMengmeng18Url));
+    }
+
     private void createPop() {
         PopupWindow homePop = new PopupWindow(context);
+
         homePop.setWidth(ViewPager.LayoutParams.MATCH_PARENT);
         homePop.setHeight(ViewPager.LayoutParams.WRAP_CONTENT);
-        View v = getActivity().getLayoutInflater().inflate(R.layout.item_homepage_pop,null);
+        View v = getActivity().getLayoutInflater().inflate(R.layout.item_homepage_pop, null);
         homePopRecyclerView = (RecyclerView) v.findViewById(R.id.home_pop_recyclerview);
         homePop.setContentView(v);
         //给PopWindow加数据
-        homePopAdapter = new HomePagePopRvAdapter(context);
+
         homePopRecyclerView.setAdapter(homePopAdapter);
-        GridLayoutManager gm = new GridLayoutManager(context,4);
+        GridLayoutManager gm = new GridLayoutManager(context, 4);
         homePopRecyclerView.setLayoutManager(gm);
         data = new ArrayList<>();
 
@@ -133,5 +164,11 @@ public class HomePageFragment extends AbsBaseFragment {
         homePopAdapter.setDatas(data);
         homePop.setOutsideTouchable(true);
         homePop.showAsDropDown(homePageTl);
+        /**
+         * 给PopWindow添加点击事件
+         */
+        addPopWindowListener(homePop);
     }
+
+
 }

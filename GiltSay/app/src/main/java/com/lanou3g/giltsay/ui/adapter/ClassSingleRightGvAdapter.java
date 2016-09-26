@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +21,9 @@ import java.util.List;
  * Created by dllo on 16/9/21.
  * ReGridView的适配器
  */
-public class ClassSingleRightGvAdapter extends BaseAdapter{
+public class ClassSingleRightGvAdapter extends BaseAdapter {
     private Context context;
-    private List<ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean>datas;
+    private List<ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean> datas;
 
     public ClassSingleRightGvAdapter(Context context) {
         this.context = context;
@@ -39,7 +40,7 @@ public class ClassSingleRightGvAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return datas != null && datas.size() > 0 ? datas.get(position): null;
+        return datas != null && datas.size() > 0 ? datas.get(position) : null;
     }
 
     @Override
@@ -50,21 +51,21 @@ public class ClassSingleRightGvAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ClassSingleRightGvViewHolder classSingleRightGvViewHolder = null;
-        if (convertView == null){
-            convertView  = LayoutInflater.from(context).inflate(R.layout.item_class_single_gv,parent,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_class_single_gv, parent, false);
             classSingleRightGvViewHolder = new ClassSingleRightGvViewHolder(convertView);
             convertView.setTag(classSingleRightGvViewHolder);
-        }else {
+        } else {
             classSingleRightGvViewHolder = (ClassSingleRightGvViewHolder) convertView.getTag();
         }
         ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean bean = (ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean) getItem(position);
         classSingleRightGvViewHolder.rightGvTv.setText(bean.getName());
-        Picasso.with(context).load(bean.getIcon_url()).into(classSingleRightGvViewHolder.rightGvImg);
+        Picasso.with(context).load(bean.getIcon_url()).config(Bitmap.Config.RGB_565).into(classSingleRightGvViewHolder.rightGvImg);
         return convertView;
     }
 
 
-    class ClassSingleRightGvViewHolder{
+    class ClassSingleRightGvViewHolder {
         ImageView rightGvImg;
         TextView rightGvTv;
 

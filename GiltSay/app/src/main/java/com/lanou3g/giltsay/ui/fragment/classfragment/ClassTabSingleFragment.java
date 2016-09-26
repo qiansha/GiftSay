@@ -30,22 +30,19 @@ import java.util.List;
 public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyResult {
 
     public static ClassTabSingleFragment newInstance() {
-        
         Bundle args = new Bundle();
-
         ClassTabSingleFragment fragment = new ClassTabSingleFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     private ClassSingleLeftLvAdapter classSingleLeftLvAdapter;
     private ListView singleLeftLv;
-    private List<ClassSingleBean.DataBean.CategoriesBean>datas;
-    private TextView singleTopTv;
-//    private ClassSingleRightRvAdapter classSingleRightRvAdapter;
-//    private RecyclerView rightRv;
+    private List<ClassSingleBean.DataBean.CategoriesBean> datas;
     private ListView singleRightLv;
     private ClassSingleRightListViewAdapter classSingleRightListViewAdapter;
     private int selectIndex = 0;
+    private boolean flag = true;
 
 
     @Override
@@ -56,20 +53,20 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
     @Override
     protected void initViews() {
         singleLeftLv = byView(R.id.class_single_lv);
-//        rightRv = byView(R.id.class_single_rv);
         singleRightLv = byView(R.id.class_single_rightlv);
-        singleTopTv = byView(R.id.calss_single_tv);
-
     }
 
     @Override
     protected void initDatas() {
         classSingleLeftLvAdapter = new ClassSingleLeftLvAdapter(context);
         singleLeftLv.setAdapter(classSingleLeftLvAdapter);
+        singleLeftLv.setVerticalScrollBarEnabled(true);
+        singleLeftLv.setSelected(true);
         datas = new ArrayList<>();
 
         classSingleRightListViewAdapter = new ClassSingleRightListViewAdapter(context);
         singleRightLv.setAdapter(classSingleRightListViewAdapter);
+        singleRightLv.setVerticalScrollBarEnabled(true);
 
 //        classSingleRightRvAdapter.setDatas(bean.get(position).getSubcategories());
 
@@ -80,8 +77,7 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
 //        rightRv.setAdapter(classSingleRightRvAdapter);
 
 
-
-        VolleyInstance.getInstance().startRequest(StaticClassHelper.classSingleUrl,this);
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.classSingleUrl, this);
 
     }
 
@@ -91,27 +87,21 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
         /**
          * 左边ListView
          */
-        ClassSingleBean classSingleBean = gson.fromJson(resultStr,ClassSingleBean.class);
-        List<ClassSingleBean.DataBean.CategoriesBean>categoriesBeen = classSingleBean.getData().getCategories();
+        ClassSingleBean classSingleBean = gson.fromJson(resultStr, ClassSingleBean.class);
+        List<ClassSingleBean.DataBean.CategoriesBean> categoriesBeen = classSingleBean.getData().getCategories();
         classSingleLeftLvAdapter.setDatas(categoriesBeen);
         /**
          *右边ListView
          */
-
-
-         datas = new ArrayList<>();
-        List<ClassSingleBean.DataBean.CategoriesBean>titleBean = classSingleBean.getData().getCategories();
-        List<ClassSingleBean.DataBean.CategoriesBean>dataBean = classSingleBean.getData().getCategories();
+        datas = new ArrayList<>();
+        List<ClassSingleBean.DataBean.CategoriesBean> titleBean = classSingleBean.getData().getCategories();
+        List<ClassSingleBean.DataBean.CategoriesBean> dataBean = classSingleBean.getData().getCategories();
         for (int i = 0; i < dataBean.size(); i++) {
             datas.add(dataBean.get(i));
-
             Log.d("ClassTabSingleFragment", "data:" + datas + null);
         }
-
         classSingleRightListViewAdapter.setDatas(datas);
         singleRightLv.setAdapter(classSingleRightListViewAdapter);
-
-
         addScroll();
 
 
@@ -121,67 +111,38 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
         singleLeftLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                selectIndex = position;
-//                List<ClassSingleBean.DataBean> categoriesBean = (List<ClassSingleBean.DataBean>) datas.get(position).getCategories().get(position);
-
                 classSingleLeftLvAdapter.setSelectIndex(position);
-
-
-
                 classSingleLeftLvAdapter.notifyDataSetChanged();
-                singleLeftLv.smoothScrollToPositionFromTop(position,0);
-//                classSingleRightListViewAdapter.setSelectIndex(position);
-//                singleRightLv.smoothScrollByOffset(position);
-//                singleRightLv.smoothScrollToPositionFromTop(position,0);
-                classSingleRightListViewAdapter.setSelectIndex(position);
-                singleRightLv.smoothScrollToPositionFromTop(position,0);
-
-
-//                datas.add(dataBean.get(selectIndex));
-//                Log.d("ClassTabSingleFragment", "data:" + datas + null);
-//                //  }
-//
-//                classSingleRightListViewAdapter.setDatas(datas);
-
-//                int rightPosition = singleLeftLv.getSelectedItemPosition();
-//                singleRightLv.setSelection(rightPosition);
-//                singleLeftLv.smoothScrollToPositionFromTop(position, 0);
-
-//                singleRightLv.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, items));
-
-
+                singleLeftLv.smoothScrollToPositionFromTop(position, 0);
+                singleRightLv.smoothScrollToPositionFromTop(position, 0);
             }
         });
 
         singleRightLv.setOnScrollListener(new AbsListView.OnScrollListener() {
-            private  int scrollState;
+            private int scrollState;
+
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                    this.scrollState = scrollState;
+                this.scrollState = scrollState;
 
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Toast.makeText(context, "firstVisibleItem:" + firstVisibleItem, Toast.LENGTH_SHORT).show();
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
-                    return;
+                /**
+                 * 当手指拖着ListView滑动的时候
+                 */
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    singleLeftLv.smoothScrollToPositionFromTop(firstVisibleItem, 0);
+                    classSingleLeftLvAdapter.setSelectIndex(firstVisibleItem);
+                    classSingleLeftLvAdapter.notifyDataSetChanged();
+                    Log.d("vvv", "firstVisibleItem:" + firstVisibleItem);
                 }
 
-//                selectIndex = firstVisibleItem;
-//                classSingleRightListViewAdapter.setSelectIndex(firstVisibleItem);
-//                classSingleRightListViewAdapter.notifyDataSetChanged();
-//                singleRightLv.smoothScrollToPositionFromTop(firstVisibleItem,0);
-//                classSingleLeftLvAdapter.setSelectIndex(firstVisibleItem);
-//                singleLeftLv.setAdapter(classSingleLeftLvAdapter);
             }
         });
     }
 
-    private void updateLeftListView(int rightPosition, int position) {
-//        List<ClassSingleBean.DataBean.CategoriesBean>showTitle = new ArrayList<>();
-//        if (showTitle.get(position))
-    }
 
     @Override
     public void failure() {

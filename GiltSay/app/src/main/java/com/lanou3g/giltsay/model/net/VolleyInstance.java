@@ -7,6 +7,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.lanou3g.giltsay.ui.app.GiftApp;
 
+import java.util.Map;
+
 /**
  * Created by dllo on 16/9/14.
  * Volley的单例类
@@ -14,7 +16,7 @@ import com.lanou3g.giltsay.ui.app.GiftApp;
 public class VolleyInstance {
     private RequestQueue requestQueue;
     private static VolleyInstance instance;
-    private VolleyInstance(){
+    VolleyInstance(){
         requestQueue = Volley.newRequestQueue(GiftApp.getContext());
     }
     public static VolleyInstance getInstance(){
@@ -27,18 +29,26 @@ public class VolleyInstance {
         }
         return instance;
     }
-    public void startRequest(String url,final VolleyResult  result){
+
+
+
+
+    public void startRequest(String url, final VolleyResult result) {
         StringRequest sr = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                  result.success(response);
+                result.success(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               result.failure();
+                result.failure();
             }
         });
         requestQueue.add(sr);
     }
+
+
+
+
 }

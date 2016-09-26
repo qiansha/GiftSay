@@ -59,7 +59,6 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
     @Override
     protected void initViews() {
         classColumnRecyclerView = byView(R.id.class_column_rv);
-//       classMoreRecyclerView = byView(R.id.class_class_rv);
         classClassRecyclerView = byView(R.id.class_class_rv);
         classStyleRecyclerView = byView(R.id.class_style_rv);
         classObjectRecyclerView = byView(R.id.class_object_rv);
@@ -68,16 +67,16 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
 
     @Override
     protected void initDatas() {
-        Bundle bundle = new Bundle();
+        Bundle bundle = getArguments();
         this.url = bundle.getString("url");
         //栏目
         VolleyInstance.getInstance().startRequest(StaticClassHelper.classColumnUrl, this);
-        //品类
+        //品类,风格,对象
         VolleyInstance.getInstance().startRequest(StaticClassHelper.classClassUrl, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 Gson gson = new Gson();
-                //    品类
+
                 ClassGuidesMoreRvBean classGuidesMoreRvBean = gson.fromJson(resultStr, ClassGuidesMoreRvBean.class);
                 List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean> channelGroupsBeen = classGuidesMoreRvBean.getData().getChannel_groups();
                 classRvAdapter = new ClassGuidesMoreRvAdapter(context);

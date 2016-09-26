@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/9/17.
+ * 首页精选轮播图适配器
  */
 public class HomeSeleRotateAdapter extends PagerAdapter {
     private List<HomeSeRotateBean> datas;
@@ -26,11 +28,6 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
 
     public HomeSeleRotateAdapter(List<HomeSeRotateBean> datas, Context context) {
         this.datas = datas;
-        this.context = context;
-        inflater = LayoutInflater.from(context);
-    }
-
-    public HomeSeleRotateAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
     }
@@ -56,12 +53,10 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
         int newPosition = position % datas.size();
         View convertView = inflater.inflate(R.layout.item_homepage_sele_rotate_vp, container, false);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_sele_rotate_iv);
-//        imageView.setImageResource(datas.get(newPosition).getImgId());
         HomeSeRotateBean bean = datas.get(newPosition);
-        Picasso.with(context).load(bean.getImgUrl()).into(imageView);
+        Picasso.with(context).load(bean.getImgUrl()).config(Bitmap.Config.RGB_565).into(imageView);
         container.addView(convertView);
         return convertView;
-
     }
 
     @Override

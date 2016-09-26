@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ClassSingleBean;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.lanou3g.giltsay.view.ReGridView;
 import com.squareup.picasso.Picasso;
 
@@ -31,12 +32,6 @@ public class ClassSingleRightListViewAdapter extends BaseAdapter {
     public void setSelectIndex(int selectIndex) {
         this.selectIndex = selectIndex;
     }
-
-//    public ClassSingleRightListViewAdapter(int selectIndex, List<ClassSingleBean.DataBean> data) {
-//        this.selectIndex = selectIndex;
-//        this.data = data;
-//        notifyDataSetChanged();
-  //  }
 
     public ClassSingleRightListViewAdapter(Context context) {
         this.context = context;
@@ -73,13 +68,10 @@ public class ClassSingleRightListViewAdapter extends BaseAdapter {
         } else {
             rightLvViewHolderView = (RightLvViewHolderView) convertView.getTag();
         }
-//        ClassSingleBean.DataBean.CategoriesBean bean = data.get(selectIndex);
-
         ClassSingleBean.DataBean.CategoriesBean bean = data.get(position);
         classSingleRightGvAdapter = new ClassSingleRightGvAdapter(context);
         classSingleRightGvAdapter.setDatas(bean.getSubcategories());
         rightLvViewHolderView.singleGv.setAdapter(classSingleRightGvAdapter);
-//        Log.d("ClassSingleRightListVie", bean.getName());
         rightLvViewHolderView.rightTitleTv.setText(bean.getName());
 
         return convertView;

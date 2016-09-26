@@ -31,7 +31,6 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
     private HomeSeleLvAdapter homeSeleLvAdapter;
 
     public static HomePageNormalFragment newInstance(String url) {
-
         Bundle args = new Bundle();
         args.putString("url", url);
         HomePageNormalFragment fragment = new HomePageNormalFragment();
@@ -47,7 +46,6 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
     @Override
     protected void initViews() {
         homeNormalListView = byView(R.id.homepage_normal_lv);
-
     }
 
     @Override

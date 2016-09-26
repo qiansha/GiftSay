@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <!--主Activity-->
 
     <FrameLayout
         android:id="@+id/main_repace_view"
@@ -31,10 +31,7 @@
             android:drawableTop="@drawable/selected_homepage"
             android:gravity="center"
             android:text="@string/main_first_radiobutton_name"
-            android:textColor="@color/color_radiobuttontext"
-
-
-            />
+            android:textColor="@color/color_radiobuttontext" />
 
         <RadioButton
             android:id="@+id/list_rbtn"

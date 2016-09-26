@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginBottom="10dp">
+    <!--分类攻略其他Rv行布局-->
     <ImageView
         android:id="@+id/item_class_more_img_rv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

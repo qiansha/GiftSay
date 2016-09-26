@@ -2,12 +2,28 @@ package com.lanou3g.giltsay.utils;
 
 /**
  * Created by dllo on 16/9/16.
+ * 常量类
  */
 public class StaticClassHelper {
     /**
      * 红色
      */
     public static final int myColor = 0xFFFF0033;
+
+    /**
+     * 黑色
+     */
+    public static final int noSeleColor = 0xFF262626;
+
+    /**
+     * 灰色
+     */
+    public static final int noSeleBgColor = 0xFFD1CFCF;
+
+    /**
+     * 白色
+     */
+    public static final int seleBgColor = 0xffffffff;
 
     /**
      * 轮播图

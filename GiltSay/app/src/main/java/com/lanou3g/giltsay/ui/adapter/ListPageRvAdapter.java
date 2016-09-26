@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
             holder.listNameTv.setText(bean.getName());
             holder.listDescriptionTv.setText(bean.getShort_description());
             holder.listPriceTv.setText(bean.getPrice());
-            Picasso.with(context).load(bean.getCover_image_url()).into(holder.listImg);
+            Picasso.with(context).load(bean.getCover_image_url()).config(Bitmap.Config.RGB_565).into(holder.listImg);
         }
     }
 

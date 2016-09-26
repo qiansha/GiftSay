@@ -17,12 +17,7 @@ import android.widget.RadioGroup;
  */
 
 public class MainActivity extends AbsBaseActivity {
-    //    private HomePageFragment homePageFragment;
-//    private ListFragment listFragment;
-//    private ClassFragment classFragment;
-//    private PersonFragment personFragment;
     private RadioGroup radioGroup;
-
 
     @Override
     protected int setLayout() {
@@ -32,17 +27,10 @@ public class MainActivity extends AbsBaseActivity {
     @Override
     protected void initViews() {
         radioGroup = byView(R.id.main_radio);
-
-
     }
 
     @Override
     protected void initDatas() {
-//        homePageFragment = new HomePageFragment();
-//        listFragment = new ListFragment();
-//        classFragment = new ClassFragment();
-//        personFragment = new PersonFragment();
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -50,7 +38,7 @@ public class MainActivity extends AbsBaseActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 switch (checkedId) {
                     case R.id.homepage_rbtn:
-                        transaction.replace(R.id.main_repace_view, HomePageFragment.newInstance(StaticClassHelper.homeSele1Url));
+                        transaction.replace(R.id.main_repace_view, HomePageFragment.newInstance(""));
                         break;
                     case R.id.list_rbtn:
                         transaction.replace(R.id.main_repace_view, ListFragment.newInstance(""));

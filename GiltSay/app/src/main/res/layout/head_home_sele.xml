@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <!--首页精选-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_sele_imghei">
@@ -9,7 +10,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/homepage_sele_rotate_vp"
             android:layout_width="match_parent"
-            android:layout_height="170dp" />
+            android:layout_height="200dp" />
 
         <LinearLayout
             android:id="@+id/homepage_sele_rotate_point_ll"
@@ -17,37 +18,42 @@
             android:layout_height="@dimen/home_sele_pointhei"
             android:layout_gravity="bottom|center"
             android:gravity="center"
-            android:background="#e0f9f7f7"
+            android:background="@null"
             android:layout_marginBottom="@dimen/home_sele_point_marbottom"
             android:orientation="horizontal" />
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/homepage_selected_rv"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/color_home_sele_rv_bg" />
+        android:background="@color/color_home_sele_rv_bg"
+        android:layout_marginBottom="20dp"/>
 
 
-    <LinearLayout
-        android:id="@+id/home_sele_text_fl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/home_sele_time_martop"
-        android:background="@color/color_home_sele_time_bg"
-        android:orientation="vertical">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+
+         android:orientation="vertical">
 
         <TextView
             android:id="@+id/home_sele_time_tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="更新时间" />
+            android:textSize="13sp"
+            android:text="更新时间"
+            android:background="#fff"/>
 
         <TextView
+            android:id="@+id/home_sele_time_tv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="更新时间" />
-    </LinearLayout>
+            android:textSize="11sp"
+            android:text="更新时间"
+            />
+     </LinearLayout>
+
 </LinearLayout>

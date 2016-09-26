@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,11 +36,6 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public void setColumnDatas(List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> columnDatas) {
-        this.columnDatas = columnDatas;
-        notifyDataSetChanged();
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_class_guides_more_img_rv, parent, false);
@@ -51,7 +47,7 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ClassGuidesMoreImgViewHolder imgViewHolder = (ClassGuidesMoreImgViewHolder) holder;
         ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean bean = datas.get(position);
-        Picasso.with(context).load(bean.getCover_image_url()).into(imgViewHolder.classMoreImg);
+        Picasso.with(context).load(bean.getCover_image_url()).config(Bitmap.Config.RGB_565).into(imgViewHolder.classMoreImg);
     }
 
     @Override

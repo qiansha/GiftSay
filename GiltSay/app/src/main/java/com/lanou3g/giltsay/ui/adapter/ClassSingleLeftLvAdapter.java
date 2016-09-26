@@ -16,17 +16,16 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/21.
+ * 分类单品左边ListView适配器
  */
-public class ClassSingleLeftLvAdapter extends BaseAdapter{
+public class ClassSingleLeftLvAdapter extends BaseAdapter {
     private Context context;
-    private List<ClassSingleBean.DataBean.CategoriesBean>datas;
+    private List<ClassSingleBean.DataBean.CategoriesBean> datas;
     private int selectIndex;
 
     public void setSelectIndex(int selectIndex) {
         this.selectIndex = selectIndex;
     }
-    ////    private List<String>datas;
-//    String datas[] = {"111","222","333"};
 
     public ClassSingleLeftLvAdapter(Context context) {
         this.context = context;
@@ -44,7 +43,7 @@ public class ClassSingleLeftLvAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return datas != null && datas.size() > 0 ? datas.get(position): null;
+        return datas != null && datas.size() > 0 ? datas.get(position) : null;
     }
 
     @Override
@@ -55,29 +54,37 @@ public class ClassSingleLeftLvAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ClassSingleLeftLvViewHolder classSingleLeftLvViewHolder = null;
-        if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_class_single_lv,parent,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_class_single_lv, parent, false);
             classSingleLeftLvViewHolder = new ClassSingleLeftLvViewHolder(convertView);
             convertView.setTag(classSingleLeftLvViewHolder);
-        }else {
+        } else {
             classSingleLeftLvViewHolder = (ClassSingleLeftLvViewHolder) convertView.getTag();
         }
         ClassSingleBean.DataBean.CategoriesBean bean = datas.get(position);
-        if (bean != null){
+        if (bean != null) {
             classSingleLeftLvViewHolder.classSingleLeftTv.setText(bean.getName());
         }
-        if (position == selectIndex){
+        if (position == selectIndex) {
             classSingleLeftLvViewHolder.classSingleLeftTv.setTextColor(StaticClassHelper.myColor);
+            classSingleLeftLvViewHolder.classSingleLeftTv.setBackgroundColor(StaticClassHelper.seleBgColor);
+            classSingleLeftLvViewHolder.classSingleLeftView.setBackgroundColor(StaticClassHelper.myColor);
 
-        }else {
-            classSingleLeftLvViewHolder.classSingleLeftTv.setTextColor(Color.parseColor("#dedede"));
+        } else {
+            classSingleLeftLvViewHolder.classSingleLeftTv.setTextColor(StaticClassHelper.noSeleColor);
+            classSingleLeftLvViewHolder.classSingleLeftTv.setBackgroundColor(StaticClassHelper.noSeleBgColor);
+            classSingleLeftLvViewHolder.classSingleLeftView.setBackgroundColor(StaticClassHelper.noSeleBgColor);
         }
         return convertView;
     }
-    class ClassSingleLeftLvViewHolder{
+
+    class ClassSingleLeftLvViewHolder {
         TextView classSingleLeftTv;
-        public ClassSingleLeftLvViewHolder(View view){
+        View classSingleLeftView;
+
+        public ClassSingleLeftLvViewHolder(View view) {
             classSingleLeftTv = (TextView) view.findViewById(R.id.class_single_lv_tv);
+            classSingleLeftView = (View) view.findViewById(R.id.class_single_view);
 
         }
     }

@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,9 @@ import java.util.List;
  * Created by dllo on 16/9/18.
  * 分类攻略中栏目RecyclerView的适配器
  */
-public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuidesColumnRvAdapter.ClassGuidesColumnRvViewHolder>{
+public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuidesColumnRvAdapter.ClassGuidesColumnRvViewHolder> {
     private Context context;
-    private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean>datas;
+    private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> datas;
 
     public ClassGuidesColumnRvAdapter(Context context) {
         this.context = context;
@@ -33,7 +34,7 @@ public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuides
 
     @Override
     public ClassGuidesColumnRvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_class_guides_column_rv,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_class_guides_column_rv, parent, false);
         ClassGuidesColumnRvViewHolder classGuidesColumnRvViewHolder = new ClassGuidesColumnRvViewHolder(view);
         return classGuidesColumnRvViewHolder;
     }
@@ -41,12 +42,12 @@ public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuides
     @Override
     public void onBindViewHolder(ClassGuidesColumnRvViewHolder holder, int position) {
         ClassGuidesColumnRvBean.DataBean.ColumnsBean bean = datas.get(position);
-        if (bean != null){
+        if (bean != null) {
             holder.classColumnTitle.setText(bean.getTitle());
             holder.classColumnSubTitle.setText(bean.getSubtitle());
             holder.classColumnAuthor.setText(bean.getAuthor());
         }
-        Picasso.with(context).load(bean.getBanner_image_url()).into(holder.classColumnImg);
+        Picasso.with(context).load(bean.getBanner_image_url()).config(Bitmap.Config.RGB_565).into(holder.classColumnImg);
 
     }
 
@@ -55,7 +56,7 @@ public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuides
         return datas == null ? 0 : datas.size();
     }
 
-    class ClassGuidesColumnRvViewHolder extends RecyclerView.ViewHolder{
+    class ClassGuidesColumnRvViewHolder extends RecyclerView.ViewHolder {
         ImageView classColumnImg;
         TextView classColumnTitle;
         TextView classColumnSubTitle;

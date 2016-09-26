@@ -4,16 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-
     android:orientation="vertical">
+    <!--榜单Rv行布局-->
 
     <android.support.v7.widget.CardView
         android:id="@+id/listpage_cv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/cardview_shape"
-
-
         android:elevation="@dimen/cardview_default_radius">
 
         <LinearLayout
@@ -67,8 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="5dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
