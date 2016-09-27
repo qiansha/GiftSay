@@ -64,6 +64,16 @@ public class StaticClassHelper {
     public static String listNewStarUrl= "http://api.liwushuo.com/v2/ranks_v2/ranks/4?limit=20&offset=0";
 
     /**
+     * 榜单详情前部分网址
+     */
+    public static String listDetailStartUrl = "http://api.liwushuo.com/v2/items/";
+
+    /**
+     * 榜单详情最后一部分的网址
+     */
+    public static String listDetailEndUrl = "recommend?num=20&post_num=5";
+
+    /**
      * 首页精选网址
      */
     public static String homeSele1Url = "http://api.liwushuo.com/v2/channels/104/items_v2?ad=2&gender=2&generation=2&limit=20&offset=0";
@@ -153,6 +163,11 @@ public class StaticClassHelper {
      * 萌萌哒
      */
    public static String homeMengmeng18Url = "http://api.liwushuo.com/v2/channels/11/items_v2?gender=2&limit=20&offset=0&generation=2";
+
+    /**
+     *首页详情网址
+     */
+    public static String homeSeleDetailsUrl = "http://api.liwushuo.com/v2/posts_v2/";
     /**
      *
      * 分类攻略栏目网址
@@ -167,6 +182,16 @@ public class StaticClassHelper {
      * 分类单品网址
      */
      public static String classSingleUrl = "http://api.liwushuo.com/v2/item_categories/tree";
+
+    /**
+     * 分类单品前部分拼接网址
+     */
+    public static String classSingleStartUrl = "http://api.liwushuo.com/v2/item_subcategories/";
+
+    /**
+     * 分类单品后部分网址
+     */
+    public static String classSingleEndUrl = "/items?limit=20&offset=0";
 
 
 

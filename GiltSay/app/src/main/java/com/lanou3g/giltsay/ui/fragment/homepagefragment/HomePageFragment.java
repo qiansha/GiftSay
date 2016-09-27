@@ -38,6 +38,7 @@ public class HomePageFragment extends AbsBaseFragment {
     private HomePagePopRvAdapter homePopAdapter;
     private RecyclerView homePopRecyclerView;
     private List<String> data;
+    private boolean flag = false;
 
 
     private String[] popStr = {"精选", "送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
@@ -90,17 +91,15 @@ public class HomePageFragment extends AbsBaseFragment {
             @Override
             public void onClick(View v) {
                 createPop();
+                popImg.setBackgroundResource(R.mipmap.arrow_grey_up);
             }
         });
+
         homePopAdapter = new HomePagePopRvAdapter(context);//new适配器要和创建PopWindow分开写
-
-
-
-
     }
 
     /**
-     * PopWindow的点击事件
+     *PopWindow的点击事件
      */
     private void addPopWindowListener(final PopupWindow homePop) {
         homePopAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
@@ -108,11 +107,12 @@ public class HomePageFragment extends AbsBaseFragment {
             public void onRvItemClickListener(int position, String str) {
                 homePageVp.setCurrentItem(position);
                 homePopAdapter.setSelectedIndex(position);
-                Log.d("数", "position:" + position+"----");
-               // homePopAdapter.getSelectedIndex(homePageVp.getCurrentItem());
-                Log.d("HomePageFragment", "homePageVp.getCurrentItem():" + homePageVp.getCurrentItem());
+//                Log.d("数", "position:" + position+"----");
+//                Log.d("HomePageFragment", "homePageVp.getCurrentItem():" + homePageVp.getCurrentItem());
                 homePopAdapter.notifyDataSetChanged();
+                popImg.setImageResource(R.mipmap.arrow_grey_down);
                 homePop.dismiss();
+
 
             }
         });
@@ -164,6 +164,7 @@ public class HomePageFragment extends AbsBaseFragment {
         homePopAdapter.setDatas(data);
         homePop.setOutsideTouchable(true);
         homePop.showAsDropDown(homePageTl);
+
         /**
          * 给PopWindow添加点击事件
          */

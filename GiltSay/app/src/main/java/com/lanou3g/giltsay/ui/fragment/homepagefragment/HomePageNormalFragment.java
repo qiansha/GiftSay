@@ -1,6 +1,9 @@
 package com.lanou3g.giltsay.ui.fragment.homepagefragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
@@ -13,6 +16,7 @@ import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeleBean;
 import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
+import com.lanou3g.giltsay.ui.activity.HomePageDetailActivity;
 import com.lanou3g.giltsay.ui.adapter.HomeSeleLvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
@@ -60,9 +64,23 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
     @Override
     public void success(String resultStr) {
         Gson gson = new Gson();
-        HomeSeleBean homeSeleBean = gson.fromJson(resultStr, HomeSeleBean.class);
+        final HomeSeleBean homeSeleBean = gson.fromJson(resultStr, HomeSeleBean.class);
         List<HomeSeleBean.DataBean.ItemsBean> homeSeleBeanData = homeSeleBean.getData().getItems();
         homeSeleLvAdapter.setDatas(homeSeleBeanData);
+        /**
+         * 点击ListView行布局跳转
+         */
+        homeNormalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(context, HomePageDetailActivity.class);
+                int been = homeSeleBean.getData().getItems().get(position).getId();
+                String imgUrl = homeSeleBean.getData().getItems().get(position).getCover_image_url();
+                intent.putExtra("id", been);
+                intent.putExtra("imgUrl", imgUrl);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

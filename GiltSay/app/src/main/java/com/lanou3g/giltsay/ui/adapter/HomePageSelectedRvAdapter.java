@@ -53,6 +53,7 @@ public class HomePageSelectedRvAdapter extends RecyclerView.Adapter<HomePageSele
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (recyclerViewItemClick != null){
                     if (recyclerViewItemClick != null){
                         int p = holder.getLayoutPosition();

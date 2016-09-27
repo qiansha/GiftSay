@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeRotateBean;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
@@ -25,6 +26,8 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
     private List<HomeSeRotateBean> datas;
     private Context context;
     private LayoutInflater inflater;
+
+
 
     public HomeSeleRotateAdapter(List<HomeSeRotateBean> datas, Context context) {
         this.datas = datas;

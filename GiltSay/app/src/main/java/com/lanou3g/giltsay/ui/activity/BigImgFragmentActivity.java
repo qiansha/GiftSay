@@ -1,4 +1,4 @@
-package com.lanou3g.giltsay.ui.fragment.homepagefragment;
+package com.lanou3g.giltsay.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +22,11 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/26.
+ * RecyclerView图片放大的Activity
  */
 public class BigImgFragmentActivity extends AbsBaseActivity implements VolleyResult {
-
+    private int position;
+    private String url;
     private ImageView bigImg;
 
     @Override
@@ -41,19 +43,13 @@ public class BigImgFragmentActivity extends AbsBaseActivity implements VolleyRes
     @Override
     protected void initDatas() {
         Intent intent = getIntent();
-        String url = intent.getStringExtra("url");
-        VolleyInstance.getInstance().startRequest(url,this);
-
-
+        url = intent.getStringExtra("url");
+        position = intent.getIntExtra("position", 0);
     }
 
     @Override
     public void success(String resultStr) {
-        Gson gson = new Gson();
-        HomeSeleHorRvBean bean = gson.fromJson(resultStr,HomeSeleHorRvBean.class);
-        List<HomeSeleHorRvBean.DataBean.SecondaryBannersBean>banBean = bean.getData().getSecondary_banners();
-        Picasso.with(getBaseContext()).load(banBean.get(1).getImage_url()).into(bigImg);
-
+        Picasso.with(getBaseContext()).load(url).into(bigImg);
     }
 
     @Override
