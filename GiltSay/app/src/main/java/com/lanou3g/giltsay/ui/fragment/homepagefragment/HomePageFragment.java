@@ -1,5 +1,6 @@
 package com.lanou3g.giltsay.ui.fragment.homepagefragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -13,10 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomePopRvBean;
+import com.lanou3g.giltsay.ui.activity.SearchDetailActivity;
+import com.lanou3g.giltsay.ui.activity.SignInActivity;
 import com.lanou3g.giltsay.ui.adapter.HomePagePopRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
@@ -39,6 +43,8 @@ public class HomePageFragment extends AbsBaseFragment {
     private RecyclerView homePopRecyclerView;
     private List<String> data;
     private boolean flag = false;
+    private TextView homeSearchTv;
+    private ImageView homeTopImg;
 
 
     private String[] popStr = {"精选", "送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
@@ -67,10 +73,14 @@ public class HomePageFragment extends AbsBaseFragment {
         homePageTl = byView(R.id.homepage_tl);
         homePageVp = byView(R.id.homepage_vp);
         popImg = byView(R.id.homepage_pop_img);
+        homeSearchTv = byView(R.id.home_search_tv);
+        homeTopImg = byView(R.id.homepage_top_img);
+
     }
 
     @Override
     protected void initDatas() {
+        addTarget();//右上角图标跑的点击事件,搜索栏点击事件
         List<Fragment> datas = new ArrayList<>();
         addDataUrl(datas);
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
@@ -96,6 +106,35 @@ public class HomePageFragment extends AbsBaseFragment {
         });
 
         homePopAdapter = new HomePagePopRvAdapter(context);//new适配器要和创建PopWindow分开写
+
+
+
+    }
+
+    private void addTarget() {
+        /**
+         * 右上角图标的点击事件
+         */
+        Log.d("imimim", "wai");
+        homeTopImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SignInActivity.class);
+                startActivity(intent);
+                Log.d("imimim", "图标点击");
+            }
+        });
+        /**
+         * 搜索栏点击事件
+         */
+        homeSearchTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SearchDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     /**
@@ -113,6 +152,11 @@ public class HomePageFragment extends AbsBaseFragment {
                 popImg.setImageResource(R.mipmap.arrow_grey_down);
                 homePop.dismiss();
 
+
+            }
+
+            @Override
+            public void onRvItemClickListeners(int position, String str, String str1, String str2) {
 
             }
         });

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ListView
+    <com.lanou3g.giltsay.view.ReFlashListView
         android:id="@+id/homepage_normal_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

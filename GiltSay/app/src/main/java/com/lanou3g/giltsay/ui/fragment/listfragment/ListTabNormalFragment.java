@@ -1,5 +1,6 @@
 package com.lanou3g.giltsay.ui.fragment.listfragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -13,8 +14,11 @@ import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean;
 import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
+import com.lanou3g.giltsay.ui.activity.HomePageDetailActivity;
+import com.lanou3g.giltsay.ui.activity.ListDetailActivity;
 import com.lanou3g.giltsay.ui.adapter.ListPageRvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.SaveFileToSDUtils;
 import com.squareup.picasso.Picasso;
 
@@ -95,14 +99,29 @@ public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResu
     public void success(String resultStr) {
         Gson gson = new Gson();
         ListPageRecyclerViewBean listPageRecyclerViewBean = gson.fromJson(resultStr, ListPageRecyclerViewBean.class);
-        List<ListPageRecyclerViewBean.DataBean.ItemsBean> itemsBeanListData = listPageRecyclerViewBean.getData().getItems();
+        final List<ListPageRecyclerViewBean.DataBean.ItemsBean> itemsBeanListData = listPageRecyclerViewBean.getData().getItems();
 
         listPageRvAdapter.setDatas(itemsBeanListData);
+
 
         GridLayoutManager glm = new GridLayoutManager(context, 2);
         recyclerView.setLayoutManager(glm);
         datasImg = listPageRecyclerViewBean.getData().getCover_image();
         Picasso.with(context).load(datasImg).config(Bitmap.Config.RGB_565).fit().into(topImg);
+        listPageRvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
+            @Override
+            public void onRvItemClickListener(int position, String str) {
+
+            }
+
+            @Override
+            public void onRvItemClickListeners(int position, String str, String str1, String str2) {
+                Intent intent = new Intent(context, ListDetailActivity.class);
+                intent.putExtra("id",itemsBeanListData.get(position).getId());
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

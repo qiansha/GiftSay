@@ -35,18 +35,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/class_view_height"
-        android:background="@color/color_class_bgtab"
-        />
+        android:background="@color/color_class_bgtab" />
 
     <TextView
-        android:id="@+id/class_search_et"
+        android:id="@+id/class_search_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@drawable/rounded_class_search"
         android:drawableLeft="@mipmap/icon_search_grey"
         android:drawablePadding="@dimen/class_et_img_pad"
-
+        android:layout_margin="7dp"
         android:paddingLeft="@dimen/class_et_padleft"
         android:paddingTop="@dimen/class_et_padingtop"
         android:paddingBottom="@dimen/class_et_padingtop"

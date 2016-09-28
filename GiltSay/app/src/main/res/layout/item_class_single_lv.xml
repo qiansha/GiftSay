@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="#FFF7F5F5">
     <!--分类单品左边ListView行布局-->
 
 
@@ -10,14 +11,16 @@
         android:id="@+id/class_single_view"
         android:layout_width="3dp"
         android:layout_height="match_parent"
-        android:background="#868686" />
+        android:background="#FFF7F5F5" />
 
     <TextView
         android:id="@+id/class_single_lv_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="7dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:textSize="13sp" />
 
 

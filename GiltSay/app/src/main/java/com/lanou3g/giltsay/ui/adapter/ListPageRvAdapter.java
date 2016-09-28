@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,12 +23,16 @@ import java.util.List;
  */
 public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.ListViewHolder>{
     private Context context;
+    private RecyclerViewItemClick recyclerViewItemClick;
     private List<ListPageRecyclerViewBean.DataBean.ItemsBean> datas;
+
+    public void setRecyclerViewItemClick(RecyclerViewItemClick recyclerViewItemClick) {
+        this.recyclerViewItemClick = recyclerViewItemClick;
+    }
 
     public ListPageRvAdapter(Context context) {
         this.context = context;
     }
-
     public void setDatas(List<ListPageRecyclerViewBean.DataBean.ItemsBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
@@ -38,15 +43,14 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
 
         View view = LayoutInflater.from(context).inflate(R.layout.item_listpage_rv,parent,false);
         ListViewHolder listViewHolder = new ListViewHolder(view);
-//        ListPageRecyclerViewBean.DataBean.ItemsBean bean = datas.get(position);
-
         return listViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder holder, int position) {
+    public void onBindViewHolder(final ListViewHolder holder, int position) {
+
         Log.d("ListPageRvAdapter", "进来没?");
-        ListPageRecyclerViewBean.DataBean.ItemsBean bean = datas.get(position);
+        final ListPageRecyclerViewBean.DataBean.ItemsBean bean = datas.get(position);
         if (bean !=null) {
             Log.d("ListPageRvAdapter", bean.getName() + "名字");
             Log.d("ListPageRvAdapter", bean.getDescription() + "描述");
@@ -56,6 +60,20 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
             holder.listPriceTv.setText(bean.getPrice());
             Picasso.with(context).load(bean.getCover_image_url()).config(Bitmap.Config.RGB_565).into(holder.listImg);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (recyclerViewItemClick != null){
+                    int p = holder.getLayoutPosition();
+                    String name = bean.getName();
+                    String description = bean.getShort_description();
+                    String price = bean.getPrice();
+
+                    recyclerViewItemClick.onRvItemClickListeners(p,name,description,price);
+
+                }
+            }
+        });
     }
 
     @Override

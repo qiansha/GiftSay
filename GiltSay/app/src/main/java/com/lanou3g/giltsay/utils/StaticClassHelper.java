@@ -6,6 +6,11 @@ package com.lanou3g.giltsay.utils;
  */
 public class StaticClassHelper {
     /**
+     * 分类单品左边listView的背景色
+     */
+    public static final int listBg = 0xFFF7F5F5;
+
+    /**
      * 红色
      */
     public static final int myColor = 0xFFFF0033;
@@ -37,6 +42,7 @@ public class StaticClassHelper {
      * 首页精选横RecyclerView网址
      */
      public static String horRecyclerViewUrl = "http://api.liwushuo.com/v2/secondary_banners?gender=2&generation=2";
+
     /**
      *榜单Top100大图网址
      */
@@ -168,8 +174,8 @@ public class StaticClassHelper {
      *首页详情网址
      */
     public static String homeSeleDetailsUrl = "http://api.liwushuo.com/v2/posts_v2/";
+
     /**
-     *
      * 分类攻略栏目网址
      */
     public static String classColumnUrl = "http://api.liwushuo.com/v2/columns";
@@ -178,6 +184,7 @@ public class StaticClassHelper {
      *分类攻略品类风格对象网址
      */
     public static String classClassUrl = "http://api.liwushuo.com/v2/channel_groups/all";
+
     /**
      * 分类单品网址
      */
@@ -192,6 +199,11 @@ public class StaticClassHelper {
      * 分类单品后部分网址
      */
     public static String classSingleEndUrl = "/items?limit=20&offset=0";
+
+    /**
+     * 搜索栏点击跳转后的网址
+     */
+     public static String searchUrl = "http://api.liwushuo.com/v2/search/hot_words_v2";
 
 
 

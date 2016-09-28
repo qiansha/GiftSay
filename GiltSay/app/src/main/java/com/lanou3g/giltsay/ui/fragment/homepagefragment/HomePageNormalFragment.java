@@ -2,6 +2,7 @@ package com.lanou3g.giltsay.ui.fragment.homepagefragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import com.lanou3g.giltsay.ui.activity.HomePageDetailActivity;
 import com.lanou3g.giltsay.ui.adapter.HomeSeleLvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
+import com.lanou3g.giltsay.view.ReFlashListView;
 
 import java.util.List;
 
@@ -27,9 +29,9 @@ import java.util.List;
  * Created by dllo on 16/9/9.
  * 首页的其他分页面
  */
-public class HomePageNormalFragment extends AbsBaseFragment implements VolleyResult {
+public class HomePageNormalFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.IReflashListener {
 
-    private ListView homeNormalListView;
+    private ReFlashListView homeNormalListView;
     private String tag;
     private RequestQueue queue;
     private HomeSeleLvAdapter homeSeleLvAdapter;
@@ -58,6 +60,7 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
         this.tag = bundle.getString("url");
         homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
         homeNormalListView.setAdapter(homeSeleLvAdapter);
+        homeNormalListView.setInterface(this);
         VolleyInstance.getInstance().startRequest(tag, this);
     }
 
@@ -86,5 +89,16 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
     @Override
     public void failure() {
 
+    }
+
+    @Override
+    public void onReflash() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                homeNormalListView.reflshComplete();
+            }
+        },2000);
     }
 }

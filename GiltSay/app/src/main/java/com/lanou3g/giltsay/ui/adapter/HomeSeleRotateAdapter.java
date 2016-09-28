@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeRotateBean;
+import com.lanou3g.giltsay.ui.activity.HomePageDetailActivity;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
@@ -26,8 +28,6 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
     private List<HomeSeRotateBean> datas;
     private Context context;
     private LayoutInflater inflater;
-
-
 
     public HomeSeleRotateAdapter(List<HomeSeRotateBean> datas, Context context) {
         this.datas = datas;
@@ -53,12 +53,23 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
-        int newPosition = position % datas.size();
+        final int newPosition = position % datas.size();
         View convertView = inflater.inflate(R.layout.item_homepage_sele_rotate_vp, container, false);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_sele_rotate_iv);
-        HomeSeRotateBean bean = datas.get(newPosition);
+
+        final HomeSeRotateBean bean = datas.get(newPosition);
         Picasso.with(context).load(bean.getImgUrl()).config(Bitmap.Config.RGB_565).into(imageView);
         container.addView(convertView);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,HomePageDetailActivity.class);
+                        intent.putExtra("id","111");
+                        intent.putExtra("imgUrl","");
+                        context.startActivity(intent);
+
+            }
+        });
         return convertView;
     }
 

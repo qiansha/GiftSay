@@ -6,4 +6,5 @@ package com.lanou3g.giltsay.utils;
  */
 public interface RecyclerViewItemClick {
     void onRvItemClickListener(int position, String str);
+    void onRvItemClickListeners(int position,String str, String str1,String str2);
 }

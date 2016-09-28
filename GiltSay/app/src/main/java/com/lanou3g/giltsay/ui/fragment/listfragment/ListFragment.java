@@ -1,13 +1,17 @@
 package com.lanou3g.giltsay.ui.fragment.listfragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.ui.activity.SignInActivity;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
@@ -24,6 +28,7 @@ public class ListFragment extends AbsBaseFragment {
     private TabLayout listTl;
     private ViewPager listVp;
     private String url;
+    private ImageView moreImg;
 
     public static ListFragment newInstance(String url) {
         Bundle args = new Bundle();
@@ -42,6 +47,7 @@ public class ListFragment extends AbsBaseFragment {
     protected void initViews() {
         listTl = byView(R.id.list_tl);
         listVp = byView(R.id.list_vp);
+        moreImg = byView(R.id.list_more_img);
     }
 
     @Override
@@ -61,6 +67,17 @@ public class ListFragment extends AbsBaseFragment {
         listTl.getTabAt(1).setText("TOP100");
         listTl.getTabAt(2).setText("独立原创榜");
         listTl.getTabAt(3).setText("新星榜");
+
+        /**
+         * 标题栏图片点击事件
+         */
+        moreImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

@@ -54,7 +54,7 @@
     <!--首页精选轮播图小点布局高度-->
     <dimen name="home_sele_pointhei">5dp</dimen>
     <!--首页精选轮播图小点布局距下方的距离-->
-    <dimen name="home_sele_point_marbottom">20dp</dimen>
+    <dimen name="home_sele_point_marbottom">10dp</dimen>
     <!--首页精选时间的marginTop-->
     <dimen name="home_sele_time_martop">20dp</dimen>
     <!--榜单标题栏图标的margin-->

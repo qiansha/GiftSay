@@ -72,7 +72,7 @@ public class ClassSingleLeftLvAdapter extends BaseAdapter {
 
         } else {
             classSingleLeftLvViewHolder.classSingleLeftTv.setTextColor(StaticClassHelper.noSeleColor);
-            classSingleLeftLvViewHolder.classSingleLeftTv.setBackgroundColor(StaticClassHelper.noSeleBgColor);
+            classSingleLeftLvViewHolder.classSingleLeftTv.setBackgroundColor(StaticClassHelper.listBg);
             classSingleLeftLvViewHolder.classSingleLeftView.setBackgroundColor(StaticClassHelper.noSeleBgColor);
         }
         return convertView;
