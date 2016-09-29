@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/17.
+ * 首页轮播图实体类
  */
 public class HomeSeRotateBean {
     private int imgId;

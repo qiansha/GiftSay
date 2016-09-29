@@ -5,12 +5,13 @@ import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
-import com.lanou3g.giltsay.ui.fragment.listfragment.ListDEtailSingleFragment;
+import com.lanou3g.giltsay.ui.fragment.listfragment.ListDetailSingleFragment;
 import com.lanou3g.giltsay.ui.fragment.listfragment.ListDetailDetailFragment;
 import com.lanou3g.giltsay.ui.fragment.listfragment.ListDetailTalkFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
@@ -26,7 +27,9 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
     private TabLayout listDetailTl;
     private ViewPager listDetailVp;
     private int itemId;
-    private String url;
+    private String detailUrl;
+    private String singleUrl;
+//    private DetailReceiver detailReceiver;
 
     @Override
     protected int setLayout() {
@@ -44,12 +47,22 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
 
     @Override
     protected void initDatas() {
+//        /**
+//         * 注册广播
+//         */
+//        detailReceiver = new DetailReceiver();
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(StaticClassHelper.THE_ACTION);
+//        registerReceiver(detailReceiver,intentFilter);
+
         Intent intent = getIntent();
         itemId = intent.getIntExtra("id",0);
-        url = StaticClassHelper.listDetailStartUrl + itemId;
+        singleUrl = StaticClassHelper.listDetailStartUrl + itemId + StaticClassHelper.listDetailEndUrl;
+        Log.d("ListDetailActivity", singleUrl);
+        detailUrl = StaticClassHelper.listDetailStartUrl + itemId;
         List<Fragment>fragments = new ArrayList<>();
-        fragments.add(ListDEtailSingleFragment.newInstance(url));
-        fragments.add(ListDetailDetailFragment.newInstance());
+        fragments.add(ListDetailSingleFragment.newInstance(itemId + ""));
+        fragments.add(ListDetailDetailFragment.newInstance(detailUrl));
         fragments.add(ListDetailTalkFragment.newInstance());
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(),fragments);
         listDetailVp.setAdapter(mainPagerAdapter);
@@ -60,13 +73,6 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         listDetailTl.getTabAt(0).setText("单品");
         listDetailTl.getTabAt(1).setText("详情");
         listDetailTl.getTabAt(2).setText("评论");
-
-
-
-
-
-
-
         backImg.setOnClickListener(this);
 
 
@@ -81,4 +87,33 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
                 break;
         }
     }
+//    class DetailReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            /**
+//             * 获得广播的传值
+//             */
+//            Log.d("bebebe", "广播");
+//            String s1 = intent.getStringExtra("shortDescription");
+//            Log.d("bebebe", s1);
+////            price = intent.getStringExtra("price");
+////            Log.d("brbrbr", price);
+////            description = intent.getStringExtra("description");
+////            Log.d("brbrbr", description);
+////            singleShortDes.setText(shortDescription);
+////            singlePrice.setText(price);
+////            singleDescription.setText(description);
+//
+//
+//
+//
+//        }
+//    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        unregisterReceiver(detailReceiver);
+//    }
 }

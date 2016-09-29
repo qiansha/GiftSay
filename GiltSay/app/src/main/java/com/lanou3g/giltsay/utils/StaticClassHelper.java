@@ -6,6 +6,10 @@ package com.lanou3g.giltsay.utils;
  */
 public class StaticClassHelper {
     /**
+     *广播
+     */
+    public static final String THE_ACTION = "itemClickDetail";
+    /**
      * 分类单品左边listView的背景色
      */
     public static final int listBg = 0xFFF7F5F5;
@@ -29,6 +33,7 @@ public class StaticClassHelper {
      * 白色
      */
     public static final int seleBgColor = 0xffffffff;
+
 
     /**
      * 轮播图
@@ -77,7 +82,7 @@ public class StaticClassHelper {
     /**
      * 榜单详情最后一部分的网址
      */
-    public static String listDetailEndUrl = "recommend?num=20&post_num=5";
+    public static String listDetailEndUrl = "/recommend?num=20&post_num=5";
 
     /**
      * 首页精选网址

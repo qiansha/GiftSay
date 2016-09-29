@@ -186,6 +186,7 @@ public class ListDetaliHTMLBean {
         private List<?> post_ids;
         private List<String> webp_urls;
 
+
         public Object getAd_monitors() {
             return ad_monitors;
         }

@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ListPageRecyclerViewBean;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -65,11 +67,21 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
             public void onClick(View v) {
                 if (recyclerViewItemClick != null){
                     int p = holder.getLayoutPosition();
-                    String name = bean.getName();
-                    String description = bean.getShort_description();
+                    String name = bean.getShort_description();
+                    String description = bean.getDescription();
                     String price = bean.getPrice();
 
                     recyclerViewItemClick.onRvItemClickListeners(p,name,description,price);
+//                    Intent intent1 = new Intent();
+//                    intent1.setAction(StaticClassHelper.THE_ACTION);
+//                    intent1.putExtra("description",description);
+//                    intent1.putExtra("short_description",name);
+//                    intent1.putExtra("price",price);
+////                List<String> imageUrls = itemsBeanListData.get(position).getImage_urls();
+////                intent1.putExtra("111", 467474676);
+//                    Log.d("brbrbr", name);
+////                intent1.putExtra("image_urls", (CharSequence) imageUrls);
+//                    context.sendBroadcast(intent1);
 
                 }
             }

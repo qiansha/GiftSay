@@ -1,11 +1,14 @@
 package com.lanou3g.giltsay.ui.fragment.listfragment;
 
 import android.content.Intent;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 
 
@@ -20,6 +23,7 @@ import com.lanou3g.giltsay.ui.adapter.ListPageRvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.SaveFileToSDUtils;
+import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
 
@@ -28,6 +32,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +40,7 @@ import java.util.List;
  * 榜单中分页面
  */
 public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResult {
+    private  List<String> imageUrls;
     private ListPageRvAdapter listPageRvAdapter;
     private ImageView topImg;
     private String url;
@@ -70,6 +76,7 @@ public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResu
         listPageRvAdapter = new ListPageRvAdapter(context);
         recyclerView.setAdapter(listPageRvAdapter);
         VolleyInstance.getInstance().startRequest(url, this);
+        Log.d("nonono", url);
 //        //保存图片到SD卡
 //        new Thread(new Runnable() {
 //            @Override
@@ -117,8 +124,10 @@ public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResu
             @Override
             public void onRvItemClickListeners(int position, String str, String str1, String str2) {
                 Intent intent = new Intent(context, ListDetailActivity.class);
-                intent.putExtra("id",itemsBeanListData.get(position).getId());
+                intent.putExtra("id", itemsBeanListData.get(position).getId());
+
                 startActivity(intent);
+
 
             }
         });
