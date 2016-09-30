@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -38,6 +39,8 @@ import static com.lanou3g.giltsay.utils.StaticClassHelper.seleBgColor;
  * 首页页面
  */
 public class HomePageFragment extends AbsBaseFragment {
+    private PopupWindow homePop;
+    private ImageView popImgUp;
     private ImageView popImg;
     private HomePagePopRvAdapter homePopAdapter;
     private RecyclerView homePopRecyclerView;
@@ -75,6 +78,7 @@ public class HomePageFragment extends AbsBaseFragment {
         popImg = byView(R.id.homepage_pop_img);
         homeSearchTv = byView(R.id.home_search_tv);
         homeTopImg = byView(R.id.homepage_top_img);
+//        popImgUp = byView(R.id.home_pop_up_img);
 
     }
 
@@ -87,7 +91,7 @@ public class HomePageFragment extends AbsBaseFragment {
         homePageVp.setAdapter(mainPagerAdapter);
         homePageTl.setupWithViewPager(homePageVp);
         homePageTl.setSelectedTabIndicatorHeight(3);
-        homePageTl.setTabTextColors(Color.GRAY, StaticClassHelper.myColor);
+        homePageTl.setTabTextColors(Color.BLACK, StaticClassHelper.myColor);
         homePageTl.setSelectedTabIndicatorColor(StaticClassHelper.myColor);
         homePageTl.setTabMode(TabLayout.MODE_SCROLLABLE);
 
@@ -101,13 +105,13 @@ public class HomePageFragment extends AbsBaseFragment {
             @Override
             public void onClick(View v) {
                 createPop();
-                popImg.setBackgroundResource(R.mipmap.arrow_grey_up);
+
+
             }
         });
 
+//        popImg.setImageResource(R.mipmap.arrow_grey_down);
         homePopAdapter = new HomePagePopRvAdapter(context);//new适配器要和创建PopWindow分开写
-
-
 
     }
 
@@ -138,22 +142,26 @@ public class HomePageFragment extends AbsBaseFragment {
     }
 
     /**
-     *PopWindow的点击事件
+     * PopWindow的点击事件
      */
     private void addPopWindowListener(final PopupWindow homePop) {
         homePopAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
             @Override
             public void onRvItemClickListener(int position, String str) {
+//                popImg.setImageResource(R.mipmap.arrow_grey_down);
+//                popImg.setBackgroundResource(R.mipmap.arrow_grey_down);
+
                 homePageVp.setCurrentItem(position);
                 homePopAdapter.setSelectedIndex(position);
 //                Log.d("数", "position:" + position+"----");
 //                Log.d("HomePageFragment", "homePageVp.getCurrentItem():" + homePageVp.getCurrentItem());
                 homePopAdapter.notifyDataSetChanged();
-                popImg.setImageResource(R.mipmap.arrow_grey_down);
+
                 homePop.dismiss();
 
-
+//                popImg.setImageResource(R.mipmap.arrow_grey_up);
             }
+
 
             @Override
             public void onRvItemClickListeners(int position, String str, String str1, String str2) {
@@ -186,13 +194,16 @@ public class HomePageFragment extends AbsBaseFragment {
     }
 
     private void createPop() {
-        PopupWindow homePop = new PopupWindow(context);
+        homePop = new PopupWindow(context);
 
         homePop.setWidth(ViewPager.LayoutParams.MATCH_PARENT);
         homePop.setHeight(ViewPager.LayoutParams.WRAP_CONTENT);
         View v = getActivity().getLayoutInflater().inflate(R.layout.item_homepage_pop, null);
         homePopRecyclerView = (RecyclerView) v.findViewById(R.id.home_pop_recyclerview);
+        popImgUp = (ImageView) v.findViewById(R.id.home_pop_up_img);
         homePop.setContentView(v);
+        homePop.setBackgroundDrawable(null);
+        homePop.showAtLocation(popImg, Gravity.NO_GRAVITY, 0, homePageTl.getHeight());
         //给PopWindow加数据
 
         homePopRecyclerView.setAdapter(homePopAdapter);
@@ -213,6 +224,13 @@ public class HomePageFragment extends AbsBaseFragment {
          * 给PopWindow添加点击事件
          */
         addPopWindowListener(homePop);
+        popImgUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePop.dismiss();
+            }
+        });
+
     }
 
 

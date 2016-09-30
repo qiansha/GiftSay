@@ -31,6 +31,7 @@
             android:drawableTop="@drawable/selected_homepage"
             android:gravity="center"
             android:text="@string/main_first_radiobutton_name"
+            android:textSize="8sp"
             android:textColor="@color/color_radiobuttontext" />
 
         <RadioButton
@@ -42,6 +43,8 @@
             android:drawableTop="@drawable/selected_list"
             android:gravity="center"
             android:text="@string/main_second_radiobutton_name"
+            android:textSize="8sp"
+            android:padding="3dp"
             android:textColor="@color/color_radiobuttontext" />
 
         <RadioButton
@@ -53,6 +56,7 @@
             android:drawableTop="@drawable/selected_class"
             android:gravity="center"
             android:text="@string/main_third_radiobutton_name"
+            android:textSize="8sp"
             android:textColor="@color/color_radiobuttontext" />
 
         <RadioButton
@@ -64,6 +68,7 @@
             android:drawableTop="@drawable/selected_person"
             android:gravity="center"
             android:text="@string/main_forth_radiobutton_name"
+            android:textSize="8sp"
             android:textColor="@color/color_radiobuttontext" />
     </RadioGroup>
 

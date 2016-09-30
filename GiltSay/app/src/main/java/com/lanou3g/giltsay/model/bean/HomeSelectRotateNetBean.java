@@ -3,38 +3,10 @@ package com.lanou3g.giltsay.model.bean;
 import java.util.List;
 
 /**
- * Created by dllo on 16/9/17.
- * 首页轮播图实体类
+ * Created by dllo on 16/9/30.
+ * 首页轮播图网络数据实体类
  */
-public class HomeSeRotateBean {
-    private int imgId;
-    private String imgUrl;
-
-    public HomeSeRotateBean(String image_url) {
-        this.imgUrl = image_url;
-    }
-
-    public HomeSeRotateBean(int imgId, String imgUrl) {
-        this.imgId = imgId;
-        this.imgUrl = imgUrl;
-    }
-
-    public int getImgId() {
-        return imgId;
-    }
-
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
+public class HomeSelectRotateNetBean {
 
     /**
      * code : 200

@@ -40,7 +40,7 @@ import java.util.List;
  * 榜单中分页面
  */
 public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResult {
-    private  List<String> imageUrls;
+    private List<String> imageUrls;
     private ListPageRvAdapter listPageRvAdapter;
     private ImageView topImg;
     private String url;
@@ -77,28 +77,6 @@ public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResu
         recyclerView.setAdapter(listPageRvAdapter);
         VolleyInstance.getInstance().startRequest(url, this);
         Log.d("nonono", url);
-//        //保存图片到SD卡
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    URL urls = new URL(url);
-//                    HttpURLConnection c = (HttpURLConnection) urls.openConnection();
-//                    if (c.getResponseCode() == 200){
-//                        InputStream is = c.getInputStream();
-//                        Bitmap bitmap = BitmapFactory.decodeStream(is);
-//                        //保存
-//                        SaveFileToSDUtils.getInstance().saveImage(url,bitmap);
-//                    }
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-
-
     }
 
 

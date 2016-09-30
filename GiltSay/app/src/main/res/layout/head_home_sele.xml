@@ -5,17 +5,17 @@
     <!--首页精选-->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="140dp">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/homepage_sele_rotate_vp"
             android:layout_width="match_parent"
-            android:layout_height="170dp" />
+            android:layout_height="140dp" />
 
         <LinearLayout
             android:id="@+id/homepage_sele_rotate_point_ll"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:layout_gravity="bottom|center"
             android:gravity="center"
             android:layout_marginBottom="@dimen/home_sele_point_marbottom"

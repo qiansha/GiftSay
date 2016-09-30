@@ -48,8 +48,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/home_tab_martop"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#fff">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/homepage_tl"
@@ -60,14 +60,16 @@
         <LinearLayout
             android:layout_width="@dimen/home_popimg_widhei"
             android:layout_height="@dimen/home_popimg_widhei"
-            android:gravity="center">
+            android:gravity="center"
+            >
 
             <ImageView
                 android:id="@+id/homepage_pop_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@mipmap/arrow_grey_down" />
+                android:src="@mipmap/arrow_grey_down"
+                />
         </LinearLayout>
     </LinearLayout>
 

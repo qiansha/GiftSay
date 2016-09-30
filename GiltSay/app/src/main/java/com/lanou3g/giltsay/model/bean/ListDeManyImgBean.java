@@ -7,12 +7,14 @@ public class ListDeManyImgBean {
     private int imgId;
     private String imgUrl;
 
-    public ListDeManyImgBean(String s) {
+    public ListDeManyImgBean(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public ListDeManyImgBean(int imgId, String imgUrl) {
         this.imgId = imgId;
         this.imgUrl = imgUrl;
+
     }
 
     public int getImgId() {

@@ -25,6 +25,7 @@ import com.lanou3g.giltsay.model.bean.HomeSeleBean;
 
 import com.lanou3g.giltsay.model.bean.HomeSeleHorRvBean;
 import com.lanou3g.giltsay.model.bean.HomeSeleRvBean;
+import com.lanou3g.giltsay.model.bean.HomeSelectRotateNetBean;
 import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
 import com.lanou3g.giltsay.ui.activity.BigImgFragmentActivity;
@@ -48,11 +49,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 首页的精选页面
  */
 public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.IReflashListener {
-    private static final int TIME = 3000;
     //    private ChildViewPager rotateViewPager;
     private TextView homeHeadTimeTv1;
     private TextView homeHeadTimeTv2;
     private boolean flag = false;
+    private int da = 4;
     private int month;
     private int day;
     private int newTime;
@@ -91,10 +92,16 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
     @Override
     protected void initDatas() {
+
         Bundle bundle = getArguments();
         this.url = bundle.getString("url");
-        VolleyInstance.getInstance().startRequest(url, this);//轮播图和ListView网络请求
-      homeSeleListView.setInterface(this);
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.homeSele1Url, this);//轮播图和ListView网络请求
+
+        Log.d("666", StaticClassHelper.rotateImgUrl);
+
+
+        Log.d("HomePageSelectedFragmen", url);
+        homeSeleListView.setInterface(this);
         /**
          * 加头布局
          */
@@ -109,18 +116,11 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
          * 添加轮播图头布局
          */
         //轮播图
-        buildDatas();
-        homeSeleRotateAdapter = new HomeSeleRotateAdapter(reDatas, context);
+        reDatas = new ArrayList<>();
+        buildData();
+        homeSeleRotateAdapter = new HomeSeleRotateAdapter(reDatas,context);
         rotateViewPager.setAdapter(homeSeleRotateAdapter);
         rotateViewPager.setCurrentItem(reDatas.size() * 100);
-        /**
-         * 开始轮播
-         */
-        handler = new Handler();
-        startRotate();
-
-        addPoints();//添加轮播小点
-        changePoints();//随着轮播改变小点
 
         /**
          * 横向RecyclerView
@@ -141,6 +141,36 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         onReflash();
     }
 
+    /**
+     * 给轮播图加数据
+     */
+    private void buildData() {
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.rotateImgUrl, new VolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                Log.d("666", "chengg");
+
+                Gson gson = new Gson();
+                HomeSeRotateBean homeSeRotateBean = gson.fromJson(resultStr, HomeSeRotateBean.class);
+                List<HomeSeRotateBean.DataBean.BannersBean> bean = homeSeRotateBean.getData().getBanners();
+                for (int i = 0; i < bean.size(); i++) {
+                    Log.d("666", "bean.size():" + bean.size());
+                    reDatas.add(new HomeSeRotateBean(bean.get(i).getImage_url()));
+                    Log.d("666", "reDatas.size():" + reDatas.size());
+//                    homeSeleRotateAdapter.setDatas(reDatas);
+                }
+                handler = new Handler();
+                startRotate();
+                addPoints();//添加轮播小点
+                changePoints();//随着轮播改变小点
+            }
+
+            @Override
+            public void failure() {
+                Log.d("666", "shib");
+            }
+        });
+    }
 
 
     /**
@@ -227,6 +257,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
 
     private void changePoints() {
+        Log.d("da1", "da:" + da);
         rotateViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -235,6 +266,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
             @Override
             public void onPageSelected(int position) {
+
                 if (isRotate) {
                     for (int i = 0; i < reDatas.size(); i++) {
                         ImageView pointIv = (ImageView) pointLl.getChildAt(i);
@@ -254,6 +286,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     }
 
     private void addPoints() {
+        Log.d("reDatas", "reDatas.size():" + reDatas.size());
         for (int i = 0; i < reDatas.size(); i++) {
             CircleImageView pointIv = new CircleImageView(context);
             pointIv.setPadding(5, 5, 5, 5);
@@ -282,24 +315,14 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
                 int nowIndex = rotateViewPager.getCurrentItem();
                 rotateViewPager.setCurrentItem(++nowIndex);
                 if (isRotate) {
-                    handler.postDelayed(rotateRunnable, TIME);
+                    handler.postDelayed(rotateRunnable, StaticClassHelper.TIME);
 
                 }
 
             }
         };
-        handler.postDelayed(rotateRunnable, TIME);
+        handler.postDelayed(rotateRunnable, StaticClassHelper.TIME);
     }
-
-    private void buildDatas() {
-        reDatas = new ArrayList<>();
-        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl1));
-        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl2));
-        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl3));
-        reDatas.add(new HomeSeRotateBean(StaticClassHelper.rotateImgUrl4));
-
-    }
-
 
     @Override
     public void success(String resultStr) {
@@ -325,18 +348,6 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
                 startActivity(intent);
             }
         });
-
-        /**
-         * 添加头布局
-         */
-
-//        homeSeleListView.addHeaderView(rotateViewPager,null,true); // 轮播图
-//        homeSeleListView.addHeaderView(pointLl,null,true);//小点
-//        homeSeleListView.addHeaderView(homeSeleRecyclerView,null,true);// 横图片
-//        homeSeleListView.addHeaderView(homeHeadTimeTv1,null,true);// 更新
-//        homeSeleListView.addHeaderView(homeHeadTimeTv2,null,true);
-//        homeSeleListView.setHeaderDividersEnabled(false);
-        Log.d("zzz", resultStr);
     }
 
     @Override
@@ -365,6 +376,6 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 //               homeSeleListView.setInterface(getActivity());
                 homeSeleListView.reflshComplete();
             }
-        },2000);
+        }, 2000);
     }
 }

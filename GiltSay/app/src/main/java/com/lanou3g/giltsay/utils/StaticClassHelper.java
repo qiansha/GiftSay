@@ -6,7 +6,11 @@ package com.lanou3g.giltsay.utils;
  */
 public class StaticClassHelper {
     /**
-     *广播
+     * 轮播时间
+     */
+    public static final int TIME = 3000;
+    /**
+     * 广播
      */
     public static final String THE_ACTION = "itemClickDetail";
     /**
@@ -38,18 +42,29 @@ public class StaticClassHelper {
     /**
      * 轮播图
      */
+    public static String rotateImgUrl = "http://api.liwushuo.com/v2/banners";
     public static String rotateImgUrl1 = "http://img03.liwushuo.com/image/160722/xtomdj90f.jpg-w720";
     public static String rotateImgUrl2 = "http://img02.liwushuo.com/image/160906/4aco2fhmd.jpg-w720";
     public static String rotateImgUrl3 = "http://img01.liwushuo.com/image/160816/yl2mpwd8q.jpg-w720";
     public static String rotateImgUrl4 = "http://img03.liwushuo.com/image/160918/rtqb6vho2.jpg-w720";
 
     /**
-     * 首页精选横RecyclerView网址
+     * 轮播图详情网址(能传id   不能传id(今日礼物和往期礼物,今日礼物后面加today,往日礼物直接拼接)
      */
-     public static String horRecyclerViewUrl = "http://api.liwushuo.com/v2/secondary_banners?gender=2&generation=2";
+    public static String rotateDetailIdStartUrl = "http://api.liwushuo.com/v2/collections/";
+    public static String rotateDetailIdEndUrl = "/posts?limit=20&offset=0";
+
+    public static String rotateDetailUrlStartUrl = "http://api.liwushuo.com/v2/daily_lucky/";
+    public static String rotateDetailUrlEndUrl = "past_item_awards?limit=20&offset=0";
+
 
     /**
-     *榜单Top100大图网址
+     * 首页精选横RecyclerView网址
+     */
+    public static String horRecyclerViewUrl = "http://api.liwushuo.com/v2/secondary_banners?gender=2&generation=2";
+
+    /**
+     * 榜单Top100大图网址
      */
     public static String listImgUrl = "http://img02.liwushuo.com/image/160909/2q09s3yzy.png-w720";
 
@@ -72,7 +87,7 @@ public class StaticClassHelper {
     /**
      * 榜单新星榜
      */
-    public static String listNewStarUrl= "http://api.liwushuo.com/v2/ranks_v2/ranks/4?limit=20&offset=0";
+    public static String listNewStarUrl = "http://api.liwushuo.com/v2/ranks_v2/ranks/4?limit=20&offset=0";
 
     /**
      * 榜单详情前部分网址
@@ -122,13 +137,13 @@ public class StaticClassHelper {
     /**
      * 送爸妈
      */
-    public static String homeSendParents8Url =  "http://api.liwushuo.com/v2/channels/6/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeSendParents8Url = "http://api.liwushuo.com/v2/channels/6/items_v2?gender=2&limit=20&offset=0&generation=2";
 
 
     /**
      * 送基友
      */
-    public static String homeSendFriend9Url =  "http://api.liwushuo.com/v2/channels/26/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeSendFriend9Url = "http://api.liwushuo.com/v2/channels/26/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 送同事
@@ -138,22 +153,22 @@ public class StaticClassHelper {
     /**
      * 送宝贝
      */
-    public static String homeSendBody11Url ="http://api.liwushuo.com/v2/channels/24/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeSendBody11Url = "http://api.liwushuo.com/v2/channels/24/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 创意生活
      */
-    public static String homeChuangyi12Url =  "http://api.liwushuo.com/v2/channels/125/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeChuangyi12Url = "http://api.liwushuo.com/v2/channels/125/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 手工
      */
-    public static String homeShougong13Url =  "http://api.liwushuo.com/v2/channels/3/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeShougong13Url = "http://api.liwushuo.com/v2/channels/3/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 设计感
      */
-    public static String homeSheji14Url =  "http://api.liwushuo.com/v2/channels/127/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeSheji14Url = "http://api.liwushuo.com/v2/channels/127/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 文艺风
@@ -163,20 +178,20 @@ public class StaticClassHelper {
     /**
      * 科技范
      */
-    public static String homeKeji16Url =  "http://api.liwushuo.com/v2/channels/28/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeKeji16Url = "http://api.liwushuo.com/v2/channels/28/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 奇葩搞怪
      */
-    public static String homeQipa17Url =  "http://api.liwushuo.com/v2/channels/126/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeQipa17Url = "http://api.liwushuo.com/v2/channels/126/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 萌萌哒
      */
-   public static String homeMengmeng18Url = "http://api.liwushuo.com/v2/channels/11/items_v2?gender=2&limit=20&offset=0&generation=2";
+    public static String homeMengmeng18Url = "http://api.liwushuo.com/v2/channels/11/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
-     *首页详情网址
+     * 首页详情网址
      */
     public static String homeSeleDetailsUrl = "http://api.liwushuo.com/v2/posts_v2/";
 
@@ -186,14 +201,14 @@ public class StaticClassHelper {
     public static String classColumnUrl = "http://api.liwushuo.com/v2/columns";
 
     /**
-     *分类攻略品类风格对象网址
+     * 分类攻略品类风格对象网址
      */
     public static String classClassUrl = "http://api.liwushuo.com/v2/channel_groups/all";
 
     /**
      * 分类单品网址
      */
-     public static String classSingleUrl = "http://api.liwushuo.com/v2/item_categories/tree";
+    public static String classSingleUrl = "http://api.liwushuo.com/v2/item_categories/tree";
 
     /**
      * 分类单品前部分拼接网址
@@ -208,10 +223,7 @@ public class StaticClassHelper {
     /**
      * 搜索栏点击跳转后的网址
      */
-     public static String searchUrl = "http://api.liwushuo.com/v2/search/hot_words_v2";
-
-
-
+    public static String searchUrl = "http://api.liwushuo.com/v2/search/hot_words_v2";
 
 
 }

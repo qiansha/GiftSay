@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,11 @@ public class ListDetailSingleManyImgAdapter extends PagerAdapter {
         inflater = LayoutInflater.from(context);
     }
 
+    public ListDetailSingleManyImgAdapter(Context context) {
+        this.context = context;
+        inflater = LayoutInflater.from(context);
+    }
+
     public void setDatas(List<ListDeManyImgBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
@@ -50,8 +56,8 @@ public class ListDetailSingleManyImgAdapter extends PagerAdapter {
         int newPosition = position % datas.size();
         View view = inflater.inflate(R.layout.item_list_desingle_vp, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.list_single_vp_img);
-
-        Picasso.with(context).load(datas.get(newPosition).getImgUrl()).into(imageView);
+       ListDeManyImgBean bean = datas.get(newPosition);
+        Picasso.with(context).load(bean.getImgUrl()).config(Bitmap.Config.RGB_565).into(imageView);
         container.addView(view);
         return view;
     }

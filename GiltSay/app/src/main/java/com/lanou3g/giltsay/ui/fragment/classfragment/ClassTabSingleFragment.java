@@ -41,9 +41,6 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
     private List<ClassSingleBean.DataBean.CategoriesBean> datas;
     private ListView singleRightLv;
     private ClassSingleRightListViewAdapter classSingleRightListViewAdapter;
-    private int selectIndex = 0;
-    private boolean flag = true;
-
 
     @Override
     protected int setLayout() {

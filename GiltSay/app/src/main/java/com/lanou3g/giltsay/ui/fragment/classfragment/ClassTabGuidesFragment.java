@@ -137,7 +137,6 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
         classColumnRecyclerView.setAdapter(classGuidesColumnRvAdapter);
         classGuidesColumnRvAdapter.setDatas(columnsBeen);
         Log.d("ClassTabGuidesFragment", "columnsBeen:" + columnsBeen);
-
     }
 
     @Override

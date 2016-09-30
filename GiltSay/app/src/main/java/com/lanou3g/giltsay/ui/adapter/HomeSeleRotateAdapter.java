@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeRotateBean;
 import com.lanou3g.giltsay.ui.activity.HomePageDetailActivity;
+import com.lanou3g.giltsay.ui.activity.RotateDetailActivity;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
@@ -35,6 +36,11 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
         inflater = LayoutInflater.from(context);
     }
 
+    public HomeSeleRotateAdapter(Context context) {
+        this.context = context;
+        inflater = LayoutInflater.from(context);
+    }
+
     public void setDatas(List<HomeSeRotateBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
@@ -51,7 +57,7 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
 
         final int newPosition = position % datas.size();
         View convertView = inflater.inflate(R.layout.item_homepage_sele_rotate_vp, container, false);
@@ -59,13 +65,15 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
 
         final HomeSeRotateBean bean = datas.get(newPosition);
         Picasso.with(context).load(bean.getImgUrl()).config(Bitmap.Config.RGB_565).into(imageView);
+//        Picasso.with(context).load(bean.getImgUrl).config(Bitmap.Config.RGB_565).config(imageView);
         container.addView(convertView);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,HomePageDetailActivity.class);
-                        intent.putExtra("id","111");
-                        intent.putExtra("imgUrl","");
+                Intent intent = new Intent(context,RotateDetailActivity.class);
+                if (bean.getData().getBanners().get(newPosition).getTarget_id() != null){
+                        intent.putExtra("target_id",bean.getData().getBanners().get(position).getTarget_id() + "");}
+//                        intent.putExtra("title",bean.getData().getBanners().get(newPosition).getC);
                         context.startActivity(intent);
 
             }

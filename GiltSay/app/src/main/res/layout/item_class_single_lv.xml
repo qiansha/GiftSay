@@ -3,24 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#FFF7F5F5">
+    android:background="#FFF7F5F5"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
     <!--分类单品左边ListView行布局-->
 
 
     <View
         android:id="@+id/class_single_view"
         android:layout_width="3dp"
-        android:layout_height="match_parent"
-        android:background="#FFF7F5F5" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/class_single_lv_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="7dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+        android:padding="12dp"
         android:textSize="13sp" />
 
 

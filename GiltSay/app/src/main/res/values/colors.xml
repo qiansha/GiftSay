@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_radioButton">#f03</color>
-    <color name="color_noselected">#000</color>
+    <color name="color_noselected">#868686</color>
     <!--Activity中横线View的颜色-->
     <color name="main_view_background">#868686</color>
     <!--标题栏背景和TabLayout的颜色-->
