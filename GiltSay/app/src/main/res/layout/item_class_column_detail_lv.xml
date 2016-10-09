@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+        <ImageView
+            android:id="@+id/item_class_detail_column_cover_img"
+            android:layout_width="170dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+        <TextView
+            android:id="@+id/item_class_detail_column_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1111"
+            android:textColor="#1e1c1c"
+            android:layout_toRightOf="@id/item_class_detail_column_cover_img"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/item_class_detail_column_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_class_detail_column_title_tv"
+            android:layout_toRightOf="@id/item_class_detail_column_cover_img"
+            android:text="222"
+            android:gravity="center"
+            android:layout_alignBottom="@id/item_class_detail_column_cover_img"
+            android:layout_marginTop="10dp"
+            android:textColor="#868686"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_alignBottom="@id/item_class_detail_column_cover_img"
+            android:layout_below="@id/item_class_detail_column_title_tv">
+            <ImageView
+                android:id="@+id/item_class_detail_column_like_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_feed_favourite_normal"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/item_class_detail_column_likecount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="333"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

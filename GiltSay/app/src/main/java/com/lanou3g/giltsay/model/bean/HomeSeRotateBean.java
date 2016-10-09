@@ -9,6 +9,15 @@ import java.util.List;
 public class HomeSeRotateBean {
     private int imgId;
     private String imgUrl;
+    /**
+     * code : 200
+     * data : {"banners":[{"ad_monitors":[],"channel":"all","id":730,"image_url":"http://img01.liwushuo.com/image/160929/68bib1c1a.jpg-w720","order":600,"status":0,"target_id":null,"target_url":"liwushuo:///page?type=dailylucky","type":"url","webp_url":"http://img01.liwushuo.com/image/160929/68bib1c1a.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":731,"image_url":"http://img01.liwushuo.com/image/160930/3seuzn0uv.jpg-w720","order":507,"status":0,"target":{"banner_image_url":"http://img03.liwushuo.com/image/160930/98g0egbsb.jpg-w300","banner_webp_url":"http://img03.liwushuo.com/image/160930/98g0egbsb.jpg?imageView2/2/w/300/q/85/format/webp","cover_image_url":"http://img01.liwushuo.com/image/160930/1gljggdbc.jpg-w720","cover_webp_url":"http://img01.liwushuo.com/image/160930/1gljggdbc.jpg?imageView2/2/w/720/q/85/format/webp","created_at":1475229970,"id":356,"posts_count":7,"status":1,"subtitle":"护肤达人的成长之路，海淘开启第一步","title":"海淘宝典","updated_at":1475230233},"target_id":356,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=topic&topic_id=356","type":"collection","webp_url":"http://img01.liwushuo.com/image/160930/3seuzn0uv.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":732,"image_url":"http://img03.liwushuo.com/image/161001/5bk3k6eo5.jpg-w720","order":0,"status":0,"target":{"banner_image_url":"http://img02.liwushuo.com/image/161001/jut2ofrw1.jpg-w300","banner_webp_url":"http://img02.liwushuo.com/image/161001/jut2ofrw1.jpg?imageView2/2/w/300/q/85/format/webp","cover_image_url":"http://img03.liwushuo.com/image/161001/py6yuemqe.jpg-w720","cover_webp_url":"http://img03.liwushuo.com/image/161001/py6yuemqe.jpg?imageView2/2/w/720/q/85/format/webp","created_at":1475327041,"id":357,"posts_count":7,"status":1,"subtitle":"初秋乱穿衣指南，回头率up，up！","title":"初秋换新装","updated_at":1475327214},"target_id":357,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=topic&topic_id=357","type":"collection","webp_url":"http://img03.liwushuo.com/image/161001/5bk3k6eo5.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":733,"image_url":"http://img01.liwushuo.com/image/161001/bvftzkor6.jpg-w720","order":0,"status":0,"target":{"banner_image_url":"http://img02.liwushuo.com/image/161001/d50iog9eh.jpg-w300","banner_webp_url":"http://img02.liwushuo.com/image/161001/d50iog9eh.jpg?imageView2/2/w/300/q/85/format/webp","cover_image_url":"http://img02.liwushuo.com/image/161001/vn25u2xq9.jpg-w720","cover_webp_url":"http://img02.liwushuo.com/image/161001/vn25u2xq9.jpg?imageView2/2/w/720/q/85/format/webp","created_at":1475327399,"id":358,"posts_count":7,"status":1,"subtitle":"这个秋季有Ta，让爱恒温相伴","title":"初秋保温杯来袭","updated_at":1475327565},"target_id":358,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=topic&topic_id=358","type":"collection","webp_url":"http://img01.liwushuo.com/image/161001/bvftzkor6.jpg?imageView2/2/w/720/q/85/format/webp"}]}
+     * message : OK
+     */
+
+    private int code;
+    private DataBean data;
+    private String message;
 
     public HomeSeRotateBean(String image_url) {
         this.imgUrl = image_url;
@@ -35,17 +44,6 @@ public class HomeSeRotateBean {
         this.imgUrl = imgUrl;
     }
 
-
-    /**
-     * code : 200
-     * data : {"banners":[{"ad_monitors":[],"channel":"all","id":730,"image_url":"http://img03.liwushuo.com/image/160929/68bib1c1a.jpg-w720","order":600,"status":0,"target_id":null,"target_url":"liwushuo:///page?type=dailylucky","type":"url","webp_url":"http://img03.liwushuo.com/image/160929/68bib1c1a.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":727,"image_url":"http://img02.liwushuo.com/image/160926/dv3mwtqob.jpg-w720","order":506,"status":0,"target":{"banner_image_url":"http://img02.liwushuo.com/image/160926/09m63zq84.jpg-w300","banner_webp_url":"http://img02.liwushuo.com/image/160926/09m63zq84.jpg?imageView2/2/w/300/q/85/format/webp","cover_image_url":"http://img01.liwushuo.com/image/160926/8flri0x6f.jpg-w720","cover_webp_url":"http://img01.liwushuo.com/image/160926/8flri0x6f.jpg?imageView2/2/w/720/q/85/format/webp","created_at":1474854917,"id":355,"posts_count":7,"status":1,"subtitle":"女神的礼物已经上线，等待开启！","title":"女神专属礼物","updated_at":1474855014},"target_id":355,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=topic&topic_id=355","type":"collection","webp_url":"http://img02.liwushuo.com/image/160926/dv3mwtqob.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":728,"image_url":"http://img01.liwushuo.com/image/160927/j2p31t3bp.jpg-w720","order":505,"status":0,"target_id":1045939,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=post&post_id=1045939","type":"post","webp_url":"http://img01.liwushuo.com/image/160927/j2p31t3bp.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":724,"image_url":"http://img03.liwushuo.com/image/160923/tjq6y9pyu.jpg-w720","order":500,"status":0,"target":{"banner_image_url":"http://img03.liwushuo.com/image/160923/pgzl0dojk.jpg-w300","banner_webp_url":"http://img03.liwushuo.com/image/160923/pgzl0dojk.jpg?imageView2/2/w/300/q/85/format/webp","cover_image_url":"http://img03.liwushuo.com/image/160923/goy7dpn3y.jpg-w720","cover_webp_url":"http://img03.liwushuo.com/image/160923/goy7dpn3y.jpg?imageView2/2/w/720/q/85/format/webp","created_at":1474629842,"id":354,"posts_count":12,"status":1,"subtitle":"十一长假：不在旅行中，就是在去旅行的路上。","title":" 长假打开方式","updated_at":1474630283},"target_id":354,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=topic&topic_id=354","type":"collection","webp_url":"http://img03.liwushuo.com/image/160923/tjq6y9pyu.jpg?imageView2/2/w/720/q/85/format/webp"},{"ad_monitors":[],"channel":"all","id":726,"image_url":"http://img02.liwushuo.com/image/160923/iwedeg4nk.jpg-w720","order":479,"status":0,"target_id":1045899,"target_type":"url","target_url":"liwushuo:///page?page_action=navigation&login=false&type=post&post_id=1045899","type":"post","webp_url":"http://img02.liwushuo.com/image/160923/iwedeg4nk.jpg?imageView2/2/w/720/q/85/format/webp"}]}
-     * message : OK
-     */
-
-    private int code;
-    private DataBean data;
-    private String message;
-
     public int getCode() {
         return code;
     }
@@ -70,19 +68,9 @@ public class HomeSeRotateBean {
         this.message = message;
     }
 
+
     public static class DataBean {
-        /**
-         * ad_monitors : []
-         * channel : all
-         * id : 730
-         * image_url : http://img03.liwushuo.com/image/160929/68bib1c1a.jpg-w720
-         * order : 600
-         * status : 0
-         * target_id : null
-         * target_url : liwushuo:///page?type=dailylucky
-         * type : url
-         * webp_url : http://img03.liwushuo.com/image/160929/68bib1c1a.jpg?imageView2/2/w/720/q/85/format/webp
-         */
+
 
         private List<BannersBean> banners;
 

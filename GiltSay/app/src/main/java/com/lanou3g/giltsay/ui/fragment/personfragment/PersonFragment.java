@@ -1,12 +1,16 @@
 package com.lanou3g.giltsay.ui.fragment.personfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.ui.activity.PersonSettingActivity;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
@@ -18,15 +22,13 @@ import java.util.List;
  * 个人页面
  */
 public class PersonFragment extends AbsBaseFragment {
-    private static final int myColor = 0XFFFF0033;
+    private ImageView settingImg;
     private RadioGroup personRg;
     private ViewPager personVp;
     private List<Fragment> datas;
 
     public static PersonFragment newInstance() {
-
         Bundle args = new Bundle();
-
         PersonFragment fragment = new PersonFragment();
         fragment.setArguments(args);
         return fragment;
@@ -41,8 +43,7 @@ public class PersonFragment extends AbsBaseFragment {
     protected void initViews() {
         personRg = byView(R.id.person_rg);
         personVp = byView(R.id.person_vp);
-
-
+        settingImg = byView(R.id.person_setting_img);
     }
 
     @Override
@@ -61,6 +62,13 @@ public class PersonFragment extends AbsBaseFragment {
                     case R.id.person_single_rb:
                         break;
                 }
+            }
+        });
+        settingImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PersonSettingActivity.class);
+                startActivity(intent);
             }
         });
 

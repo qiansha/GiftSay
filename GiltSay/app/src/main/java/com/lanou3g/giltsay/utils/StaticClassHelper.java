@@ -52,7 +52,7 @@ public class StaticClassHelper {
      * 轮播图详情网址(能传id   不能传id(今日礼物和往期礼物,今日礼物后面加today,往日礼物直接拼接)
      */
     public static String rotateDetailIdStartUrl = "http://api.liwushuo.com/v2/collections/";
-    public static String rotateDetailIdEndUrl = "/posts?limit=20&offset=0";
+    public static String rotateDetailIdEndUrl = "/posts?gender=1&generation=2&limit=20&offset=0";
 
     public static String rotateDetailUrlStartUrl = "http://api.liwushuo.com/v2/daily_lucky/";
     public static String rotateDetailUrlEndUrl = "past_item_awards?limit=20&offset=0";
@@ -204,6 +204,18 @@ public class StaticClassHelper {
      * 分类攻略品类风格对象网址
      */
     public static String classClassUrl = "http://api.liwushuo.com/v2/channel_groups/all";
+
+    /**
+     * 分类攻略栏目详情网址
+     */
+    public static String classColumnDetailStartUrl = "http://api.liwushuo.com/v2/columns/";
+    public static String classColumnDetailEndUrl = "?limit=20&offset=0";
+
+    /**
+     * 分类攻略品类风格对象详情网址
+     */
+    public static String classClassDetailStartUrl = "http://api.liwushuo.com/v2/channels/";
+    public static String classClassDetailEndUrl = "/items_v2?gender=2&limit=20&offset=0&generation=2";
 
     /**
      * 分类单品网址

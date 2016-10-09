@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ClassGuidesColumnRvBean;
 import com.lanou3g.giltsay.model.bean.ClassGuidesMoreRvBean;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +27,11 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter {
     private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> columnDatas;
     private Context context;
     private List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> datas;
+    private RecyclerViewItemClick recyclerViewItemClick;
+
+    public void setRecyclerViewItemClick(RecyclerViewItemClick recyclerViewItemClick) {
+        this.recyclerViewItemClick = recyclerViewItemClick;
+    }
 
     public ClassGuidesMoreRvAdapter(Context context) {
         this.context = context;
@@ -44,10 +50,19 @@ public class ClassGuidesMoreRvAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ClassGuidesMoreImgViewHolder imgViewHolder = (ClassGuidesMoreImgViewHolder) holder;
         ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean bean = datas.get(position);
         Picasso.with(context).load(bean.getCover_image_url()).config(Bitmap.Config.RGB_565).into(imgViewHolder.classMoreImg);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (recyclerViewItemClick != null){
+                    int p = holder.getLayoutPosition();
+                    recyclerViewItemClick.onRvItemClickListener(p,null);
+                }
+            }
+        });
     }
 
     @Override

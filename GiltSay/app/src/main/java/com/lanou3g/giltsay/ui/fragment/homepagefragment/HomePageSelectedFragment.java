@@ -60,7 +60,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     private String weekDay;
     private ViewPager rotateViewPager;
     private LinearLayout pointLl;
-    private List<HomeSeRotateBean> reDatas;
+    private List<HomeSeRotateBean.DataBean.BannersBean> reDatas;
     private HomeSeleRotateAdapter homeSeleRotateAdapter;
     private ReFlashListView homeSeleListView;
     private RecyclerView homeSeleRecyclerView;
@@ -87,7 +87,6 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     protected void initViews() {
         pointLl = byView(R.id.homepage_sele_rotate_point_ll);
         homeSeleListView = byView(R.id.homepage_selected_lv);
-
     }
 
     @Override
@@ -95,7 +94,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
         Bundle bundle = getArguments();
         this.url = bundle.getString("url");
-        VolleyInstance.getInstance().startRequest(StaticClassHelper.homeSele1Url, this);//轮播图和ListView网络请求
+        VolleyInstance.getInstance().startRequest(StaticClassHelper.homeSele1Url, this);//ListView网络请求
 
         Log.d("666", StaticClassHelper.rotateImgUrl);
 
@@ -118,10 +117,12 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         //轮播图
         reDatas = new ArrayList<>();
         buildData();
-        homeSeleRotateAdapter = new HomeSeleRotateAdapter(reDatas,context);
+//        handler = new Handler();
+//        startRotate();
+//        startRotate();
+        homeSeleRotateAdapter = new HomeSeleRotateAdapter(context);
         rotateViewPager.setAdapter(homeSeleRotateAdapter);
         rotateViewPager.setCurrentItem(reDatas.size() * 100);
-
         /**
          * 横向RecyclerView
          */
@@ -153,16 +154,12 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
                 Gson gson = new Gson();
                 HomeSeRotateBean homeSeRotateBean = gson.fromJson(resultStr, HomeSeRotateBean.class);
                 List<HomeSeRotateBean.DataBean.BannersBean> bean = homeSeRotateBean.getData().getBanners();
-                for (int i = 0; i < bean.size(); i++) {
-                    Log.d("666", "bean.size():" + bean.size());
-                    reDatas.add(new HomeSeRotateBean(bean.get(i).getImage_url()));
-                    Log.d("666", "reDatas.size():" + reDatas.size());
-//                    homeSeleRotateAdapter.setDatas(reDatas);
-                }
+                Log.d("aaaa", "zhixingle");
+                homeSeleRotateAdapter.setDatas(bean);
                 handler = new Handler();
                 startRotate();
-                addPoints();//添加轮播小点
-                changePoints();//随着轮播改变小点
+                addPoints(bean.size());//添加轮播小点
+                changePoints(bean.size());//随着轮播改变小点
             }
 
             @Override
@@ -171,7 +168,6 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
             }
         });
     }
-
 
     /**
      * 时间
@@ -238,11 +234,6 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
                         intent.putExtra("position", position);
                         startActivity(intent);
                     }
-
-                    @Override
-                    public void onRvItemClickListeners(int position, String str, String str1, String str2) {
-
-                    }
                 });
             }
 
@@ -256,7 +247,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     }
 
 
-    private void changePoints() {
+    private void changePoints(final int size) {
         Log.d("da1", "da:" + da);
         rotateViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -268,11 +259,11 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
             public void onPageSelected(int position) {
 
                 if (isRotate) {
-                    for (int i = 0; i < reDatas.size(); i++) {
+                    for (int i = 0; i < size; i++) {
                         ImageView pointIv = (ImageView) pointLl.getChildAt(i);
                         pointIv.setImageResource(R.mipmap.abc_ab_bottom_solid_light_holo9);
                     }
-                    ImageView iv = (ImageView) pointLl.getChildAt(position % reDatas.size());
+                    ImageView iv = (ImageView) pointLl.getChildAt(position % size);
                     iv.setImageResource(R.mipmap.abc_ab_bottom_solid_dark_holo9);
                 }
             }
@@ -285,9 +276,9 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         });
     }
 
-    private void addPoints() {
+    private void addPoints(int size) {
         Log.d("reDatas", "reDatas.size():" + reDatas.size());
-        for (int i = 0; i < reDatas.size(); i++) {
+        for (int i = 0; i < size; i++) {
             CircleImageView pointIv = new CircleImageView(context);
             pointIv.setPadding(5, 5, 5, 5);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(20, 20);
@@ -358,6 +349,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("aaaa", "zhixinglw");
         isRotate = true;
     }
 

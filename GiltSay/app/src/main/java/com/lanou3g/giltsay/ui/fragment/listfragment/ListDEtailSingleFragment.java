@@ -87,7 +87,6 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
     protected void initDatas() {
 
 
-
         Bundle bundler = getArguments();
         this.url = bundler.getString("url");
         Log.d("sisisi", url);
@@ -95,8 +94,6 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
         GridLayoutManager gm = new GridLayoutManager(context, 2);
         singleRv.setLayoutManager(gm);
         singleRv.setAdapter(listDetailSingleRvAdapter);
-
-
 
 
         String singleUrl = StaticClassHelper.listDetailStartUrl + url + StaticClassHelper.listDetailEndUrl;
@@ -118,13 +115,11 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
                 }
 
                 data = bean.getData().getImage_urls().size();
-//                singleVp.setAdapter(imgAdapter);
                 singleShortDes.setText(bean.getData().getShort_description());
                 singlePrice.setText(bean.getData().getPrice());
                 singleDescription.setText(bean.getData().getDescription());
                 addPoints();
                 changePoints();
-
             }
 
             @Override
@@ -139,12 +134,6 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
          */
         imgAdapter = new ListDetailSingleManyImgAdapter(context);
         singleVp.setAdapter(imgAdapter);
-
-//        singleVp.setAdapter(imgAdapter);
-//        addPoints();
-//        changePoints();
-//        singleVp.setCurrentItem(imgBean.size() * 100);
-
     }
 
     @Override
@@ -160,6 +149,7 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
     public void failure() {
 
     }
+
     private void addPoints() {
         Log.d("data", "data:" + data);
         for (int i = 0; i < data; i++) {
@@ -178,6 +168,7 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
 
         }
     }
+
     private void changePoints() {
         singleVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -187,16 +178,13 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
 
             @Override
             public void onPageSelected(int position) {
-                if (isRotate) {
-                    for (int i = 0; i < data; i++) {
-                        ImageView pointIv = (ImageView) pointLl.getChildAt(i);
-                        pointIv.setImageResource(R.mipmap.abc_ab_bottom_solid_light_holo9);
-                    }
-                    ImageView iv = (ImageView) pointLl.getChildAt(position % data);
-                    iv.setImageResource(R.mipmap.abc_ab_bottom_solid_dark_holo9);
+                for (int i = 0; i < data; i++) {
+                    ImageView pointIv = (ImageView) pointLl.getChildAt(i);
+                    pointIv.setImageResource(R.mipmap.abc_ab_bottom_solid_light_holo9);
                 }
+                ImageView iv = (ImageView) pointLl.getChildAt(position % data);
+                iv.setImageResource(R.mipmap.abc_ab_bottom_solid_dark_holo9);
             }
-
 
             @Override
             public void onPageScrollStateChanged(int state) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ClassGuidesColumnRvBean;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,6 +23,11 @@ import java.util.List;
 public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuidesColumnRvAdapter.ClassGuidesColumnRvViewHolder> {
     private Context context;
     private List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> datas;
+    private RecyclerViewItemClick recyclerViewItemClick;
+
+    public void setRecyclerViewItemClick(RecyclerViewItemClick recyclerViewItemClick) {
+        this.recyclerViewItemClick = recyclerViewItemClick;
+    }
 
     public ClassGuidesColumnRvAdapter(Context context) {
         this.context = context;
@@ -40,7 +46,8 @@ public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuides
     }
 
     @Override
-    public void onBindViewHolder(ClassGuidesColumnRvViewHolder holder, int position) {
+    public void onBindViewHolder(final ClassGuidesColumnRvViewHolder holder, int position) {
+
         ClassGuidesColumnRvBean.DataBean.ColumnsBean bean = datas.get(position);
         if (bean != null) {
             holder.classColumnTitle.setText(bean.getTitle());
@@ -49,6 +56,15 @@ public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuides
         }
         Picasso.with(context).load(bean.getBanner_image_url()).config(Bitmap.Config.RGB_565).into(holder.classColumnImg);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (recyclerViewItemClick != null){
+                    int p = holder.getLayoutPosition();
+                    recyclerViewItemClick.onRvItemClickListener(p,null);
+                }
+            }
+        });
     }
 
     @Override

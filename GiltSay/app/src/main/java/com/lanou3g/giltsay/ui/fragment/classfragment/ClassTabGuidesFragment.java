@@ -1,5 +1,6 @@
 package com.lanou3g.giltsay.ui.fragment.classfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,9 +15,12 @@ import com.lanou3g.giltsay.model.bean.ClassGuidesMoreRvBean;
 import com.lanou3g.giltsay.model.net.VolleyInstance;
 import com.lanou3g.giltsay.model.net.VolleyResult;
 //import com.lanou3g.giltsay.ui.adapter.ClassGuidesColumnRvAdapter;
+import com.lanou3g.giltsay.ui.activity.ClassColumnDetailActivity;
+import com.lanou3g.giltsay.ui.activity.ClassMoreDetailActivity;
 import com.lanou3g.giltsay.ui.adapter.ClassGuidesColumnRvAdapter;
 import com.lanou3g.giltsay.ui.adapter.ClassGuidesMoreRvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
+import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.lanou3g.giltsay.view.FullyGridLayoutManager;
 
@@ -95,27 +99,57 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
                 classObjectRecyclerView.setAdapter(objectRvAdapter);
 
                 //品类
+                final List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> classBean = new ArrayList<>();
                 if (channelGroupsBeen.get(0).getName().equals("品类")) {
-                    List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> classBean = new ArrayList<>();
+
                     for (int i = 0; i < 6; i++) {
                         classBean.add(channelGroupsBeen.get(0).getChannels().get(i));
                         classRvAdapter.setDatas(classBean);
                     }
                 }
                 //风格
+                final List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> styleBean = new ArrayList<>();
                 if (channelGroupsBeen.get(1).getName().equals("风格")) {
-                    List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> styleBean = new ArrayList<>();
+
                     for (int i = 0; i < 6; i++) {
                         styleBean.add(channelGroupsBeen.get(1).getChannels().get(i));
                         styleRvAdapter.setDatas(styleBean);
                     }
                 }
                 //对象
-                List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> objectBean = new ArrayList<>();
+                final List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> objectBean = new ArrayList<>();
                 for (int i = 0; i < 6; i++) {
                     objectBean.add(channelGroupsBeen.get(2).getChannels().get(i));
                     objectRvAdapter.setDatas(objectBean);
                 }
+                //品类风格对象点击跳转详情
+                classRvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
+                    @Override
+                    public void onRvItemClickListener(int position, String str) {
+                        Intent intent = new Intent(context, ClassMoreDetailActivity.class);
+                        intent.putExtra("id", classBean.get(position).getId());
+                        Log.d("ClassTabGuidesFragment", "classBean.get(position).getId():" + classBean.get(position).getId() + "");
+                        startActivity(intent);
+                    }
+                });
+                styleRvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
+                    @Override
+                    public void onRvItemClickListener(int position, String str) {
+                        Intent intent = new Intent(context, ClassMoreDetailActivity.class);
+                        intent.putExtra("id", styleBean.get(position).getId());
+                        Log.d("ClassTabGuidesFragment", "classBean.get(position).getId():" + styleBean.get(position).getId() + "");
+                        startActivity(intent);
+                    }
+                });
+                objectRvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
+                    @Override
+                    public void onRvItemClickListener(int position, String str) {
+                        Intent intent = new Intent(context, ClassMoreDetailActivity.class);
+                        intent.putExtra("id", objectBean.get(position).getId());
+                        Log.d("ClassTabGuidesFragment", "classBean.get(position).getId():" + objectBean.get(position).getId() + "");
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -130,13 +164,23 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
         //栏目
         Gson gson = new Gson();
         ClassGuidesColumnRvBean classGuidesColumnRvBean = gson.fromJson(resultStr, ClassGuidesColumnRvBean.class);
-        List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> columnsBeen = classGuidesColumnRvBean.getData().getColumns();
+        final List<ClassGuidesColumnRvBean.DataBean.ColumnsBean> columnsBeen = classGuidesColumnRvBean.getData().getColumns();
         classGuidesColumnRvAdapter = new ClassGuidesColumnRvAdapter(context);
         GridLayoutManager gm = new GridLayoutManager(context, 3, LinearLayoutManager.HORIZONTAL, false);
         classColumnRecyclerView.setLayoutManager(gm);
         classColumnRecyclerView.setAdapter(classGuidesColumnRvAdapter);
         classGuidesColumnRvAdapter.setDatas(columnsBeen);
         Log.d("ClassTabGuidesFragment", "columnsBeen:" + columnsBeen);
+        //栏目RecyclerView点击跳转详情
+        classGuidesColumnRvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
+            @Override
+            public void onRvItemClickListener(int position, String str) {
+                Intent intent = new Intent(context, ClassColumnDetailActivity.class);
+                intent.putExtra("id", columnsBeen.get(position).getId());
+                Log.d("ClassTabGuidesFragment", "columnsBeen.get(position).getId():" + columnsBeen.get(position).getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

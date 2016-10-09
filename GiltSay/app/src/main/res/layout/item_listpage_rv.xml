@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
     android:orientation="vertical">
     <!--榜单Rv行布局-->
 
@@ -12,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/cardview_shape"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:elevation="@dimen/cardview_default_radius">
 
         <LinearLayout
@@ -46,8 +47,7 @@
                     android:layout_height="wrap_content"
                      android:text="你"
                     android:textSize="12sp"
-                    android:textColor="#000"
-                    />
+                    android:textColor="#000" />
             </LinearLayout>
 
             <TextView
@@ -55,7 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-
                 android:textColor="#868686"
                 android:textSize="12sp"
                 android:layout_weight="1"/>

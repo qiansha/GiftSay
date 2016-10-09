@@ -74,6 +74,7 @@ public class ClassSingleRightListViewAdapter extends BaseAdapter {
         rightLvViewHolderView.singleGv.setAdapter(classSingleRightGvAdapter);
         rightLvViewHolderView.rightTitleTv.setText(bean.getName());
 
+
         return convertView;
     }
 

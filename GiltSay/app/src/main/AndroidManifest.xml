@@ -24,6 +24,11 @@
         <activity android:name=".ui.activity.SearchDetailActivity"/>
         <activity android:name=".ui.activity.ListDetailActivity"/>
         <activity android:name=".ui.activity.RotateDetailActivity"/>
+        <activity android:name=".ui.activity.RotateDetailNoIdActivity"/>
+        <activity android:name=".ui.activity.ClassColumnDetailActivity"/>
+        <activity android:name=".ui.activity.ClassMoreDetailActivity"/>
+        <activity android:name=".ui.activity.ClassSingleDetailActivity"/>
+        <activity android:name=".ui.activity.PersonSettingActivity"/>
     </application>
 
 </manifest>

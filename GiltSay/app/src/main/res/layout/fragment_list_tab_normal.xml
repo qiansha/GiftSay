@@ -13,12 +13,12 @@
     <ImageView
         android:id="@+id/listpage_top_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/bg_profile" />
+        android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listpage_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"/>
     </LinearLayout>
 </ScrollView>

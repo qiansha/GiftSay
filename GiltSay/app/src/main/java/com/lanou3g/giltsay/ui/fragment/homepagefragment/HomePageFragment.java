@@ -161,12 +161,6 @@ public class HomePageFragment extends AbsBaseFragment {
 
 //                popImg.setImageResource(R.mipmap.arrow_grey_up);
             }
-
-
-            @Override
-            public void onRvItemClickListeners(int position, String str, String str1, String str2) {
-
-            }
         });
 
 

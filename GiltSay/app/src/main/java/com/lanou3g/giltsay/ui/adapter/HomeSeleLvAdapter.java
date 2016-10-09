@@ -70,9 +70,11 @@ public class HomeSeleLvAdapter extends BaseAdapter {
                 homeSeleLvViewHolder.categoryTv.setText(bean.getColumn().getCategory());
                 homeSeleLvViewHolder.descriptionTv.setText(bean.getTitle());
                 homeSeleLvViewHolder.titleTv.setText(bean.getColumn().getTitle());
+                Log.d("aaaaa","aaaaa"+ bean.getColumn().getTitle());
 
             }
             homeSeleLvViewHolder.nicknameTv.setText(bean.getAuthor().getNickname());
+            Log.d("aaaa", "aaaaa" + bean.getAuthor().getNickname());
             homeSeleLvViewHolder.likesCountTv.setText(bean.getLikes_count() + "");
             Picasso.with(context).load(bean.getCover_image_url()).config(Bitmap.Config.RGB_565).into(homeSeleLvViewHolder.coverImg);
             Picasso.with(context).load(bean.getAuthor().getAvatar_url()).config(Bitmap.Config.RGB_565).into(homeSeleLvViewHolder.authorImg);

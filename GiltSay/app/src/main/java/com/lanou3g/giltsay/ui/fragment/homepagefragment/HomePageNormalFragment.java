@@ -33,7 +33,6 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
 
     private ReFlashListView homeNormalListView;
     private String tag;
-    private RequestQueue queue;
     private HomeSeleLvAdapter homeSeleLvAdapter;
 
     public static HomePageNormalFragment newInstance(String url) {

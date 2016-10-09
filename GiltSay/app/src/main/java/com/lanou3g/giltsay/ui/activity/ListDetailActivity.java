@@ -8,13 +8,19 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.lanou3g.giltsay.R;
+import com.lanou3g.giltsay.model.bean.SQBean;
+import com.lanou3g.giltsay.model.db.SQInstance;
 import com.lanou3g.giltsay.ui.adapter.MainPagerAdapter;
+import com.lanou3g.giltsay.ui.app.GiftApp;
 import com.lanou3g.giltsay.ui.fragment.listfragment.ListDetailSingleFragment;
 import com.lanou3g.giltsay.ui.fragment.listfragment.ListDetailDetailFragment;
 import com.lanou3g.giltsay.ui.fragment.listfragment.ListDetailTalkFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
+import com.litesuits.orm.LiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +32,12 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
     private ImageView backImg;
     private TabLayout listDetailTl;
     private ViewPager listDetailVp;
+    private ImageView loveImg;
     private int itemId;
     private String detailUrl;
     private String singleUrl;
-//    private DetailReceiver detailReceiver;
+    private LiteOrm liteOrm;
+    QueryBuilder<SQBean>qb = new QueryBuilder<>(SQBean.class);
 
     @Override
     protected int setLayout() {
@@ -41,19 +49,18 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         backImg = byView(R.id.list_detail_back_img);
         listDetailTl = byView(R.id.list_detail_tl);
         listDetailVp = byView(R.id.list_detail_vp);
+        loveImg = byView(R.id.list_detail_love_img);
 
 
     }
 
     @Override
     protected void initDatas() {
-//        /**
-//         * 注册广播
-//         */
-//        detailReceiver = new DetailReceiver();
-//        IntentFilter intentFilter = new IntentFilter();
-//        intentFilter.addAction(StaticClassHelper.THE_ACTION);
-//        registerReceiver(detailReceiver,intentFilter);
+
+        liteOrm = LiteOrm.newSingleInstance(GiftApp.getContext(),"gift.db");
+//        SQBean sq = new SQBean(11111,1);
+//        liteOrm.insert(sq);
+//        Toast.makeText(this, "........", Toast.LENGTH_SHORT).show();
 
         Intent intent = getIntent();
         itemId = intent.getIntExtra("id",0);
@@ -63,7 +70,7 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         List<Fragment>fragments = new ArrayList<>();
         fragments.add(ListDetailSingleFragment.newInstance(itemId + ""));
         fragments.add(ListDetailDetailFragment.newInstance(detailUrl));
-        fragments.add(ListDetailTalkFragment.newInstance());
+//        fragments.add(ListDetailTalkFragment.newInstance());
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(),fragments);
         listDetailVp.setAdapter(mainPagerAdapter);
         listDetailTl.setupWithViewPager(listDetailVp);
@@ -72,10 +79,11 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         listDetailTl.setTabTextColors(Color.WHITE,Color.WHITE);
         listDetailTl.getTabAt(0).setText("单品");
         listDetailTl.getTabAt(1).setText("详情");
-        listDetailTl.getTabAt(2).setText("评论");
+//        listDetailTl.getTabAt(2).setText("评论");
         backImg.setOnClickListener(this);
 
-
+     //收藏
+        loveImg.setOnClickListener(this);
 
     }
 
@@ -84,6 +92,27 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.list_detail_back_img:
                 finish();
+                break;
+            case R.id.list_detail_love_img:
+
+                SQBean sq = new SQBean(itemId,1);
+
+                qb.where("itemId = ?",new int[]{itemId});
+//        qb.limit(0,3);
+                List<SQBean>pbs = liteOrm.query(qb);
+                boolean flag =pbs.equals(itemId);
+                if (flag == false) {
+                    loveImg.setImageResource(R.mipmap.icon_heart_selected);
+                    Toast.makeText(this, "喜欢成功", Toast.LENGTH_SHORT).show();
+
+                    liteOrm.insert(sq);
+
+                }else {
+                    loveImg.setImageResource(R.mipmap.icon_heart_unselected);
+                    Toast.makeText(this, "取消喜欢成功", Toast.LENGTH_SHORT).show();
+                    liteOrm.delete(sq);
+
+                }
                 break;
         }
     }

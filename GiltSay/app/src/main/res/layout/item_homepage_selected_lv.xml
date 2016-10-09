@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
         android:layout_weight="1"
+        android:background="#fff"
         android:orientation="horizontal">
 
         <TextView
@@ -18,39 +18,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:textSize="12sp"
             android:background="#f196a8"
+            android:gravity="center"
             android:padding="5dp"
+            android:text="礼物"
             android:textColor="#FFFF0033"
-            android:text="礼物" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/homesele_list_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="30"
-            android:textSize="13sp"
-            android:text="描述" />
+            android:text="描述"
+            android:textSize="13sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/homesele_list_author_img"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="10dp"
-
-             />
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/homesele_list_nickname_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="right"
+            android:layout_gravity="center_vertical"
             android:text="作者" />
 
     </LinearLayout>
@@ -59,15 +59,16 @@
         android:id="@+id/homesele_list_big_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
         android:layout_weight="4"
+        android:scaleType="fitXY"
+        android:background="#fff"
         android:src="@mipmap/bg_profile" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
         android:layout_weight="1"
+        android:background="#fff"
         android:orientation="horizontal">
 
         <TextView
@@ -76,9 +77,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:textColor="#000"
+            android:singleLine="true"
             android:text="标题"
-            android:singleLine="true"/>
+            android:textColor="#000" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -91,8 +92,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textColor="#000"
-            android:text=" 点赞数" />
+            android:text=" 点赞数"
+            android:textColor="#000" />
 
 
     </LinearLayout>

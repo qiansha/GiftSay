@@ -1,6 +1,7 @@
 package com.lanou3g.giltsay.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.ClassSingleBean;
+import com.lanou3g.giltsay.ui.activity.ClassSingleDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -58,9 +60,18 @@ public class ClassSingleRightGvAdapter extends BaseAdapter {
         } else {
             classSingleRightGvViewHolder = (ClassSingleRightGvViewHolder) convertView.getTag();
         }
-        ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean bean = (ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean) getItem(position);
+        final ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean bean = (ClassSingleBean.DataBean.CategoriesBean.SubcategoriesBean) getItem(position);
         classSingleRightGvViewHolder.rightGvTv.setText(bean.getName());
         Picasso.with(context).load(bean.getIcon_url()).config(Bitmap.Config.RGB_565).into(classSingleRightGvViewHolder.rightGvImg);
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ClassSingleDetailActivity.class);
+                intent.putExtra("id",bean.getId());
+                Log.d("ClassSingleRightGvAdapt", "bean.getId():" + bean.getId());
+                context.startActivity(intent);
+            }
+        });
         return convertView;
     }
 

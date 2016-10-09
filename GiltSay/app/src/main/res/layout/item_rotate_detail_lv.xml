@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    android:orientation="vertical">
+    <!--首页精选ListView行布局-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rotate_detail_list_cateory_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:background="#f196a8"
+            android:padding="5dp"
+            android:textColor="#FFFF0033"
+            android:text="礼物" />
+
+        <TextView
+            android:id="@+id/rotate_detail_list_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="30"
+            android:textSize="13sp"
+            android:text="描述" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/rotate_detail_list_author_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="10dp"
+
+            />
+
+        <TextView
+            android:id="@+id/rotate_detail_list_nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="作者" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/rotate_detail_list_big_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_weight="4"
+        android:src="@mipmap/bg_profile" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rotate_detail_list_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="标题"
+            android:singleLine="true"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/selected_favorite" />
+
+        <TextView
+            android:id="@+id/rotate_detail_list_likes_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#000"
+            android:text=" 点赞数" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

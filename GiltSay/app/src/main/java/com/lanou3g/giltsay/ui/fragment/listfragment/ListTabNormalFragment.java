@@ -96,17 +96,10 @@ public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResu
         listPageRvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
             @Override
             public void onRvItemClickListener(int position, String str) {
-
-            }
-
-            @Override
-            public void onRvItemClickListeners(int position, String str, String str1, String str2) {
                 Intent intent = new Intent(context, ListDetailActivity.class);
                 intent.putExtra("id", itemsBeanListData.get(position).getId());
 
                 startActivity(intent);
-
-
             }
         });
     }
