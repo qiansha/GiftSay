@@ -6,6 +6,7 @@ import com.lanou3g.giltsay.model.bean.SQBean;
 import com.lanou3g.giltsay.ui.app.GiftApp;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
+import com.litesuits.orm.db.assit.WhereBuilder;
 
 import java.util.List;
 
@@ -14,137 +15,95 @@ import java.util.List;
  * 数据库封装单例类
  */
 public class SQInstance {
-//    private static LiteOrm liteOrm;
-//    private static SQInstance ourInstance = new SQInstance();
-////    private LiteOrm liteOrm;
-//    //数据库相关
-////    private SQLiteDatabase database;
-////    private SQHelper sqHelper;
-//    /************实现单例****************/
-//    /**
-//     * 1.私有化构造方法
-//     * 2.定义当前类静态对象
-//     * 3.对外提供public的获取对象的方法
-//     * 4.在步骤3中使用单例方法写单例
-//     */
-//    private SQInstance() {
-//        //创建数据库
-////        sqHelper = getSqHelper();
-////        liteOrm = LiteOrm.newSingleInstance(GiftApp.getContext(),"giftsay.db");
-////        liteOrm.setDebugged(true);
-////        sqHelper = new SQHelper(SQApp.getContext(), DB_NAME, null, 1);
-//        //生成数据库
-////        database = getDatabase();
-////        database = sqHelper.getWritableDatabase();
-//        liteOrm = LiteOrm.newSingleInstance(GiftApp.getContext() , "giftsay.db" ) ;
-//        liteOrm.setDebugged(true);
-//    }
-//
-//    private static SQInstance instance;
-//
-//    public static SQInstance getInstance() {
-//        //如果当前对象为null
-//        if (instance == null) {
-//            //内存中同步扫描该类
-//            synchronized (SQInstance.class) {
-//                if (instance == null) {
-//                    //创建对象
-//                    instance = new SQInstance();
-//                }
-//            }
-//        }
-//        return instance;
-//    }
-//
-//
-////    private SQInstance() {
-////
-////    }
-//
-////    public static SQInstancee getInstance() {
-////        return ourInstance;
-////    }
-//
-//    /**
-//     * 插入一条记录
-//     * @param t
-//     */
-//    public <T> long insert(T t) {
-//        return liteOrm.save(t);
-//    }
-//
-//    /**
-//     * 插入所有记录
-//     * @param list
-//     */
-//    public <T> void insertAll(List<T> list) {
-//        liteOrm.save(list);
-//    }
-//
-//    /**
-//     * 查询所有
-//     * @param cla
-//     * @return
-//     */
-//    public <T> List<T> getQueryAll(Class<T> cla) {
-//        return liteOrm.query(cla);
-//    }
-//
-//    /**
-//     * 查询  某字段 等于 Value的值
-//     * @param cla
-//     * @param field
-//     * @param value
-//     * @return
-//     */
-////    public <T> List<T> getQueryByWhere(Class<T> cla, String field, String[] value) {
-////        return liteOrm.<T>query(new QueryBuilder(cla).where(field + "=?", value));
-////    }
-//
-//    /**
-//     * 查询  某字段 等于 Value的值  可以指定从1-20，就是分页
-//     * @param cla
-//     * @param field
-//     * @param value
-//     * @param start
-//     * @param length
-//     * @return
-////     */
-////    public <T> List<T> getQueryByWhereLength(Class<T> cla, String field, String[] value, int start, int length) {
-////        return liteOrm.<T>query(new QueryBuilder(cla).where(field + "=?", value).limit(start, length));
-////    }
-//
-//    /**
-//     * 删除一个数据
-//     * @param t
-//     * @param <T>
-//     */
-//    public <T> void delete( T t){
-//        liteOrm.delete( t ) ;
-//    }
-//
-//    /**
-//     * 删除一个表
-//     * @param cla
-//     * @param <T>
-//     */
-//    public <T> void delete( Class<T> cla ){
-//        liteOrm.delete( cla ) ;
-//    }
-//
-//    /**
-//     * 删除集合中的数据
-//     * @param list
-//     * @param <T>
-//     */
-//    public <T> void deleteList( List<T> list ){
-//        liteOrm.delete( list ) ;
-//    }
-//
-//    /**
-//     * 删除数据库
-//     */
-//    public void deleteDatabase(){
-//        liteOrm.deleteDatabase() ;
-//    }
+    private static SQInstance instance;
+    /**
+     * 数据库名字
+     */
+    private static final String DB_NAME = "collect.db";
+
+    private LiteOrm liteOrm;
+
+    private SQInstance() {
+        liteOrm = LiteOrm.newSingleInstance(GiftApp.getContext(), DB_NAME);
+    }
+
+    public static SQInstance getInstance() {
+        if (instance == null) {
+            synchronized (SQInstance.class) {
+                if (instance == null) {
+                    instance = new SQInstance();
+                }
+            }
+        }
+        return instance;
+    }
+    /*******************增删改查*****************/
+
+
+    /**
+     * 插入集合数据
+     */
+    private void insert(List<SQBean> sqb) {
+        liteOrm.insert(sqb);
+    }
+
+    /**
+     * 插入一条数据
+     */
+    public void insert(SQBean sq) {
+        liteOrm.insert(sq);
+    }
+
+    /**
+     * 查询所有
+     */
+    public List<SQBean> queryAll() {
+        return liteOrm.query(SQBean.class);
+    }
+
+    /**
+     * 根据条件查询
+     */
+    public List<SQBean> queryByName(String name) {
+        QueryBuilder<SQBean> qb = new QueryBuilder<>(SQBean.class);
+        qb.where("name = ?", name);
+        return liteOrm.query(qb);
+    }
+
+    /**
+     * 根据标题查询数据库
+     */
+    public List<SQBean> queryByName(String name, int start, int end) {
+        QueryBuilder<SQBean> qb = new QueryBuilder<>(SQBean.class);
+        qb.where("name = ?", name);
+        qb.limit(start, end);
+        return liteOrm.query(qb);
+    }
+
+    /**
+     * 根据Id查询
+     */
+    public List<SQBean> queryById(int id) {
+        QueryBuilder<SQBean> qb = new QueryBuilder<>(SQBean.class);
+        qb.where("id = ?", id);
+        return liteOrm.query(qb);
+    }
+
+    /**
+     * 按条件删除
+     */
+    public void deleteByName(String name) {
+        WhereBuilder wb = new WhereBuilder(SQBean.class);
+        wb.where("name = ?", name);
+        liteOrm.delete(wb);
+    }
+
+    /**
+     * 删除数据库所有数据
+     */
+    public void deleteAll() {
+        liteOrm.deleteAll(SQBean.class);
+    }
+
+
 }

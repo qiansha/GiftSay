@@ -29,6 +29,7 @@
         <activity android:name=".ui.activity.ClassMoreDetailActivity"/>
         <activity android:name=".ui.activity.ClassSingleDetailActivity"/>
         <activity android:name=".ui.activity.PersonSettingActivity"/>
+        <activity android:name=".ui.activity.PersonSingleDetailActivity"/>
     </application>
 
 </manifest>

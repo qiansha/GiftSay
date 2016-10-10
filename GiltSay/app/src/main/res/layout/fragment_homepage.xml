@@ -27,12 +27,14 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/home_search_margin"
             android:background="@drawable/rounded_editview"
-            android:drawableLeft="@mipmap/icon_search_grey"
-            android:drawablePadding="@dimen/home_searchimg_pad"
-            android:padding="@dimen/home_searchtext_pad"
-            android:text="@string/home_search_text"
+            android:drawableLeft="@mipmap/icon_search"
+            android:drawablePadding="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="7dp"
+            android:paddingLeft="15dp"
+            android:text="选份走心的好礼送给Ta"
             android:textColor="@color/color_home_search_text"
-            android:textSize="@dimen/home_search_textsize" />
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/homepage_top_img"

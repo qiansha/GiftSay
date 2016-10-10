@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by dllo on 16/10/8.
  */
-public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyResult, ReFlashListView.IReflashListener, View.OnClickListener {
+public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyResult, ReFlashListView.OnLoadListener,ReFlashListView.OnRefreshListener, View.OnClickListener {
     private ReFlashListView listView;
     private ImageView backImg;
     private TextView titleTv;
@@ -49,7 +49,7 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
         Log.d("moreUrl", url);
         lvAdapter = new HomeSeleLvAdapter(GiftApp.getContext());
         listView.setAdapter(lvAdapter);
-        listView.setInterface(this);
+//        listView.setInterface(this);
         VolleyInstance.getInstance().startRequest(url, this);
         backImg.setOnClickListener(this);
 
@@ -69,16 +69,6 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
 
     }
 
-    @Override
-    public void onReflash() {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                listView.reflshComplete();
-            }
-        }, 2000);
-    }
 
     @Override
     public void onClick(View v) {
@@ -87,5 +77,15 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public void onLoad() {
+
+    }
+
+    @Override
+    public void onRefresh() {
+
     }
 }

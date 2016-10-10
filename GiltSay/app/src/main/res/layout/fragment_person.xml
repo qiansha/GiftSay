@@ -188,9 +188,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/rediobutton_background"
                 android:button="@null"
-                android:checked="false"
+                android:checked="true"
                 android:gravity="center"
-                android:text="@string/person_radiobutton_text1" />
+                android:text="单品" />
 
             <RadioButton
                 android:id="@+id/person_single_rb"
@@ -199,9 +199,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/rediobutton_background"
                 android:button="@null"
-                android:checked="true"
+                android:checked="false"
                 android:gravity="center"
-                android:text="@string/person_radiobutton_text2" />
+                android:text="攻略" />
         </RadioGroup>
 
         <android.support.v4.view.ViewPager

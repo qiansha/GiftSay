@@ -48,7 +48,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by dllo on 16/9/9.
  * 首页的精选页面
  */
-public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.IReflashListener {
+public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.OnLoadListener,ReFlashListView.OnRefreshListener {
     //    private ChildViewPager rotateViewPager;
     private TextView homeHeadTimeTv1;
     private TextView homeHeadTimeTv2;
@@ -100,7 +100,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
 
 
         Log.d("HomePageSelectedFragmen", url);
-        homeSeleListView.setInterface(this);
+//        homeSeleListView.setInterface(this);
         /**
          * 加头布局
          */
@@ -117,7 +117,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         //轮播图
         reDatas = new ArrayList<>();
         buildData();
-//        handler = new Handler();
+        handler = new Handler();
 //        startRotate();
 //        startRotate();
         homeSeleRotateAdapter = new HomeSeleRotateAdapter(context);
@@ -139,7 +139,9 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         /**
          * 下拉刷新
          */
-        onReflash();
+//        onReflash();
+        homeSeleListView.setOnRefreshListener(this);
+        homeSeleListView.setOnLoadListener(this);
     }
 
     /**
@@ -176,7 +178,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         Calendar calendar = Calendar.getInstance();
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        newTime = calendar.get(Calendar.DAY_OF_WEEK);
+        newTime = calendar.get(Calendar.DAY_OF_WEEK) -1;
         switch (newTime) {
             case 1:
                 weekDay = "一";
@@ -360,14 +362,38 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
     }
 
     @Override
-    public void onReflash() {
+    public void onLoad() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                homeSeleListView.onRefreshComplete();
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void onRefresh() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
 //               homeSeleListView.setInterface(getActivity());
-                homeSeleListView.reflshComplete();
+                homeSeleListView.onRefreshComplete();
             }
         }, 2000);
+
     }
+
+//    @Override
+//    public void onReflash() {
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+////               homeSeleListView.setInterface(getActivity());
+//                homeSeleListView.reflshComplete();
+//            }
+//        }, 2000);
+//    }
 }

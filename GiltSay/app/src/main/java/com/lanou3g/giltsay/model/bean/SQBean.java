@@ -11,34 +11,40 @@ import com.litesuits.orm.db.enums.AssignType;
 //表名:利用注解实现
 @Table("likeCount")
 public class SQBean {
-    //自增长主键
     @PrimaryKey(AssignType.AUTO_INCREMENT)
     private int id;
-
+    private String imgUrl;
+    private String name;
+    private String description;
+    private String price;
     private int itemId;
-
-    private int likeCount;
 
     public SQBean() {
     }
 
-    public SQBean(int id, int itemId, int likeCount) {
+    public SQBean(int id, String imgUrl, String name, String description, String price,int itemId) {
         this.id = id;
+        this.imgUrl = imgUrl;
+        this.name = name;
+        this.description = description;
+        this.price = price;
         this.itemId = itemId;
-        this.likeCount = likeCount;
     }
 
-    public SQBean(int itemId, int likeCount) {
+    public SQBean(String imgUrl, String name, String description, String price,int itemId) {
+        this.imgUrl = imgUrl;
+        this.name = name;
+        this.description = description;
+        this.price = price;
         this.itemId = itemId;
-        this.likeCount = likeCount;
     }
 
-    public int getLikeCount() {
-        return likeCount;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setLikeCount(int likeCount) {
-        this.likeCount = likeCount;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public int getId() {
@@ -47,5 +53,37 @@ public class SQBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

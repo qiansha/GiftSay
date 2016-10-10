@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/28.
+ * 榜单详情页顶部和详情HTML的实体类
  */
 public class ListDetaliHTMLBean {
 

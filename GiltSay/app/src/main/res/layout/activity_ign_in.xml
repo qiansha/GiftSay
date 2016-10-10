@@ -4,101 +4,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
-    <ImageView
-        android:id="@+id/signin_dismiss_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/btn_close_nightmode"
-        android:layout_margin="10dp"/>
+
+        <ImageView
+            android:id="@+id/signin_dismiss_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@mipmap/btn_close_nightmode" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/icon_mobile"/>
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/icon_mobile" />
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/icon_password"/>
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/icon_password" />
+
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
         </LinearLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_signin_btn"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:background="@drawable/rounded_signin_btn"
+            android:shadowRadius="15"
             android:text="登录"
-            android:textColor="#fff"
-            android:shadowRadius="15"/>
+            android:textColor="#fff" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="使用验证码登录"
             android:layout_gravity="right"
             android:layout_margin="10dp"
+            android:text="使用验证码登录"
             android:textColor="#FFFF0033" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="使用社交账号登录"
             android:layout_gravity="center"
-            android:layout_marginBottom="60dp"/>
+            android:layout_marginBottom="60dp"
+            android:text="使用社交账号登录" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="20dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/icon_log_sina"
-                />
+                android:background="@mipmap/icon_log_sina" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_log_wechat"
                 android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"/>
+                android:layout_marginRight="60dp"
+                android:src="@mipmap/icon_log_wechat" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_log_qq"
-                />
+                android:src="@mipmap/icon_log_qq" />
         </LinearLayout>
     </LinearLayout>
 

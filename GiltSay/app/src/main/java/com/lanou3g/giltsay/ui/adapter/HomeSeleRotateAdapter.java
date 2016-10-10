@@ -78,9 +78,10 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
 //                    intent.putExtra("target_url","111");
                     context.startActivity(intent);
                 }else {
-                    Intent intent1 = new Intent(context, RotateDetailNoIdActivity.class);
+                    Intent intent1 = new Intent(context, RotateDetailActivity.class);
 //                    intent.putExtra("target_id","");
-                    intent1.putExtra("target_url",bean.getTarget_url());
+                    double a =  356.0;
+                    intent1.putExtra("target_id",a + "");
                     context.startActivity(intent1);
                 }
 

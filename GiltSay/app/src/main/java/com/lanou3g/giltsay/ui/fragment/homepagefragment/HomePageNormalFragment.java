@@ -29,7 +29,7 @@ import java.util.List;
  * Created by dllo on 16/9/9.
  * 首页的其他分页面
  */
-public class HomePageNormalFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.IReflashListener {
+public class HomePageNormalFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.OnLoadListener, ReFlashListView.OnRefreshListener {
 
     private ReFlashListView homeNormalListView;
     private String tag;
@@ -55,11 +55,12 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
 
     @Override
     protected void initDatas() {
+        homeNormalListView.setOnLoadListener(this);
+        homeNormalListView.setOnRefreshListener(this);
         Bundle bundle = getArguments();
         this.tag = bundle.getString("url");
         homeSeleLvAdapter = new HomeSeleLvAdapter(getContext());
         homeNormalListView.setAdapter(homeSeleLvAdapter);
-        homeNormalListView.setInterface(this);
         VolleyInstance.getInstance().startRequest(tag, this);
     }
 
@@ -91,13 +92,25 @@ public class HomePageNormalFragment extends AbsBaseFragment implements VolleyRes
     }
 
     @Override
-    public void onReflash() {
-        final Handler handler = new Handler();
+    public void onLoad() {
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                homeNormalListView.reflshComplete();
+                homeNormalListView.onRefreshComplete();
             }
-        },2000);
+        }, 2000);
+    }
+
+    @Override
+    public void onRefresh() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                homeNormalListView.onRefreshComplete();
+            }
+        }, 2000);
+
     }
 }

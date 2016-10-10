@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/selected_list_likecount"
+            android:background="@mipmap/icon_heart_unselected"
             android:layout_gravity="center_vertical"/>
 
 

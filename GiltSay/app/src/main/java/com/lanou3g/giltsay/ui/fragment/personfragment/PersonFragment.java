@@ -49,8 +49,8 @@ public class PersonFragment extends AbsBaseFragment {
     @Override
     protected void initDatas() {
         datas = new ArrayList<>();
-        datas.add(PersonGuidesFragment.newInstance());
         datas.add(PersonSingleFragment.newInstance());
+        datas.add(PersonGuidesFragment.newInstance());
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
         personVp.setAdapter(mainPagerAdapter);
         personRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

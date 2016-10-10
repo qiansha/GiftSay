@@ -67,21 +67,7 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
             public void onClick(View v) {
                 if (recyclerViewItemClick != null){
                     int p = holder.getLayoutPosition();
-//                    String name = bean.getShort_description();
-//                    String description = bean.getDescription();
-//                    String price = bean.getPrice();
-
                     recyclerViewItemClick.onRvItemClickListener(p,null);
-//                    Intent intent1 = new Intent();
-//                    intent1.setAction(StaticClassHelper.THE_ACTION);
-//                    intent1.putExtra("description",description);
-//                    intent1.putExtra("short_description",name);
-//                    intent1.putExtra("price",price);
-////                List<String> imageUrls = itemsBeanListData.get(position).getImage_urls();
-////                intent1.putExtra("111", 467474676);
-//                    Log.d("brbrbr", name);
-////                intent1.putExtra("image_urls", (CharSequence) imageUrls);
-//                    context.sendBroadcast(intent1);
 
                 }
             }
