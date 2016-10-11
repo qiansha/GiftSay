@@ -11,7 +11,7 @@
           android:id="@+id/person_collect_img"
           android:layout_width="150dp"
           android:layout_height="200dp"
-          android:layout_margin="10dp"
+          android:layout_marginLeft="20dp"
           android:src="@mipmap/abc_ab_bottom_solid_light_holo9"/>
       <TextView
           android:layout_width="wrap_content"

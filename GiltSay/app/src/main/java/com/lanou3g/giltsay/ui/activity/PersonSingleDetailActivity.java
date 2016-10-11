@@ -3,6 +3,8 @@ package com.lanou3g.giltsay.ui.activity;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.SQBean;
@@ -16,9 +18,11 @@ import java.util.List;
  * Created by dllo on 16/10/10.
  * 个人单品详情
  */
-public class PersonSingleDetailActivity extends AbsBaseActivity{
+public class PersonSingleDetailActivity extends AbsBaseActivity {
     private RecyclerView recyclerView;
     private PersonSingleDetailAdapter rvAdapter;
+    private ImageView backImg;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_person_single_detail;
@@ -27,6 +31,7 @@ public class PersonSingleDetailActivity extends AbsBaseActivity{
     @Override
     protected void initViews() {
         recyclerView = byView(R.id.person_single_detail_rv);
+        backImg = byView(R.id.person_single_detail_back_img);
 
     }
 
@@ -36,15 +41,21 @@ public class PersonSingleDetailActivity extends AbsBaseActivity{
         recyclerView.setAdapter(rvAdapter);
         GridLayoutManager glm = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(glm);
-        final List<SQBean> bean =  SQInstance.getInstance().queryAll();
+        final List<SQBean> bean = SQInstance.getInstance().queryAll();
         rvAdapter.setDatas(bean);
         rvAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
             @Override
             public void onRvItemClickListener(int position, String str) {
                 int id = bean.get(position).getItemId();
-                Intent intent = new Intent(PersonSingleDetailActivity.this,ListDetailActivity.class);
-                intent.putExtra("id",id);
+                Intent intent = new Intent(PersonSingleDetailActivity.this, ListDetailActivity.class);
+                intent.putExtra("id", id);
                 startActivity(intent);
+            }
+        });
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

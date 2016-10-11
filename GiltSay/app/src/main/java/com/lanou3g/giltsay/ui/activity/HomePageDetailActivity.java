@@ -21,6 +21,9 @@ import com.lanou3g.giltsay.model.net.VolleyResult;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 /**
  * Created by dllo on 16/9/27.
  * 首页详情Activity
@@ -31,7 +34,6 @@ public class HomePageDetailActivity extends AbsBaseActivity implements VolleyRes
     private String imgUrl;
     private TextView likeCountTv;
     private TextView sharedTv;
-    private TextView talkAboutTv;
     private ImageView goBackImg;
 
     @Override
@@ -44,10 +46,7 @@ public class HomePageDetailActivity extends AbsBaseActivity implements VolleyRes
         detailWv = byView(R.id.home_detail_wv);
         likeCountTv = byView(R.id.home_detail_like_count_tv);
         sharedTv = byView(R.id.home_detail_zhuanfa_tv);
-        talkAboutTv = byView(R.id.home_detail_talk_count_tv);
         goBackImg = byView(R.id.home_detail_goback_img);
-
-
     }
 
     @Override
@@ -70,41 +69,18 @@ public class HomePageDetailActivity extends AbsBaseActivity implements VolleyRes
                 return false;
             }
         });
-//        WebSettings set = detailWv.getSettings();
-//        set.setJavaScriptEnabled(true);
-////        // 让JavaScript可以自动打开windows
-//        set.setJavaScriptCanOpenWindowsAutomatically(true);
-//        // 设置缓存
-//        set.setAppCacheEnabled(true);
-//        // 设置缓存模式,一共有四种模式
-//        set.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-//        // 设置缓存路径
-////        webSettings.setAppCachePath("");
-//        // 支持缩放(适配到当前屏幕)
-//        set.setSupportZoom(true);
-////        // 将图片调整到合适的大小
-//        set.setUseWideViewPort(true);
-//        // 支持内容重新布局,一共有四种方式
-//        // 默认的是NARROW_COLUMNS
-//        set.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        // 设置可以被显示的屏幕控制
-//        set.setDisplayZoomControls(true);
         VolleyInstance.getInstance().startRequest(url, this);
         /**
          * 返回前一页
          */
         goBackImg.setOnClickListener(this);
-
     }
 
     @Override
     public void success(String resultStr) {
         Gson gson = new Gson();
         HomeDetailBean homeDetailBean = gson.fromJson(resultStr, HomeDetailBean.class);
-//        String bean = homeDetailBean.getData().getContent_html();
-//        detailWv.loadData(bean, "text/html; charset=UTF-8", null);
         detailWv.loadUrl(homeDetailBean.getData().getUrl());
-//        Picasso.with(getBaseContext()).load(homeDetailBean.getData().getCover_image_url()).config(Bitmap.Config.RGB_565).into(detailImg);
         int count = homeDetailBean.getData().getLikes_count();
         Log.d("count", "count:" + count);
         likeCountTv.setText(count + "");
@@ -120,12 +96,10 @@ public class HomePageDetailActivity extends AbsBaseActivity implements VolleyRes
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.home_detail_goback_img:
                 finish();
                 break;
         }
     }
-
-
 }

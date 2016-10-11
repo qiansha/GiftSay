@@ -133,7 +133,7 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
          */
         settingTime();
         int newMonth = month + 1;
-        homeHeadTimeTv1.setText(newMonth + "月" + day + "日" + " " + "星期" + weekDay);
+        homeHeadTimeTv1.setText(newMonth + "月" + day + "日" + "   " + "星期" + weekDay);
         homeHeadTimeTv2.setText("下次更新 8:00");
         homeHeadTimeTv2.setTextColor(StaticClassHelper.myColor);
         /**
@@ -178,8 +178,8 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         Calendar calendar = Calendar.getInstance();
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        newTime = calendar.get(Calendar.DAY_OF_WEEK) -1;
-        switch (newTime) {
+        newTime = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (newTime - 1) {
             case 1:
                 weekDay = "一";
                 break;
@@ -378,22 +378,9 @@ public class HomePageSelectedFragment extends AbsBaseFragment implements VolleyR
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-//               homeSeleListView.setInterface(getActivity());
                 homeSeleListView.onRefreshComplete();
             }
         }, 2000);
 
     }
-
-//    @Override
-//    public void onReflash() {
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-////               homeSeleListView.setInterface(getActivity());
-//                homeSeleListView.reflshComplete();
-//            }
-//        }, 2000);
-//    }
 }

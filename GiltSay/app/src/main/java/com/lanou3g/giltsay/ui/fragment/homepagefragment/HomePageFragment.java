@@ -49,10 +49,8 @@ public class HomePageFragment extends AbsBaseFragment {
     private TextView homeSearchTv;
     private ImageView homeTopImg;
 
-
     private String[] popStr = {"精选", "送男票", "穿搭", "海淘", "礼物", "美护", "送闺蜜", "送爸妈",
             "送基友", "送同事", "送宝贝", "创意生活", "手工", "设计感", "文艺风", "科技范", "奇葩搞怪", "萌萌哒"};
-
 
     private TabLayout homePageTl;
     private ViewPager homePageVp;
@@ -78,13 +76,11 @@ public class HomePageFragment extends AbsBaseFragment {
         popImg = byView(R.id.homepage_pop_img);
         homeSearchTv = byView(R.id.home_search_tv);
         homeTopImg = byView(R.id.homepage_top_img);
-//        popImgUp = byView(R.id.home_pop_up_img);
-
     }
 
     @Override
     protected void initDatas() {
-        addTarget();//右上角图标跑的点击事件,搜索栏点击事件
+        addTarget();//右上角图标的点击事件,搜索栏点击事件
         List<Fragment> datas = new ArrayList<>();
         addDataUrl(datas);
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getChildFragmentManager(), datas);
@@ -105,12 +101,8 @@ public class HomePageFragment extends AbsBaseFragment {
             @Override
             public void onClick(View v) {
                 createPop();
-
-
             }
         });
-
-//        popImg.setImageResource(R.mipmap.arrow_grey_down);
         homePopAdapter = new HomePagePopRvAdapter(context);//new适配器要和创建PopWindow分开写
 
     }
@@ -148,21 +140,50 @@ public class HomePageFragment extends AbsBaseFragment {
         homePopAdapter.setRecyclerViewItemClick(new RecyclerViewItemClick() {
             @Override
             public void onRvItemClickListener(int position, String str) {
-//                popImg.setImageResource(R.mipmap.arrow_grey_down);
-//                popImg.setBackgroundResource(R.mipmap.arrow_grey_down);
-
                 homePageVp.setCurrentItem(position);
                 homePopAdapter.setSelectedIndex(position);
-//                Log.d("数", "position:" + position+"----");
-//                Log.d("HomePageFragment", "homePageVp.getCurrentItem():" + homePageVp.getCurrentItem());
                 homePopAdapter.notifyDataSetChanged();
-
                 homePop.dismiss();
-
-//                popImg.setImageResource(R.mipmap.arrow_grey_up);
             }
         });
+    }
 
+    private void createPop() {
+        homePop = new PopupWindow(context);
+
+        homePop.setWidth(ViewPager.LayoutParams.MATCH_PARENT);
+        homePop.setHeight(ViewPager.LayoutParams.WRAP_CONTENT);
+        View v = getActivity().getLayoutInflater().inflate(R.layout.item_homepage_pop, null);
+        homePopRecyclerView = (RecyclerView) v.findViewById(R.id.home_pop_recyclerview);
+        popImgUp = (ImageView) v.findViewById(R.id.home_pop_up_img);
+        homePop.setContentView(v);
+        homePop.setBackgroundDrawable(null);
+        homePop.showAtLocation(popImg, Gravity.NO_GRAVITY, 0, homePageTl.getHeight());
+        /**
+         * 给PopWindow加数据
+         */
+        homePopRecyclerView.setAdapter(homePopAdapter);
+        GridLayoutManager gm = new GridLayoutManager(context, 4);
+        homePopRecyclerView.setLayoutManager(gm);
+        data = new ArrayList<>();
+        for (int i = 0; i < 18; i++) {
+            data.add(popStr[i]);
+        }
+
+        homePopAdapter.setDatas(data);
+        homePop.setOutsideTouchable(true);
+        homePop.showAsDropDown(homePageTl);
+
+        /**
+         * 给PopWindow添加点击事件
+         */
+        addPopWindowListener(homePop);
+        popImgUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePop.dismiss();
+            }
+        });
 
     }
 
@@ -186,46 +207,4 @@ public class HomePageFragment extends AbsBaseFragment {
         datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeQipa17Url));
         datas.add(HomePageNormalFragment.newInstance(StaticClassHelper.homeMengmeng18Url));
     }
-
-    private void createPop() {
-        homePop = new PopupWindow(context);
-
-        homePop.setWidth(ViewPager.LayoutParams.MATCH_PARENT);
-        homePop.setHeight(ViewPager.LayoutParams.WRAP_CONTENT);
-        View v = getActivity().getLayoutInflater().inflate(R.layout.item_homepage_pop, null);
-        homePopRecyclerView = (RecyclerView) v.findViewById(R.id.home_pop_recyclerview);
-        popImgUp = (ImageView) v.findViewById(R.id.home_pop_up_img);
-        homePop.setContentView(v);
-        homePop.setBackgroundDrawable(null);
-        homePop.showAtLocation(popImg, Gravity.NO_GRAVITY, 0, homePageTl.getHeight());
-        //给PopWindow加数据
-
-        homePopRecyclerView.setAdapter(homePopAdapter);
-        GridLayoutManager gm = new GridLayoutManager(context, 4);
-        homePopRecyclerView.setLayoutManager(gm);
-        data = new ArrayList<>();
-
-        for (int i = 0; i < 18; i++) {
-            data.add(popStr[i]);
-
-        }
-
-        homePopAdapter.setDatas(data);
-        homePop.setOutsideTouchable(true);
-        homePop.showAsDropDown(homePageTl);
-
-        /**
-         * 给PopWindow添加点击事件
-         */
-        addPopWindowListener(homePop);
-        popImgUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePop.dismiss();
-            }
-        });
-
-    }
-
-
 }

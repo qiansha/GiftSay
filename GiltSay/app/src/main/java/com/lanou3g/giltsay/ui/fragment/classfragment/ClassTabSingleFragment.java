@@ -63,17 +63,6 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
 
         classSingleRightListViewAdapter = new ClassSingleRightListViewAdapter(context);
         singleRightLv.setAdapter(classSingleRightListViewAdapter);
-        singleRightLv.setVerticalScrollBarEnabled(true);
-
-//        classSingleRightRvAdapter.setDatas(bean.get(position).getSubcategories());
-
-//        classSingleRightRvAdapter = new ClassSingleRightRvAdapter(context);
-//        GridLayoutManager gm = new GridLayoutManager(context,3, LinearLayoutManager.VERTICAL,false
-//        );
-//        rightRv.setLayoutManager(gm);
-//        rightRv.setAdapter(classSingleRightRvAdapter);
-
-
         VolleyInstance.getInstance().startRequest(StaticClassHelper.classSingleUrl, this);
 
     }
@@ -126,15 +115,23 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING){
+                    return;
+                }
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
+                    return;
+                }
                 /**
                  * 当手指拖着ListView滑动的时候
                  */
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                    singleLeftLv.smoothScrollToPositionFromTop(firstVisibleItem, 0);
-                    classSingleLeftLvAdapter.setSelectIndex(firstVisibleItem);
+//                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    singleLeftLv.smoothScrollToPositionFromTop(firstVisibleItem + 1, 0);
+                    classSingleLeftLvAdapter.setSelectIndex(firstVisibleItem + 1);
                     classSingleLeftLvAdapter.notifyDataSetChanged();
                     Log.d("vvv", "firstVisibleItem:" + firstVisibleItem);
-                }
+//                }
+
+
 
             }
         });

@@ -52,6 +52,8 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
 //        listView.setInterface(this);
         VolleyInstance.getInstance().startRequest(url, this);
         backImg.setOnClickListener(this);
+        listView.setOnRefreshListener(this);
+        listView.setOnLoadListener(this);
 
     }
 
@@ -81,11 +83,25 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
 
     @Override
     public void onLoad() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                listView.onRefreshComplete();
+            }
+        }, 2000);
 
     }
 
     @Override
     public void onRefresh() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                listView.onRefreshComplete();
+            }
+        }, 2000);
 
     }
 }

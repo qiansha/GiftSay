@@ -8,7 +8,7 @@
         android:background="#fff">
         <ImageView
             android:id="@+id/item_class_detail_column_cover_img"
-            android:layout_width="170dp"
+            android:layout_width="140dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp" />
@@ -16,8 +16,8 @@
             android:id="@+id/item_class_detail_column_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1111"
             android:textColor="#1e1c1c"
+            android:textSize="12sp"
             android:layout_toRightOf="@id/item_class_detail_column_cover_img"
             android:layout_marginTop="20dp"/>
         <TextView
@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_class_detail_column_title_tv"
             android:layout_toRightOf="@id/item_class_detail_column_cover_img"
-            android:text="222"
+            android:textSize="12sp"
+            android:text="11"
             android:gravity="center"
             android:layout_alignBottom="@id/item_class_detail_column_cover_img"
             android:layout_marginTop="10dp"
@@ -52,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="333"/>
+                android:textSize="12sp" />
         </LinearLayout>
     </RelativeLayout>
 

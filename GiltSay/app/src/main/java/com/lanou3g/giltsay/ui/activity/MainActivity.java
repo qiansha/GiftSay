@@ -1,5 +1,7 @@
 package com.lanou3g.giltsay.ui.activity;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
@@ -10,7 +12,9 @@ import com.lanou3g.giltsay.ui.fragment.listfragment.ListFragment;
 import com.lanou3g.giltsay.ui.fragment.personfragment.PersonFragment;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 
+import android.view.KeyEvent;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 /**
  * 主页面Activity
@@ -18,6 +22,8 @@ import android.widget.RadioGroup;
 
 public class MainActivity extends AbsBaseActivity {
     private RadioGroup radioGroup;
+    // 定义一个变量，来标识是否退出
+    private  boolean isExit = false;
 
     @Override
     protected int setLayout() {
@@ -56,5 +62,38 @@ public class MainActivity extends AbsBaseActivity {
         });
         radioGroup.check(R.id.homepage_rbtn);
 
+    }
+
+
+
+    private  Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(getApplicationContext(), "再按一次后退键退出程序", Toast.LENGTH_SHORT).show();
+            // 利用handler延迟发送更改状态信息
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+
+//			Log.e(TAG, "exit application");
+
+            this.finish();
+        }
     }
 }

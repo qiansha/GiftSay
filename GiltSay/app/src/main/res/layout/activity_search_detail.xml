@@ -19,17 +19,139 @@
             android:drawableLeft="@mipmap/icon_search_grey"
             android:drawablePadding="@dimen/home_searchimg_pad"
             android:padding="@dimen/home_searchtext_pad"
-            android:text="@string/home_search_text"
+            android:hint="选份走心好礼送给Ta"
             android:textColor="@color/color_home_search_text"
             android:textSize="@dimen/home_search_textsize" />
         <TextView
+            android:id="@+id/search_detail_dismiss_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消"
+            android:textColor="#3d3a3a"
             android:layout_gravity="center"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="10dp" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_start"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="大家都在搜"
+            android:textSize="14sp"
+            android:textColor="@color/color_home_search_text"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#fff">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生日"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"
+            android:background="#f4e6e6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="口红"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保温杯"
+            android:textColor="#FFFF0033"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="情侣"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机壳"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#fff">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="杯子"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手表"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="宿舍"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="13sp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"            android:background="#f4e6e6"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>
