@@ -31,6 +31,7 @@ public class RotateDetailActivity extends AbsBaseActivity implements VolleyResul
     private List<RotateDetailBean.DataBean.PostsBean> bean;
     private ListView detailLv;
     private String url;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_rotate_detail;
@@ -38,33 +39,22 @@ public class RotateDetailActivity extends AbsBaseActivity implements VolleyResul
 
     @Override
     protected void initViews() {
-
         detailLv = byView(R.id.rotate_detail_lv);
         backImg = byView(R.id.rotate_detail_back_img);
         shareImg = byView(R.id.rotate_detail_share_img);
         titleTv = byView(R.id.rotate_detail_title_tv);
-
     }
 
     @Override
     protected void initDatas() {
         Intent intent = getIntent();
-        String id= intent.getStringExtra("target_id");
+        String id = intent.getStringExtra("target_id");
         Log.d("xxx", id);
-        id=id.substring(0, id.lastIndexOf('.'));
+        id = id.substring(0, id.lastIndexOf('.'));
         Log.d("xxx", id);
-//        id = id.indexOf(id);
-//        String targetUrl = intent.getStringExtra("target_url");
-//        String ids = id;
-//        if (id != null) {
-             url = StaticClassHelper.rotateDetailIdStartUrl + id + StaticClassHelper.rotateDetailIdEndUrl;
-
-//        }else {
-//             url = StaticClassHelper.rotateDetailUrlStartUrl + StaticClassHelper.rotateDetailUrlEndUrl;
-
-//        }
+        url = StaticClassHelper.rotateDetailIdStartUrl + id + StaticClassHelper.rotateDetailIdEndUrl;
         rotateDetailAdapter = new RotateDetailAdapter(getBaseContext());
-        VolleyInstance.getInstance().startRequest(url,this);
+        VolleyInstance.getInstance().startRequest(url, this);
         Log.d("xxx", url);
         //返回和分享的点击事件
         backImg.setOnClickListener(this);
@@ -74,9 +64,9 @@ public class RotateDetailActivity extends AbsBaseActivity implements VolleyResul
     @Override
     public void success(String resultStr) {
         Gson gson = new Gson();
-        RotateDetailBean rotateDetailBean = gson.fromJson(resultStr,RotateDetailBean.class);
-         bean =  rotateDetailBean.getData().getPosts();
-       String title = rotateDetailBean.getData().getTitle();
+        RotateDetailBean rotateDetailBean = gson.fromJson(resultStr, RotateDetailBean.class);
+        bean = rotateDetailBean.getData().getPosts();
+        String title = rotateDetailBean.getData().getTitle();
         detailLv.setAdapter(rotateDetailAdapter);
         rotateDetailAdapter.setDatas(bean);
         titleTv.setText(title);
@@ -90,12 +80,12 @@ public class RotateDetailActivity extends AbsBaseActivity implements VolleyResul
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rotate_detail_back_img:
                 finish();
                 break;
             case R.id.rotate_detail_share_img:
-                Intent intent = new Intent(RotateDetailActivity.this,SignInActivity.class);
+                Intent intent = new Intent(RotateDetailActivity.this, SignInActivity.class);
                 startActivity(intent);
                 break;
         }

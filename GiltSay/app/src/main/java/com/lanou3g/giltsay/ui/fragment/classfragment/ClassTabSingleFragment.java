@@ -64,7 +64,6 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
         classSingleRightListViewAdapter = new ClassSingleRightListViewAdapter(context);
         singleRightLv.setAdapter(classSingleRightListViewAdapter);
         VolleyInstance.getInstance().startRequest(StaticClassHelper.classSingleUrl, this);
-
     }
 
     @Override
@@ -80,7 +79,6 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
          *右边ListView
          */
         datas = new ArrayList<>();
-        List<ClassSingleBean.DataBean.CategoriesBean> titleBean = classSingleBean.getData().getCategories();
         List<ClassSingleBean.DataBean.CategoriesBean> dataBean = classSingleBean.getData().getCategories();
         for (int i = 0; i < dataBean.size(); i++) {
             datas.add(dataBean.get(i));
@@ -89,8 +87,6 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
         classSingleRightListViewAdapter.setDatas(datas);
         singleRightLv.setAdapter(classSingleRightListViewAdapter);
         addScroll();
-
-
     }
 
     private void addScroll() {
@@ -110,7 +106,6 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 this.scrollState = scrollState;
-
             }
 
             @Override
@@ -124,15 +119,10 @@ public class ClassTabSingleFragment extends AbsBaseFragment implements VolleyRes
                 /**
                  * 当手指拖着ListView滑动的时候
                  */
-//                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                     singleLeftLv.smoothScrollToPositionFromTop(firstVisibleItem + 1, 0);
                     classSingleLeftLvAdapter.setSelectIndex(firstVisibleItem + 1);
                     classSingleLeftLvAdapter.notifyDataSetChanged();
                     Log.d("vvv", "firstVisibleItem:" + firstVisibleItem);
-//                }
-
-
-
             }
         });
     }

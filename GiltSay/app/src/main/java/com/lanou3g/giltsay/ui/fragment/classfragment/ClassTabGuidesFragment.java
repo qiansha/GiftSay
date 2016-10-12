@@ -32,9 +32,7 @@ import java.util.List;
  * 分类中的攻略页面
  */
 public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyResult {
-
     private RecyclerView classColumnRecyclerView;//栏目RecyclerView
-    //    private RecyclerView classMoreRecyclerView;   //品类RecyclerView
     private RecyclerView classClassRecyclerView;//品类RecyclerView
     private RecyclerView classStyleRecyclerView;//风格RecyclerView
     private RecyclerView classObjectRecyclerView;   //对象RecyclerView
@@ -43,11 +41,9 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
     private ClassGuidesMoreRvAdapter classRvAdapter;//品类Adapter
     private ClassGuidesMoreRvAdapter styleRvAdapter;//风格Adapter
     private ClassGuidesMoreRvAdapter objectRvAdapter;//对象Adapter
-
     private String url;
 
     public static ClassTabGuidesFragment newInstance(String url) {
-
         Bundle args = new Bundle();
         args.putString("url", url);
         ClassTabGuidesFragment fragment = new ClassTabGuidesFragment();
@@ -66,7 +62,6 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
         classClassRecyclerView = byView(R.id.class_class_rv);
         classStyleRecyclerView = byView(R.id.class_style_rv);
         classObjectRecyclerView = byView(R.id.class_object_rv);
-
     }
 
     @Override
@@ -101,7 +96,6 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
                 //品类
                 final List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> classBean = new ArrayList<>();
                 if (channelGroupsBeen.get(0).getName().equals("品类")) {
-
                     for (int i = 0; i < 6; i++) {
                         classBean.add(channelGroupsBeen.get(0).getChannels().get(i));
                         classRvAdapter.setDatas(classBean);
@@ -110,7 +104,6 @@ public class ClassTabGuidesFragment extends AbsBaseFragment implements VolleyRes
                 //风格
                 final List<ClassGuidesMoreRvBean.DataBean.ChannelGroupsBean.ChannelsBean> styleBean = new ArrayList<>();
                 if (channelGroupsBeen.get(1).getName().equals("风格")) {
-
                     for (int i = 0; i < 6; i++) {
                         styleBean.add(channelGroupsBeen.get(1).getChannels().get(i));
                         styleRvAdapter.setDatas(styleBean);

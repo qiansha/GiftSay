@@ -14,7 +14,6 @@ import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeRotateBean;
 import com.lanou3g.giltsay.ui.activity.HomePageDetailActivity;
 import com.lanou3g.giltsay.ui.activity.RotateDetailActivity;
-import com.lanou3g.giltsay.ui.activity.RotateDetailNoIdActivity;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
@@ -62,30 +61,23 @@ public class HomeSeleRotateAdapter extends PagerAdapter {
 
         final HomeSeRotateBean.DataBean.BannersBean bean = datas.get(newPosition);
         Picasso.with(context).load(bean.getImage_url()).config(Bitmap.Config.RGB_565).into(imageView);
-//        Picasso.with(context).load(bean.getImgUrl).config(Bitmap.Config.RGB_565).config(imageView);
         container.addView(convertView);
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, RotateDetailActivity.class);
-                Object id =  bean.getTarget_id();
-//                String ids = String.v
-
-                if (id!=null) {
+                Object id = bean.getTarget_id();
+                if (id != null) {
                     String index = String.valueOf(id);
                     Log.d("aaaa", "zhixing");
-                    intent.putExtra("target_id",index);
-//                    intent.putExtra("target_url","111");
+                    intent.putExtra("target_id", index);
                     context.startActivity(intent);
-                }else {
+                } else {
                     Intent intent1 = new Intent(context, RotateDetailActivity.class);
-//                    intent.putExtra("target_id","");
-                    double a =  356.0;
-                    intent1.putExtra("target_id",a + "");
+                    double a = 356.0;
+                    intent1.putExtra("target_id", a + "");
                     context.startActivity(intent1);
                 }
-
-
             }
         });
         return convertView;

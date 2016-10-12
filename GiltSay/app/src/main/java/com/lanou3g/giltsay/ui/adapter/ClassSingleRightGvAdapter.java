@@ -67,14 +67,13 @@ public class ClassSingleRightGvAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ClassSingleDetailActivity.class);
-                intent.putExtra("id",bean.getId());
+                intent.putExtra("id", bean.getId());
                 Log.d("ClassSingleRightGvAdapt", "bean.getId():" + bean.getId());
                 context.startActivity(intent);
             }
         });
         return convertView;
     }
-
 
     class ClassSingleRightGvViewHolder {
         ImageView rightGvImg;

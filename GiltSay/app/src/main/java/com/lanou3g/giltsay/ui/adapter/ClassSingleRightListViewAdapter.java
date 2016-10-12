@@ -23,15 +23,14 @@ import java.util.List;
  * 攻略单品中右侧的ListView
  */
 public class ClassSingleRightListViewAdapter extends BaseAdapter {
-    private int selectIndex;
+//    private int selectIndex;
     private Context context;
-
     private ClassSingleRightGvAdapter classSingleRightGvAdapter;
     private List<ClassSingleBean.DataBean.CategoriesBean> data;
 
-    public void setSelectIndex(int selectIndex) {
-        this.selectIndex = selectIndex;
-    }
+//    public void setSelectIndex(int selectIndex) {
+//        this.selectIndex = selectIndex;
+//    }
 
     public ClassSingleRightListViewAdapter(Context context) {
         this.context = context;
@@ -73,8 +72,6 @@ public class ClassSingleRightListViewAdapter extends BaseAdapter {
         classSingleRightGvAdapter.setDatas(bean.getSubcategories());
         rightLvViewHolderView.singleGv.setAdapter(classSingleRightGvAdapter);
         rightLvViewHolderView.rightTitleTv.setText(bean.getName());
-
-
         return convertView;
     }
 

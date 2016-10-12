@@ -58,7 +58,6 @@ public class PersonFragment extends AbsBaseFragment {
     @Override
     protected void initViews() {
         personRg = byView(R.id.person_rg);
-//        personFrame = byView(R.id.person_frame);
         settingImg = byView(R.id.person_setting_img);
         logInImg = byView(R.id.person_sign_in_img);
         nameTv = byView(R.id.person_sign_in_name_tv);
@@ -66,7 +65,6 @@ public class PersonFragment extends AbsBaseFragment {
 
     @Override
     protected void initDatas() {
-
         personRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -84,8 +82,6 @@ public class PersonFragment extends AbsBaseFragment {
             }
         });
         personRg.check(R.id.person_single_rb);
-
-
         settingImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +102,7 @@ public class PersonFragment extends AbsBaseFragment {
         Platform platform = ShareSDK.getPlatform(context, QQ.NAME);
         //授权
         platform.authorize();
-//        //获取用户信息
+        //获取用户信息
         platform.setPlatformActionListener(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
@@ -117,15 +113,13 @@ public class PersonFragment extends AbsBaseFragment {
                 String icon = db.getUserIcon();
                 nameTv.setText(name);
                 Picasso.with(context).load(icon).into(logInImg);
-            logInImg.setMinimumWidth(40);
+                logInImg.setMinimumWidth(40);
                 logInImg.setMinimumHeight(40);
-
-
             }
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-         Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override

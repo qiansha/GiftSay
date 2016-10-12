@@ -22,11 +22,12 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/10/8.
+ * 分类中风格等的详情页
  */
 public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyResult, ReFlashListView.OnLoadListener,ReFlashListView.OnRefreshListener, View.OnClickListener {
     private ReFlashListView listView;
     private ImageView backImg;
-    private TextView titleTv;
+//    private TextView titleTv;
     private HomeSeleLvAdapter lvAdapter;
 
     @Override
@@ -38,7 +39,7 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
     protected void initViews() {
         listView = byView(R.id.class_guides_more_detail_lv);
         backImg = byView(R.id.class_guides_more_detail_back_img);
-        titleTv = byView(R.id.class_guides_more_detail_title_tv);
+//        titleTv = byView(R.id.class_guides_more_detail_title_tv);
     }
 
     @Override
@@ -49,12 +50,10 @@ public class ClassMoreDetailActivity extends AbsBaseActivity implements VolleyRe
         Log.d("moreUrl", url);
         lvAdapter = new HomeSeleLvAdapter(GiftApp.getContext());
         listView.setAdapter(lvAdapter);
-//        listView.setInterface(this);
         VolleyInstance.getInstance().startRequest(url, this);
         backImg.setOnClickListener(this);
         listView.setOnRefreshListener(this);
         listView.setOnLoadListener(this);
-
     }
 
     @Override

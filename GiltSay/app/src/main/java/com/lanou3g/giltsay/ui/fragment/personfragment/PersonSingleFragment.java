@@ -24,7 +24,7 @@ import java.util.List;
 public class PersonSingleFragment extends AbsBaseFragment {
     private ImageView coverImg;
     private TextView countTv;
-    private SQBean id;
+
     public static PersonSingleFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -43,7 +43,6 @@ public class PersonSingleFragment extends AbsBaseFragment {
     protected void initViews() {
         countTv = byView(R.id.person_collect_count_tv);
         coverImg = byView(R.id.person_collect_img);
-
     }
 
     @Override

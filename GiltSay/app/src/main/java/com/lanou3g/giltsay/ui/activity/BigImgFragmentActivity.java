@@ -46,7 +46,6 @@ public class BigImgFragmentActivity extends AbsBaseActivity implements VolleyRes
         url = intent.getStringExtra("url");
         position = intent.getIntExtra("position", 0);
         VolleyInstance.getInstance().startRequest(url,this);
-
     }
 
     @Override

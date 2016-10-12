@@ -24,11 +24,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".ui.activity.BigImgFragmentActivity" />
         <activity android:name=".ui.activity.HomePageDetailActivity" />
@@ -36,12 +36,18 @@
         <activity android:name=".ui.activity.SearchDetailActivity"/>
         <activity android:name=".ui.activity.ListDetailActivity"/>
         <activity android:name=".ui.activity.RotateDetailActivity"/>
-        <activity android:name=".ui.activity.RotateDetailNoIdActivity"/>
         <activity android:name=".ui.activity.ClassColumnDetailActivity"/>
         <activity android:name=".ui.activity.ClassMoreDetailActivity"/>
         <activity android:name=".ui.activity.ClassSingleDetailActivity"/>
         <activity android:name=".ui.activity.PersonSettingActivity"/>
         <activity android:name=".ui.activity.PersonSingleDetailActivity"/>
+        <activity android:name=".ui.activity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"

@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/10/8.
+ * 分类攻略栏目详情的适配器
  */
 public class ClassGuidesColumnDetailLvAdapter extends BaseAdapter {
     private Context context;
@@ -60,7 +61,6 @@ public class ClassGuidesColumnDetailLvAdapter extends BaseAdapter {
 
         ClassGuidesColumnDetailBean.DataBean.PostsBean been =  datas.get(position);
         Log.d("ClassGuidesColumnDetail", "been:" + been);
-//        Log.d("ClassGuidesColumnDetail", "been.getLikes_count():" + been.getLikes_count() +);
         if (been !=null) {
             detailViewHolder.titleTv.setText(been.getTitle());
             detailViewHolder.likeCountTv.setText(been.getLikes_count() + "");

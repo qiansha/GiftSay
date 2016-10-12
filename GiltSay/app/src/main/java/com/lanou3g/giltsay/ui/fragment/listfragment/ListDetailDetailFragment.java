@@ -15,6 +15,7 @@ import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 
 /**
  * Created by dllo on 16/9/28.
+ * 榜单详情中详情页面Fragment
  */
 public class ListDetailDetailFragment extends AbsBaseFragment implements VolleyResult {
     private String url;
@@ -35,7 +36,6 @@ public class ListDetailDetailFragment extends AbsBaseFragment implements VolleyR
     @Override
     protected void initViews() {
         detailWv = byView(R.id.list_detail_detail_wv);
-
     }
 
     @Override
@@ -53,25 +53,6 @@ public class ListDetailDetailFragment extends AbsBaseFragment implements VolleyR
                 return false;
             }
         });
-//        WebSettings set = detailWv.getSettings();
-//        set.setJavaScriptEnabled(true);
-////        // 让JavaScript可以自动打开windows
-//        set.setJavaScriptCanOpenWindowsAutomatically(true);
-//        // 设置缓存
-//        set.setAppCacheEnabled(true);
-//        // 设置缓存模式,一共有四种模式
-//        set.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        // 设置缓存路径
-//        webSettings.setAppCachePath("");
-        // 支持缩放(适配到当前屏幕)
-//        set.setSupportZoom(true);
-//        // 将图片调整到合适的大小
-//        set.setUseWideViewPort(true);
-//        // 支持内容重新布局,一共有四种方式
-//        // 默认的是NARROW_COLUMNS
-//        set.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        // 设置可以被显示的屏幕控制
-//        set.setDisplayZoomControls(true);
         VolleyInstance.getInstance().startRequest(url,this);
 
 

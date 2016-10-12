@@ -59,9 +59,9 @@ public class ClassGuidesColumnRvAdapter extends RecyclerView.Adapter<ClassGuides
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (recyclerViewItemClick != null){
+                if (recyclerViewItemClick != null) {
                     int p = holder.getLayoutPosition();
-                    recyclerViewItemClick.onRvItemClickListener(p,null);
+                    recyclerViewItemClick.onRvItemClickListener(p, null);
                 }
             }
         });

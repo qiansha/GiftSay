@@ -47,7 +47,6 @@ public class ClassFragment extends AbsBaseFragment {
         classTl = byView(R.id.class_tl);
         classVp = byView(R.id.class_vp);
         searchTv = byView(R.id.class_search_tv);
-
     }
 
     @Override

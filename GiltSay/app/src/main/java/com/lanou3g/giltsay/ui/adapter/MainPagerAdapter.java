@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/9.
- * Activity中四个Fragment的适配器
+ * Activity中Fragment的适配器
  */
 public class MainPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;

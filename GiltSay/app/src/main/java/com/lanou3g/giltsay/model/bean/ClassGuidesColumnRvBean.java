@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/18.
- *  分类攻略中栏目RecyclerView的实体类
+ * 分类攻略中栏目RecyclerView的实体类
  */
 public class ClassGuidesColumnRvBean {
 

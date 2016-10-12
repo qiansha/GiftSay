@@ -32,7 +32,6 @@ public class PersonSingleDetailActivity extends AbsBaseActivity {
     protected void initViews() {
         recyclerView = byView(R.id.person_single_detail_rv);
         backImg = byView(R.id.person_single_detail_back_img);
-
     }
 
     @Override

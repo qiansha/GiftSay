@@ -20,9 +20,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 16/10/8.
+ * 轮播图详情适配器
  */
-public class RotateDetailAdapter extends BaseAdapter{
-    private List<RotateDetailBean.DataBean.PostsBean>datas;
+public class RotateDetailAdapter extends BaseAdapter {
+    private List<RotateDetailBean.DataBean.PostsBean> datas;
     private Context context;
 
     public RotateDetailAdapter(Context context) {
@@ -35,7 +36,7 @@ public class RotateDetailAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return datas != null && datas.size() > 0 ?datas.size() : 0;
+        return datas != null && datas.size() > 0 ? datas.size() : 0;
     }
 
     @Override
@@ -51,11 +52,11 @@ public class RotateDetailAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RotateDetailViewHolder rotateDetailViewHolder = null;
-        if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_rotate_detail_lv,parent,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_rotate_detail_lv, parent, false);
             rotateDetailViewHolder = new RotateDetailViewHolder(convertView);
             convertView.setTag(rotateDetailViewHolder);
-        }else {
+        } else {
             rotateDetailViewHolder = (RotateDetailViewHolder) convertView.getTag();
         }
         RotateDetailBean.DataBean.PostsBean bean = (RotateDetailBean.DataBean.PostsBean) getItem(position);
@@ -64,7 +65,6 @@ public class RotateDetailAdapter extends BaseAdapter{
                 rotateDetailViewHolder.categoryTv.setText(bean.getColumn().getCategory());
                 rotateDetailViewHolder.descriptionTv.setText(bean.getTitle());
                 rotateDetailViewHolder.titleTv.setText(bean.getColumn().getTitle());
-
             }
             rotateDetailViewHolder.nicknameTv.setText(bean.getAuthor().getNickname());
             rotateDetailViewHolder.likesCountTv.setText(bean.getLikes_count() + "");
@@ -74,18 +74,20 @@ public class RotateDetailAdapter extends BaseAdapter{
         }
         return convertView;
     }
-    class RotateDetailViewHolder{
+
+    class RotateDetailViewHolder {
         TextView categoryTv, descriptionTv, nicknameTv, titleTv, likesCountTv;
         CircleImageView authorImg;
         ImageView coverImg;
-       public RotateDetailViewHolder(View view){
-           categoryTv = (TextView) view.findViewById(R.id.rotate_detail_list_cateory_tv);
-           descriptionTv = (TextView) view.findViewById(R.id.rotate_detail_list_description_tv);
-           nicknameTv = (TextView) view.findViewById(R.id.rotate_detail_list_nickname_tv);
-           titleTv = (TextView) view.findViewById(R.id.rotate_detail_list_title_tv);
-           likesCountTv = (TextView) view.findViewById(R.id.rotate_detail_list_likes_count_tv);
-           authorImg = (CircleImageView) view.findViewById(R.id.rotate_detail_list_author_img);
-           coverImg = (ImageView) view.findViewById(R.id.rotate_detail_list_big_img);
-       }
+
+        public RotateDetailViewHolder(View view) {
+            categoryTv = (TextView) view.findViewById(R.id.rotate_detail_list_cateory_tv);
+            descriptionTv = (TextView) view.findViewById(R.id.rotate_detail_list_description_tv);
+            nicknameTv = (TextView) view.findViewById(R.id.rotate_detail_list_nickname_tv);
+            titleTv = (TextView) view.findViewById(R.id.rotate_detail_list_title_tv);
+            likesCountTv = (TextView) view.findViewById(R.id.rotate_detail_list_likes_count_tv);
+            authorImg = (CircleImageView) view.findViewById(R.id.rotate_detail_list_author_img);
+            coverImg = (ImageView) view.findViewById(R.id.rotate_detail_list_big_img);
+        }
     }
 }

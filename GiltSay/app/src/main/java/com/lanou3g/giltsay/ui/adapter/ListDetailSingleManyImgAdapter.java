@@ -3,6 +3,7 @@ package com.lanou3g.giltsay.ui.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class ListDetailSingleManyImgAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.list_single_vp_img);
        ListDeManyImgBean bean = datas.get(newPosition);
         Picasso.with(context).load(bean.getImgUrl()).config(Bitmap.Config.RGB_565).into(imageView);
+        Log.d("ListDetailSingleManyImg", bean.getImgUrl());
         container.addView(view);
         return view;
     }

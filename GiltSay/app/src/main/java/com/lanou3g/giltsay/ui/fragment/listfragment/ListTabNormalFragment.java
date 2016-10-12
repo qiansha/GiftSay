@@ -22,7 +22,6 @@ import com.lanou3g.giltsay.ui.activity.ListDetailActivity;
 import com.lanou3g.giltsay.ui.adapter.ListPageRvAdapter;
 import com.lanou3g.giltsay.ui.fragment.absfragment.AbsBaseFragment;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
-import com.lanou3g.giltsay.utils.SaveFileToSDUtils;
 import com.lanou3g.giltsay.utils.StaticClassHelper;
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +36,7 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/9.
- * 榜单中分页面
+ * 榜单中四个分页面
  */
 public class ListTabNormalFragment extends AbsBaseFragment implements VolleyResult {
     private List<String> imageUrls;

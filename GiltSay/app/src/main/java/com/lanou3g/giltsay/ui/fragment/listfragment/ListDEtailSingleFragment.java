@@ -31,18 +31,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 榜单详情——————单品
  */
 public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyResult {
-    private boolean isRotate = false;
     private List<ListDeManyImgBean> imgBean;
     private ListDetailSingleManyImgAdapter imgAdapter;
     private LinearLayout pointLl;
     private int data;
-    private int position;
-    private int id;
     private String secondUrl;
-
-    private String shortDescription;
-    private String price;
-    private String description;
     private RecyclerView singleRv;
     private ViewPager singleVp;
     private TextView singleShortDes;
@@ -51,7 +44,6 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
     private ListDetailSingleRvAdapter listDetailSingleRvAdapter;
     private String url;
     private List<ListDetailBean.DataBean.RecommendItemsBean> datas;
-
 
     public static ListDetailSingleFragment newInstance(String url) {
 
@@ -75,14 +67,10 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
         singlePrice = byView(R.id.list_detail_single_price);
         singleDescription = byView(R.id.list_detail_single_description);
         pointLl = byView(R.id.list_detail_single_point_ll);
-
-
     }
 
     @Override
     protected void initDatas() {
-
-
         Bundle bundler = getArguments();
         this.url = bundler.getString("url");
         Log.d("sisisi", url);
@@ -91,25 +79,29 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
         singleRv.setLayoutManager(gm);
         singleRv.setAdapter(listDetailSingleRvAdapter);
 
-
         String singleUrl = StaticClassHelper.listDetailStartUrl + url + StaticClassHelper.listDetailEndUrl;
         secondUrl = StaticClassHelper.listDetailStartUrl + url;
+        /**
+         * 下方RecyclerView的网络请求
+         */
         VolleyInstance.getInstance().startRequest(singleUrl, this);
-
-
         Log.d("chengg", secondUrl);
+        /**
+         * 上方图片等的网络请求
+         */
         VolleyInstance.getInstance().startRequest(secondUrl, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 imgBean = new ArrayList<>();
-
                 Gson gson = new Gson();
                 ListDetaliHTMLBean bean = gson.fromJson(resultStr, ListDetaliHTMLBean.class);
+               List<String> imgBeans = bean.getData().getImage_urls();
                 for (int i = 0; i < bean.getData().getImage_urls().size(); i++) {
                     imgBean.add(new ListDeManyImgBean(bean.getData().getImage_urls().get(i)));
-                    imgAdapter.setDatas(imgBean);
-                }
+                    Log.d("ListDetailSingleFragmen", bean.getData().getImage_urls().get(i));
 
+                }
+                imgAdapter.setDatas(imgBean);
                 data = bean.getData().getImage_urls().size();
                 singleShortDes.setText(bean.getData().getShort_description());
                 singlePrice.setText(bean.getData().getPrice());
@@ -120,11 +112,9 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
 
             @Override
             public void failure() {
+
             }
         });
-        /**
-         * 顶部图片
-         */
         /**
          * ViewPager适配器
          */
@@ -150,8 +140,8 @@ public class ListDetailSingleFragment extends AbsBaseFragment implements VolleyR
         Log.d("data", "data:" + data);
         for (int i = 0; i < data; i++) {
             CircleImageView pointIv = new CircleImageView(context);
-            pointIv.setPadding(5, 5, 5, 5);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(20, 20);
+            pointIv.setPadding(8, 8, 8, 8);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(30, 30);
             pointIv.setLayoutParams(params);
 
             if (i == 0) {

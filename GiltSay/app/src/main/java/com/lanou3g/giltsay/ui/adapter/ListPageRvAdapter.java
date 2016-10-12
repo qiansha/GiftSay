@@ -23,7 +23,7 @@ import java.util.List;
  * Created by dllo on 16/9/14.
  * 榜单的适配器
  */
-public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.ListViewHolder>{
+public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.ListViewHolder> {
     private Context context;
     private RecyclerViewItemClick recyclerViewItemClick;
     private List<ListPageRecyclerViewBean.DataBean.ItemsBean> datas;
@@ -35,6 +35,7 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
     public ListPageRvAdapter(Context context) {
         this.context = context;
     }
+
     public void setDatas(List<ListPageRecyclerViewBean.DataBean.ItemsBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
@@ -42,18 +43,16 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(context).inflate(R.layout.item_listpage_rv,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_listpage_rv, parent, false);
         ListViewHolder listViewHolder = new ListViewHolder(view);
         return listViewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ListViewHolder holder, int position) {
-
         Log.d("ListPageRvAdapter", "进来没?");
         final ListPageRecyclerViewBean.DataBean.ItemsBean bean = datas.get(position);
-        if (bean !=null) {
+        if (bean != null) {
             Log.d("ListPageRvAdapter", bean.getName() + "名字");
             Log.d("ListPageRvAdapter", bean.getDescription() + "描述");
             Log.d("ListPageRvAdapter", bean.getPrice() + "价格");
@@ -65,10 +64,9 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (recyclerViewItemClick != null){
+                if (recyclerViewItemClick != null) {
                     int p = holder.getLayoutPosition();
-                    recyclerViewItemClick.onRvItemClickListener(p,null);
-
+                    recyclerViewItemClick.onRvItemClickListener(p, null);
                 }
             }
         });
@@ -79,7 +77,7 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
         return datas == null ? 0 : datas.size();
     }
 
-    class ListViewHolder extends RecyclerView.ViewHolder{
+    class ListViewHolder extends RecyclerView.ViewHolder {
         ImageView listImg;
         TextView listDescriptionTv;
         TextView listNameTv;
@@ -90,7 +88,7 @@ public class ListPageRvAdapter extends RecyclerView.Adapter<ListPageRvAdapter.Li
             listImg = (ImageView) itemView.findViewById(R.id.listpage_cv_img);
             listDescriptionTv = (TextView) itemView.findViewById(R.id.listpage_cv_description_tv);
             listNameTv = (TextView) itemView.findViewById(R.id.listpage_cv_name_tv);
-           listPriceTv = (TextView) itemView.findViewById(R.id.listpage_cv_price_tv);
+            listPriceTv = (TextView) itemView.findViewById(R.id.listpage_cv_price_tv);
 
         }
     }

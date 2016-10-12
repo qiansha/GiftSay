@@ -30,11 +30,9 @@ import java.util.List;
  * 首页的其他分页面
  */
 public class HomePageNormalFragment extends AbsBaseFragment implements VolleyResult, ReFlashListView.OnLoadListener, ReFlashListView.OnRefreshListener {
-
     private ReFlashListView homeNormalListView;
     private String tag;
     private HomeSeleLvAdapter homeSeleLvAdapter;
-
     public static HomePageNormalFragment newInstance(String url) {
         Bundle args = new Bundle();
         args.putString("url", url);

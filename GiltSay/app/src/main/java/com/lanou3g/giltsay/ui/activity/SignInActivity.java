@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import com.lanou3g.giltsay.R;
 
+/**
+ * 登录页面
+ */
+
 public class SignInActivity extends AbsBaseActivity {
 
     @Override

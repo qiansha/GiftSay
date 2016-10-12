@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import com.lanou3g.giltsay.R;
 
+/**
+ * 搜索详情页
+ */
+
 public class SearchDetailActivity extends AbsBaseActivity implements View.OnClickListener {
     private TextView missTv;
 

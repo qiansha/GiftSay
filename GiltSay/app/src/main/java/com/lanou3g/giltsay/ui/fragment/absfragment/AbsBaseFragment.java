@@ -56,10 +56,10 @@ public abstract class AbsBaseFragment extends Fragment {
     protected <T extends View> T byView(int resId) {
         return (T) getView().findViewById(resId);
     }
-
-    protected void goTo(Class<? extends AbsBaseActivity> to) {
-        context.startActivity(new Intent(context, to));
-    }
+//
+//    protected void goTo(Class<? extends AbsBaseActivity> to) {
+//        context.startActivity(new Intent(context, to));
+//    }
 
     public class MyColor {
         final int myColor = 0xFFFF0033;

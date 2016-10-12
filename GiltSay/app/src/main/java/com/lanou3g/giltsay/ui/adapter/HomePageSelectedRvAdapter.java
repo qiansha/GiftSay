@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 import com.lanou3g.giltsay.R;
 import com.lanou3g.giltsay.model.bean.HomeSeleHorRvBean;
-import com.lanou3g.giltsay.model.bean.HomeSeleRvBean;
 import com.lanou3g.giltsay.utils.RecyclerViewItemClick;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +22,6 @@ import java.util.List;
  */
 public class HomePageSelectedRvAdapter extends RecyclerView.Adapter<HomePageSelectedRvAdapter.HomeSeleRvViewHolder> {
     private Context context;
-//    private List<HomeSeleRvBean> datas;
     private List<HomeSeleHorRvBean.DataBean.SecondaryBannersBean>datas;
     private RecyclerViewItemClick recyclerViewItemClick;
 
@@ -57,8 +55,6 @@ public class HomePageSelectedRvAdapter extends RecyclerView.Adapter<HomePageSele
                 if (recyclerViewItemClick != null){
                     if (recyclerViewItemClick != null){
                         int p = holder.getLayoutPosition();
-//                        String str = data.get(position);
-//                        ImageView bitmap = holder.homeSeleImg;
                         String str = datas.get(position).getImage_url();
                         recyclerViewItemClick.onRvItemClickListener(p,str);
                     }

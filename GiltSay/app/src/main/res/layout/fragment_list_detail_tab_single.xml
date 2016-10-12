@@ -21,7 +21,7 @@
         <LinearLayout
             android:id="@+id/list_detail_single_point_ll"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="15dp"
             android:layout_gravity="bottom|center"
             android:gravity="center"
             android:layout_marginBottom="@dimen/home_sele_point_marbottom"

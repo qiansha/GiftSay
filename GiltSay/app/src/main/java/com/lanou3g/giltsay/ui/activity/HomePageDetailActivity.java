@@ -80,6 +80,7 @@ public class HomePageDetailActivity extends AbsBaseActivity implements VolleyRes
     public void success(String resultStr) {
         Gson gson = new Gson();
         HomeDetailBean homeDetailBean = gson.fromJson(resultStr, HomeDetailBean.class);
+        String htmlUrl = homeDetailBean.getData().getContent_html().substring(0,55);
         detailWv.loadUrl(homeDetailBean.getData().getUrl());
         int count = homeDetailBean.getData().getLikes_count();
         Log.d("count", "count:" + count);

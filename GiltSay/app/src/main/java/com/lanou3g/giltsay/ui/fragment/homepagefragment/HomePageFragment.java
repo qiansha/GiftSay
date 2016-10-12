@@ -169,11 +169,9 @@ public class HomePageFragment extends AbsBaseFragment {
         for (int i = 0; i < 18; i++) {
             data.add(popStr[i]);
         }
-
         homePopAdapter.setDatas(data);
         homePop.setOutsideTouchable(true);
         homePop.showAsDropDown(homePageTl);
-
         /**
          * 给PopWindow添加点击事件
          */

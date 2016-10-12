@@ -41,7 +41,6 @@ public class ClassColumnDetailActivity extends AbsBaseActivity implements Volley
         titleTv = byView(R.id.class_column_detail_title_tv);
         backImg = byView(R.id.class_column_detail_back_img);
         shareImg = byView(R.id.class_column_detail_share_img);
-
     }
 
     @Override
@@ -80,8 +79,6 @@ public class ClassColumnDetailActivity extends AbsBaseActivity implements Volley
                 finish();
                 break;
             case R.id.class_column_detail_share_img:
-
-
                 break;
         }
     }

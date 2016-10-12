@@ -28,15 +28,9 @@ public class HomePagePopRvAdapter extends RecyclerView.Adapter<HomePagePopRvAdap
     private int selectedIndex;
     private boolean flag = false;
 
-
     public void setSelectedIndex(int selectedIndex) {
         this.selectedIndex = selectedIndex;
         notifyDataSetChanged();
-    }
-
-    public int getSelectedIndex(int currentItem) {
-        this.selectedIndex = currentItem;
-        return currentItem;
     }
 
     public void setRecyclerViewItemClick(RecyclerViewItemClick recyclerViewItemClick) {
@@ -65,32 +59,24 @@ public class HomePagePopRvAdapter extends RecyclerView.Adapter<HomePagePopRvAdap
                 "送基友", "送同事", "送宝贝", "创意生活", "手工", "设计感", "文艺风", "科技范", "奇葩搞怪", "萌萌哒"};
         holder.popTv.setText(data.get(position));
         if (position == selectedIndex) {
-//            Log.d("数", "aaaaa");
             holder.popTv.setTextColor(StaticClassHelper.myColor);
             holder.popView.setBackgroundColor(StaticClassHelper.myColor);
 
-        }else {
+        } else {
             holder.popTv.setTextColor(StaticClassHelper.noSeleColor);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                holder.popTv.setTextColor(StaticClassHelper.myColor);
-                if (recyclerViewItemClick != null){
+                if (recyclerViewItemClick != null) {
                     int p = holder.getLayoutPosition();
                     String str = data.get(position);
-//                    Log.d("数", "position:" + position);
-                    recyclerViewItemClick.onRvItemClickListener(p,str);
-//                    Log.d("数", "selectedIndex:" + selectedIndex);
-
-
+                    recyclerViewItemClick.onRvItemClickListener(p, str);
                 }
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -104,7 +90,7 @@ public class HomePagePopRvAdapter extends RecyclerView.Adapter<HomePagePopRvAdap
         public HomePagePopRvViewHolder(View itemView) {
             super(itemView);
             popTv = (TextView) itemView.findViewById(R.id.item_homepage_pop_tv);
-            popView = (View) itemView.findViewById(R.id.item_homepage_pop_view);
+            popView = itemView.findViewById(R.id.item_homepage_pop_view);
         }
     }
 }

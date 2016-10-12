@@ -33,6 +33,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by dllo on 16/9/28.
+ * 榜单详情页   包括单品详情两个Fragment
  */
 public class ListDetailActivity extends AbsBaseActivity implements View.OnClickListener, VolleyResult {
     private ImageView backImg;
@@ -82,7 +83,6 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(ListDetailSingleFragment.newInstance(itemId + ""));
         fragments.add(ListDetailDetailFragment.newInstance(detailUrl));
-//        fragments.add(ListDetailTalkFragment.newInstance());
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), fragments);
         listDetailVp.setAdapter(mainPagerAdapter);
         listDetailTl.setupWithViewPager(listDetailVp);
@@ -91,7 +91,6 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         listDetailTl.setTabTextColors(Color.WHITE, Color.WHITE);
         listDetailTl.getTabAt(0).setText("单品");
         listDetailTl.getTabAt(1).setText("详情");
-//        listDetailTl.getTabAt(2).setText("评论");
         VolleyInstance.getInstance().startRequest(detailUrl, this);
         beans = new SQBean(imgUrl, name, description, price, itemId);
         backImg.setOnClickListener(this);
@@ -142,7 +141,6 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
             isCollect = true;
         }
         Log.d("ListDetailActivity", "SQInstance.getInstance().queryByName(name).size():" + SQInstance.getInstance().queryByName(name).size());
-
     }
 
     @Override
@@ -155,29 +153,30 @@ public class ListDetailActivity extends AbsBaseActivity implements View.OnClickL
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-
-// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
+        // 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
         //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-        oks.setTitle("标题");
+        oks.setTitle(name);
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-        oks.setTitleUrl("http://sharesdk.cn");
+//        oks.setTitleUrl("http://sharesdk.cn");
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
-        //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+        oks.setText(description);
         oks.setImageUrl(imgUrl);
+//        oks.setAddress(detailUrl);
+//        oks.setVenueName("来自礼物说");
+        //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+//        oks.setImageUrl(imgUrl);
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://sharesdk.cn");
+        oks.setUrl(detailUrl);
         // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-        oks.setComment("我是测试评论文本");
+//        oks.setComment("我是测试评论文本");
         // site是分享此内容的网站名称，仅在QQ空间使用
-        oks.setSite("ShareSDK");
+        oks.setSite(detailUrl);
         // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        oks.setSiteUrl("http://sharesdk.cn");
-
-// 启动分享GUI
+        oks.setSiteUrl(detailUrl);
+        // 启动分享GUI
         oks.show(this);
 
     }

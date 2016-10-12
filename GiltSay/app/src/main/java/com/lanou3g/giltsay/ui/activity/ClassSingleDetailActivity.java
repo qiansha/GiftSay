@@ -67,7 +67,6 @@ public class ClassSingleDetailActivity extends AbsBaseActivity implements Volley
         Gson gson = new Gson();
         ListPageRecyclerViewBean listPageRecyclerViewBean = gson.fromJson(resultStr, ListPageRecyclerViewBean.class);
         final List<ListPageRecyclerViewBean.DataBean.ItemsBean> itemsBeanListData = listPageRecyclerViewBean.getData().getItems();
-
         RvAdapter.setDatas(itemsBeanListData);
     }
 

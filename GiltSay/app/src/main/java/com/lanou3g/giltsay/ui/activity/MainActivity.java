@@ -90,9 +90,6 @@ public class MainActivity extends AbsBaseActivity {
             // 利用handler延迟发送更改状态信息
             mHandler.sendEmptyMessageDelayed(0, 2000);
         } else {
-
-//			Log.e(TAG, "exit application");
-
             this.finish();
         }
     }

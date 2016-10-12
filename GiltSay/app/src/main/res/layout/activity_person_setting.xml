@@ -235,6 +235,7 @@
             <!--android:layout_margin="5dp"/>-->
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/person_setting_clear_data_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -252,13 +253,13 @@
             android:textColor="#363333"
             android:layout_toRightOf="@id/person_setting_normal_img15"
             android:layout_centerVertical="true"/>
-        <ImageView
+        <TextView
+            android:id="@+id/person_setting_clear_data_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_arrow_right_grey"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

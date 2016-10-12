@@ -5,14 +5,12 @@ package com.lanou3g.giltsay.utils;
  * 常量类
  */
 public class StaticClassHelper {
+
     /**
      * 轮播时间
      */
     public static final int TIME = 3000;
-    /**
-     * 广播
-     */
-    public static final String THE_ACTION = "itemClickDetail";
+
     /**
      * 分类单品左边listView的背景色
      */
